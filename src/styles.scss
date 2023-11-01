@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'src/assets/styles/_variables.scss';
+
+@font-face {
+    font-family: "Morice Bejar";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Morice Bejar"),
+    url("assets/fonts/Morice-Bejar.ttf") format("ttf")
+}
+
+@font-face {
+    font-family: "Relic";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Relic Regular"),
+    url("assets/fonts/Relic-Regular.otf") format("otf")
+}
+
+body {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}
+
+img {
+    display: block;
+}
+
+:active, :hover, :focus {
+    outline: 0;
+}
+
+:root {
+    background-color: $background-color;
+}
