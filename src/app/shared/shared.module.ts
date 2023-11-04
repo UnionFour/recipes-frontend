@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationComponent } from './navigation/navigation.component';
+import { SearchComponent } from './search/search.component';
+import { TuiInputModule } from '@taiga-ui/kit';
+import { TuiTextfieldControllerModule } from '@taiga-ui/core';
 
 const modules = [
     CommonModule,
@@ -11,11 +14,16 @@ const modules = [
 ];
 
 const declarations = [
-    NavigationComponent
+    NavigationComponent,
+    SearchComponent
 ];
 
 @NgModule({
-    imports: modules,
+    imports: [
+        modules,
+        TuiInputModule,
+        TuiTextfieldControllerModule
+    ],
     declarations: declarations,
     exports: declarations
 })

@@ -3,6 +3,6 @@
 .media{
     min-height: 100vh;
     width: min($max-media-width, calc(100% - $min-media-margin));
-    margin: 0 auto 0 auto;
+    margin: $base-element-top-margin auto 0 auto;
     font-family: $regular-text-family;
 }

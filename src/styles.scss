@@ -18,12 +18,17 @@
 
 body {
     margin: 0;
+    background-color: $background-color!important;
 }
 
 a {
     text-decoration: none;
     color: #000000;
     cursor: pointer;
+}
+
+p {
+    margin: 0;
 }
 
 li {
@@ -40,8 +45,4 @@ img {
 
 :active, :hover, :focus {
     outline: 0;
-}
-
-:root {
-    background-color: $background-color;
 }
