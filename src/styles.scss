@@ -23,6 +23,15 @@ body {
 a {
     text-decoration: none;
     color: #000000;
+    cursor: pointer;
+}
+
+li {
+    list-style-type: none;
+}
+ul {
+    margin: 0;
+    padding: 0;
 }
 
 img {

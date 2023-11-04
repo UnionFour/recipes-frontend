@@ -6,12 +6,19 @@ $background-color: #DEE2E6;
 $regular-text-family: 'Gentium Plus', serif;
 $regular-text-color: #000;
 
+$accents-text-family: 'Morice Bejar', serif;
+$accents-text-color: #000;
+
+// шрифт навигации
+$nav-font-size: 22px;
+$nav-font-family: $accents-text-family;
+$nav-text-color: $accents-text-color;
+
+// размеры
+$max-media-width: 1328px;
 
 // размеры margins
 $min-media-margin: 30px;
 
 // размеры paddings
-
-
-// размеры
-$max-media-width: 1306px;
+$media-vertical-padding: 15px;
