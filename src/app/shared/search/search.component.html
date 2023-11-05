@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="right-container">
+    <div class="right-container" [tuiHint]="tooltip">
         <img src="assets/img/search-logo.svg" alt="search-logo" width="221" height="37">
     </div>
     <div class="left-container">
@@ -21,3 +21,7 @@
         </form>
     </div>
 </div>
+
+<ng-template #tooltip>
+    <div>Глобальный поиск рецепта по названию</div>
+</ng-template>

@@ -1,0 +1,37 @@
+<div class="container">
+    <form [formGroup]="form">
+        <div class="search-severity flex">
+            <ng-container [ngSwitch]="isSearchLoose">
+                <label *ngSwitchCase="true" for="isSearchLoose">Из того, что есть</label>
+                <label *ngSwitchCase="false" for="isSearchLoose">Из того, что хочу</label>
+            </ng-container>
+            <tui-toggle
+                    id="isSearchLoose"
+                    formControlName="isSearchLoose"
+                    size="l"
+            ></tui-toggle>
+        </div>
+        <ng-container [ngSwitch]="isSearchLoose">
+            <p *ngSwitchCase="true">Доступный поиск рецептов из того, что есть.</p>
+            <p *ngSwitchCase="false">Нестрогий поиск рецептов из того, что хочется.</p>
+        </ng-container>
+        <ul class="filters">
+            <li>
+                <label>Способы/тара</label>
+            </li>
+            <li>
+                <label>Пищевая ценность</label>
+            </li>
+            <li>
+                <label>Категории</label>
+            </li>
+            <li>
+                <label>Игредиенты</label>
+            </li>
+        </ul>
+        <ul class="ingredients">
+            <li>
+            </li>
+        </ul>
+    </form>
+</div>

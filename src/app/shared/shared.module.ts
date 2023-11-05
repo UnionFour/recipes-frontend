@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationComponent } from './navigation/navigation.component';
 import { SearchComponent } from './search/search.component';
 import { TuiInputModule } from '@taiga-ui/kit';
-import { TuiTextfieldControllerModule } from '@taiga-ui/core';
+import { TuiHintModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 
 const modules = [
     CommonModule,
@@ -22,7 +22,8 @@ const declarations = [
     imports: [
         modules,
         TuiInputModule,
-        TuiTextfieldControllerModule
+        TuiTextfieldControllerModule,
+        TuiHintModule
     ],
     declarations: declarations,
     exports: declarations
