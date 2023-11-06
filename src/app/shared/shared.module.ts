@@ -4,29 +4,39 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationComponent } from './navigation/navigation.component';
 import { SearchComponent } from './search/search.component';
-import { TuiInputModule } from '@taiga-ui/kit';
+import { TuiAvatarModule, TuiDataListWrapperModule, TuiInputModule, TuiMultiSelectModule } from '@taiga-ui/kit';
 import { TuiHintModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import { AsyncSelectComponent } from './components/async-select/async-select.component';
+import { TuiLetModule } from '@taiga-ui/cdk';
 
 const modules = [
     CommonModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    TuiInputModule,
+    TuiTextfieldControllerModule,
+    TuiHintModule
 ];
 
-const declarations = [
+const components = [
     NavigationComponent,
-    SearchComponent
+    SearchComponent,
+    AsyncSelectComponent
 ];
 
 @NgModule({
     imports: [
         modules,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
-        TuiHintModule
+        TuiAvatarModule,
+        TuiDataListWrapperModule,
+        TuiLetModule,
+        TuiMultiSelectModule
     ],
-    declarations: declarations,
-    exports: declarations
+    declarations: components,
+    exports: [
+        components,
+        modules
+    ]
 })
 export class SharedModule {
 }

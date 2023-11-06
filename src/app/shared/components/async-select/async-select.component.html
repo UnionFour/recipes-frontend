@@ -1,0 +1,34 @@
+<label>
+    Type a name:
+    <tui-multi-select
+            *tuiLet="items$ | async as items"
+            placeholder="Find by ..."
+            class="b-form"
+            [expandable]="false"
+            [formControl]="testValue"
+            [tuiTextfieldLabelOutside]="true"
+            (searchChange)="onSearchChange($event)"
+    >
+        {{placeholder}}
+        <tui-data-list-wrapper
+                *tuiDataList
+                [itemContent]="itemContent"
+                [items]="items | tuiHideSelected"
+        ></tui-data-list-wrapper>
+    </tui-multi-select>
+</label>
+
+<ng-template
+    #itemContent
+    let-data
+>
+    <div class="template">
+        <tui-avatar
+                size="xs"
+                class="avatar"
+                [avatarUrl]="data.avatarUrl"
+                [text]="data.toString()"
+        ></tui-avatar>
+        {{ data }}
+    </div>
+</ng-template>
