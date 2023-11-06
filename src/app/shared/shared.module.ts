@@ -4,10 +4,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationComponent } from './navigation/navigation.component';
 import { SearchComponent } from './search/search.component';
-import { TuiAvatarModule, TuiDataListWrapperModule, TuiInputModule, TuiMultiSelectModule } from '@taiga-ui/kit';
-import { TuiHintModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import {
+    TuiAvatarModule,
+    TuiDataListWrapperModule,
+    TuiInputModule,
+    TuiInputRangeModule,
+    TuiMultiSelectModule
+} from '@taiga-ui/kit';
+import { TuiHintModule, TuiSvgModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { AsyncSelectComponent } from './components/async-select/async-select.component';
 import { TuiLetModule } from '@taiga-ui/cdk';
+import { InputRangeComponent } from './components/input-range/input-range.component';
 
 const modules = [
     CommonModule,
@@ -21,7 +28,8 @@ const modules = [
 const components = [
     NavigationComponent,
     SearchComponent,
-    AsyncSelectComponent
+    AsyncSelectComponent,
+    InputRangeComponent
 ];
 
 @NgModule({
@@ -30,7 +38,9 @@ const components = [
         TuiAvatarModule,
         TuiDataListWrapperModule,
         TuiLetModule,
-        TuiMultiSelectModule
+        TuiMultiSelectModule,
+        TuiInputRangeModule,
+        TuiSvgModule
     ],
     declarations: components,
     exports: [

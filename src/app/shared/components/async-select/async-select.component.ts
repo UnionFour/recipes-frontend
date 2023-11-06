@@ -45,8 +45,6 @@ export class AsyncSelectComponent {
         startWith(databaseMockData),
     );
 
-    readonly testValue = new FormControl([databaseMockData[0]]);
-
     onSearchChange(searchQuery: string | null): void {
         this.search$.next(searchQuery);
     }

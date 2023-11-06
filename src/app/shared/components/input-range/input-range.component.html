@@ -1,0 +1,18 @@
+<div class="wrapper">
+    <tui-input-range
+            [formControl]="control"
+            [max]="maxValue"
+            [min]="minValue"
+            [pluralize]="pluralize"
+            [segments]="5"
+            [steps]="5"
+    >
+        {{placeholder}}
+    </tui-input-range>
+
+    <div class="ticks-labels">
+        <span *ngFor="let tick of ticksLabels">
+            {{tick}}{{tick | i18nPlural: pluralize}}
+        </span>
+    </div>
+</div>
