@@ -12,24 +12,32 @@
             ></tui-toggle>
         </div>
         <ng-container [ngSwitch]="isSearchLoose">
-            <p *ngSwitchCase="true">Доступный поиск рецептов из того, что есть.</p>
-            <p *ngSwitchCase="false">Нестрогий поиск рецептов из того, что хочется.</p>
+            <p *ngSwitchCase="true"><i>Строгий</i> поиск рецептов из того, что есть.</p>
+            <p *ngSwitchCase="false"><i>Нестрогий</i> поиск рецептов из того, что хочется.</p>
         </ng-container>
         <ul class="filters">
-            <li>
-                <label>Способы/тара</label>
-                <app-async-select
-                        [placeholder]="'Введите доступные вам способы/тару'"
-                ></app-async-select>
-            </li>
+<!--            <li>-->
+<!--                <label>Способы/тара</label>-->
+<!--                <app-async-select-->
+<!--                        [placeholder]="'Введите доступные вам способы/тару'"-->
+<!--                ></app-async-select>-->
+<!--            </li>-->
             <li>
                 <label>Пищевая ценность</label>
-                <app-input-range></app-input-range>
+                <app-input-range
+                        [placeholder]="'Пищевая ценность на 100 гр.'"
+                        [pluralize]="{other: 'Ккал'}"
+                        [control]="getControl('nutritionalValues')"
+                        [maxValue]="1000"
+                        [minValue]="100"
+                        [steps]="18"
+                ></app-input-range>
             </li>
             <li>
                 <label>Категории</label>
                 <app-async-select></app-async-select>
             </li>
+            <hr>
             <li>
                 <label>Игредиенты</label>
                 <app-async-select></app-async-select>

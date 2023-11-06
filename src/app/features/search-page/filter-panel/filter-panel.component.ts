@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -30,13 +30,17 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
         this.ngUnsubscribe.complete();
     }
 
-    public createForm(): FormGroup {
+    private createForm(): FormGroup {
         return this.fb.group({
-            isSearchLoose: true,
-            containerMethods: [],
-            nutritionalValues: [],
-            categories: [],
-            ingredients: []
+            isSearchLoose: new FormControl(true),
+            containerMethods: new FormControl([]),
+            nutritionalValues: new FormControl([100, 600]),
+            categories: new FormControl([]),
+            ingredients: new FormControl([])
         });
+    }
+
+    public getControl(controlName: string): FormControl {
+        return this.form.get(controlName) as FormControl;
     }
 }

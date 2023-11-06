@@ -4,15 +4,15 @@
             [max]="maxValue"
             [min]="minValue"
             [pluralize]="pluralize"
-            [segments]="5"
-            [steps]="5"
+            [tuiTextfieldSize]="size"
+            [steps]="steps"
     >
         {{placeholder}}
     </tui-input-range>
 
-    <div class="ticks-labels">
+    <div class="ticks-labels" *ngIf="ticksLabels.length">
         <span *ngFor="let tick of ticksLabels">
-            {{tick}}{{tick | i18nPlural: pluralize}}
+            {{tick}}
         </span>
     </div>
 </div>

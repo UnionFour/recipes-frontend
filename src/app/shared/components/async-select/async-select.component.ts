@@ -25,6 +25,8 @@ const databaseMockData: readonly User[] = [
     new User('Yulia', 'Tsareva'),
 ];
 
+type Size = 's' | 'l' | 'm';
+
 @Component({
     selector: 'app-async-select',
     templateUrl: './async-select.component.html',
@@ -34,6 +36,7 @@ const databaseMockData: readonly User[] = [
 export class AsyncSelectComponent {
     @Input() public placeholder: string = 'Введите значение';
     @Input() public control: FormControl = new FormControl<string[]>([]);
+    @Input() public size: Size = 's';
 
     readonly search$ = new Subject<string | null>();
 
