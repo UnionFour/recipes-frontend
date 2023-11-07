@@ -11,7 +11,7 @@ import { SearchPageModule } from './features/search-page/search-page.module';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
     ],
     imports: [
         BrowserModule,
