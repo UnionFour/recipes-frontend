@@ -8,10 +8,15 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SearchPageModule } from './features/search-page/search-page.module';
+import { RecipePageComponent } from './features/recipe-page/recipe-page.component';
+import { RecommendationsPanelComponent } from './features/recipe-page/recommendations-panel/recommendations-panel.component';
+import { RecipePageModule } from './features/recipe-page/recipe-page.module';
 
 @NgModule({
     declarations: [
         AppComponent,
+        RecipePageComponent,
+        RecommendationsPanelComponent,
     ],
     imports: [
         BrowserModule,
@@ -21,7 +26,8 @@ import { SearchPageModule } from './features/search-page/search-page.module';
         TuiDialogModule,
         TuiAlertModule,
         AppRoutingModule,
-        SearchPageModule
+        SearchPageModule,
+        RecipePageModule
     ],
     providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
     bootstrap: [AppComponent]
