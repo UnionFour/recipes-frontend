@@ -15,8 +15,6 @@ import { RecipePageModule } from './features/recipe-page/recipe-page.module';
 @NgModule({
     declarations: [
         AppComponent,
-        RecipePageComponent,
-        RecommendationsPanelComponent,
     ],
     imports: [
         BrowserModule,
