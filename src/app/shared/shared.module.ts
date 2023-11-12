@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { SearchComponent } from './components/search/search.component';
@@ -9,7 +9,7 @@ import {
     TuiDataListWrapperModule,
     TuiInputModule,
     TuiInputRangeModule,
-    TuiMultiSelectModule
+    TuiMultiSelectModule, TuiTagModule
 } from '@taiga-ui/kit';
 import { TuiHintModule, TuiSvgModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { AsyncSelectComponent } from './components/async-select/async-select.component';
@@ -50,7 +50,9 @@ const pipes = [
         TuiInputRangeModule,
         TuiSvgModule,
         RouterOutlet,
-        TuiValueChangesModule
+        TuiValueChangesModule,
+        FormsModule,
+        TuiTagModule
     ],
     declarations: [
         ...components,

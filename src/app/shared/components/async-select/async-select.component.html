@@ -1,24 +1,21 @@
-<label>
-    <tui-multi-select
-            *tuiLet="items$ | async as items"
-            placeholder="placeholder"
-            class="b-form"
-            [expandable]="false"
-            [formControl]="control"
-            [tuiTextfieldSize]="size"
-            (searchChange)="onSearchChange($event)"
-            [valueContent]="controlItem"
-    >
-        <!--            [valueContent]="control.value"-->
-        {{placeholder}}
-        <tui-data-list-wrapper
-                *tuiDataList
-                [itemContent]="itemContent"
-                [items]="items | tuiHideSelected"
-        ></tui-data-list-wrapper>
-    </tui-multi-select>
-</label>
-{{control.value}}
+<tui-multi-select
+        *tuiLet="items$ | async as items"
+        placeholder="placeholder"
+        class="b-form"
+        [expandable]="false"
+        [tuiTextfieldSize]="size"
+        (searchChange)="onSearchChange($event)"
+        (tuiValueChanges)="onValueChanges($event)"
+        [(ngModel)]="values"
+        [valueContent]="valueContent"
+>
+    {{placeholder}}
+    <tui-data-list-wrapper
+            *tuiDataList
+            [itemContent]="itemContent"
+            [items]="items | tuiHideSelected"
+    ></tui-data-list-wrapper>
+</tui-multi-select>
 
 <ng-template
     #itemContent
@@ -30,11 +27,15 @@
 </ng-template>
 
 <ng-template
-        #controlItem
-        let-data
+    #valueContent
+    let-list
 >
-    <div>
-        <div>{{data}}</div>
-        <div></div>
-    </div>
+    <ng-container *ngFor="let item of list">
+        <tui-tag
+                size="s"
+                class="t-tag"
+                [removable]="true"
+                [value]="item"
+        ></tui-tag>
+    </ng-container>
 </ng-template>

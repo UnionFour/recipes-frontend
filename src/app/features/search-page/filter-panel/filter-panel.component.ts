@@ -58,7 +58,7 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
             takeUntil(this.ngUnsubscribe)
         ).subscribe(() => {
             // фильтруем список рецептов с дебаунсом
-            console.log(this.form.value);
+            // console.log(this.form.value);
         });
     }
 
@@ -74,7 +74,7 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
     public deleteIngredient(index: number) {
         this.selectedIngredients.splice(index, 1);
         this.form.get('ingredients')?.setValue(this.selectedIngredients);
-        this.ingredientsChanged$.next(null);
+        this.ingredientsChanged$.next(this.selectedIngredients);
     }
 
     private createForm(): FormGroup {

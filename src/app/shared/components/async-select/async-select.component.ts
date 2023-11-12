@@ -18,8 +18,10 @@ export class AsyncSelectComponent implements OnInit {
     @Input() public databaseMockData: SelectOption[] = [];
     @Input() public itemsChanged$: Subject<SelectOption[] | null> = new Subject<SelectOption[] | null>();
 
+
     public search$ = new Subject<string | null>();
     public items$!: Observable<SelectOption[] | null>;
+    public values: SelectOption[] | null = [];
 
     constructor(private ref: ChangeDetectorRef) {
     }
@@ -32,10 +34,22 @@ export class AsyncSelectComponent implements OnInit {
             ),
             startWith(this.databaseMockData),
         );
+
+        this.itemsChanged$.subscribe((values: SelectOption[] | null) => {
+            this.control.setValue(values)
+            this.values = values;
+            console.log(values);
+            this.ref.detectChanges();
+            this.ref.markForCheck();
+        });
     }
 
     onSearchChange(searchQuery: string | null): void {
         this.search$.next(searchQuery);
+    }
+
+    onValueChanges(value: any) {
+        this.control.setValue(value);
     }
 
     /**
