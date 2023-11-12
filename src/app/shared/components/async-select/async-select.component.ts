@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { async, delay, filter, Observable, of, startWith, Subject, switchMap } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { TUI_DEFAULT_MATCHER } from '@taiga-ui/cdk';
@@ -9,24 +9,26 @@ type Size = 's' | 'l' | 'm';
 @Component({
     selector: 'app-async-select',
     templateUrl: './async-select.component.html',
-    styleUrls: ['./async-select.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    styleUrls: ['./async-select.component.scss']
 })
 export class AsyncSelectComponent implements OnInit {
     @Input() public placeholder: string = 'Введите значение';
     @Input() public control: FormControl = new FormControl<string[]>([]);
     @Input() public size: Size = 's';
     @Input() public databaseMockData: SelectOption[] = [];
+    @Input() public itemsChanged$: Subject<SelectOption[] | null> = new Subject<SelectOption[] | null>();
 
     public search$ = new Subject<string | null>();
+    public items$!: Observable<SelectOption[] | null>;
 
-    public items$!: Observable<readonly SelectOption[] | null>;
+    constructor(private ref: ChangeDetectorRef) {
+    }
 
     ngOnInit() {
         this.items$ = this.search$.pipe(
             filter((value: any) => value !== null),
             switchMap(search =>
-                this.serverRequest(search).pipe(startWith<readonly SelectOption[] | null>(null)),
+                this.serverRequest(search).pipe(startWith<SelectOption[] | null>(null)),
             ),
             startWith(this.databaseMockData),
         );
@@ -39,7 +41,7 @@ export class AsyncSelectComponent implements OnInit {
     /**
      * Server request emulation
      */
-    private serverRequest(searchQuery: string | null): Observable<readonly SelectOption[]> {
+    private serverRequest(searchQuery: string | null): Observable<SelectOption[]> {
         const result = this.databaseMockData.filter(user =>
             TUI_DEFAULT_MATCHER(user, searchQuery || ''),
         );

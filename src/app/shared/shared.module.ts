@@ -13,7 +13,7 @@ import {
 } from '@taiga-ui/kit';
 import { TuiHintModule, TuiSvgModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { AsyncSelectComponent } from './components/async-select/async-select.component';
-import { TuiLetModule } from '@taiga-ui/cdk';
+import { TuiLetModule, TuiValueChangesModule } from '@taiga-ui/cdk';
 import { InputRangeComponent } from './components/input-range/input-range.component';
 import { LayoutComponent } from './layout/layout.component';
 import { RouterOutlet } from '@angular/router';
@@ -49,7 +49,8 @@ const pipes = [
         TuiMultiSelectModule,
         TuiInputRangeModule,
         TuiSvgModule,
-        RouterOutlet
+        RouterOutlet,
+        TuiValueChangesModule
     ],
     declarations: [
         ...components,

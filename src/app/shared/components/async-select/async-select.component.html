@@ -7,7 +7,9 @@
             [formControl]="control"
             [tuiTextfieldSize]="size"
             (searchChange)="onSearchChange($event)"
+            [valueContent]="controlItem"
     >
+        <!--            [valueContent]="control.value"-->
         {{placeholder}}
         <tui-data-list-wrapper
                 *tuiDataList
@@ -16,6 +18,7 @@
         ></tui-data-list-wrapper>
     </tui-multi-select>
 </label>
+{{control.value}}
 
 <ng-template
     #itemContent
@@ -23,5 +26,15 @@
 >
     <div class="template">
         {{ data }}
+    </div>
+</ng-template>
+
+<ng-template
+        #controlItem
+        let-data
+>
+    <div>
+        <div>{{data}}</div>
+        <div></div>
     </div>
 </ng-template>

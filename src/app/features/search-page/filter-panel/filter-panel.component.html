@@ -46,12 +46,14 @@
                 <app-async-select
                         [control]="getControl('ingredients')"
                         [databaseMockData]="ingredientsMockData"
+                        [itemsChanged$]="ingredientsChanged$"
                 ></app-async-select>
             </li>
         </ul>
         <ul class="ingredients" *ngIf="selectedIngredients">
-            <li *ngFor="let ingredient of selectedIngredients">
-                <p>{{ingredient.title}}</p><div class="cross-icon"></div>
+            <li *ngFor="let ingredient of selectedIngredients; index as i">
+                <p>{{ingredient.title}}</p>
+                <div class="cross-icon" (click)="deleteIngredient(i)"></div>
             </li>
         </ul>
     </form>
