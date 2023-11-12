@@ -17,6 +17,7 @@ import { TuiLetModule } from '@taiga-ui/cdk';
 import { InputRangeComponent } from './components/input-range/input-range.component';
 import { LayoutComponent } from './layout/layout.component';
 import { RouterOutlet } from '@angular/router';
+import { DeclensionPipe } from './pipes/declension.pipe';
 
 const modules = [
     CommonModule,
@@ -35,6 +36,10 @@ const components = [
     LayoutComponent
 ];
 
+const pipes = [
+    DeclensionPipe
+];
+
 @NgModule({
     imports: [
         modules,
@@ -46,10 +51,14 @@ const components = [
         TuiSvgModule,
         RouterOutlet
     ],
-    declarations: components,
+    declarations: [
+        ...components,
+        ...pipes
+    ],
     exports: [
-        components,
-        modules
+        ...components,
+        ...modules,
+        ...pipes
     ]
 })
 export class SharedModule {

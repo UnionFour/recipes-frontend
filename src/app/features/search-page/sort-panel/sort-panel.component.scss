@@ -1,0 +1,9 @@
+@import 'src/assets/styles/_variables.scss';
+
+.container {
+    background-color: $base-element-color;
+    border-radius: $base-border-radius;
+    margin-top: $base-element-top-margin;
+    padding: 22px;
+    width: 100%;
+}
