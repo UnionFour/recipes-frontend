@@ -1,7 +1,7 @@
 <label>
     <tui-multi-select
             *tuiLet="items$ | async as items"
-            placeholder="Find by ..."
+            placeholder="placeholder"
             class="b-form"
             [expandable]="false"
             [formControl]="control"
@@ -22,12 +22,6 @@
     let-data
 >
     <div class="template">
-        <tui-avatar
-                size="xs"
-                class="avatar"
-                [avatarUrl]="data.avatarUrl"
-                [text]="data.toString()"
-        ></tui-avatar>
         {{ data }}
     </div>
 </ng-template>

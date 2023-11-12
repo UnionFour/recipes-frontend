@@ -35,12 +35,18 @@
             </li>
             <li>
                 <label>Категории</label>
-                <app-async-select></app-async-select>
+                <app-async-select
+                        [control]="getControl('categories')"
+                        [databaseMockData]="categoriesMockData"
+                ></app-async-select>
             </li>
             <hr>
             <li>
                 <label>Игредиенты</label>
-                <app-async-select></app-async-select>
+                <app-async-select
+                        [control]="getControl('ingredients')"
+                        [databaseMockData]="ingredientsMockData"
+                ></app-async-select>
             </li>
         </ul>
         <ul class="ingredients">

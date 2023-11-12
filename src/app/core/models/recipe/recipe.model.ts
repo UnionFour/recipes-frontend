@@ -5,6 +5,7 @@ import { ObjectId } from './objectId.model';
 
 export interface IRecipe {
     _id: ObjectId,
+    // категории
     vegetarian: boolean,
     vegan: boolean,
     glutenFree: boolean,
@@ -12,6 +13,7 @@ export interface IRecipe {
     veryHealthy: boolean,
     cheap: boolean,
     veryPopular: boolean,
+    //
     preparationMinutes: number,
     cookingMinutes: number,
     healthScore: number,
