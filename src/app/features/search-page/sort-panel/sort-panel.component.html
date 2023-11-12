@@ -1,5 +1,13 @@
-<div class="container">
-    <p>
-        {{recipesCount | declension: findDeclensions}} {{recipesCount}} {{recipesCount | declension: recipeDeclensions}}
-    </p>
+<div class="container flex">
+    <h1>
+        {{recipesCount | declension: findDeclensions}} <b>{{recipesCount}}</b> {{recipesCount | declension: recipeDeclensions}}
+    </h1>
+    <ul class="flex">
+        <li>
+            <div class="sort-icon"></div><p>Каллории</p>
+        </li>
+        <li>
+            <div class="sort-icon"></div><p>Время</p>
+        </li>
+    </ul>
 </div>

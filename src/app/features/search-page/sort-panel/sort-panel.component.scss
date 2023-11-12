@@ -3,7 +3,44 @@
 .container {
     background-color: $base-element-color;
     border-radius: $base-border-radius;
-    margin-top: $base-element-top-margin;
-    padding: 22px;
-    width: 100%;
+    padding: 11px 30px;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+h1 {
+    font-family: $regular-accents-text-family;
+    font-size: 18px;
+
+    b {
+        font-size: 20px;
+    }
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    cursor: pointer;
+    margin-right: 26px;
+
+    p {
+        font-family: $regular-accents-text-family;
+        font-size: 18px;
+    }
+
+    .sort-icon {
+        background: url("../../../../assets/img/sort_icon.svg") 20px;
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
+}
+
+ul li:last-child {
+    margin-right: 0;
 }
