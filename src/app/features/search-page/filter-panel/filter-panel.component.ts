@@ -11,6 +11,11 @@ import { SelectOption } from '../../../core/models/recipe/selectOption.model';
 export class FilterPanelComponent implements OnInit, OnDestroy {
     public form: FormGroup = new FormGroup({});
     public isSearchLoose: boolean = true;
+    public selectedIngredients: SelectOption[] = [
+        new SelectOption(11, 'Сливочное масло'),
+        new SelectOption(12, 'Морковь'),
+        new SelectOption(13, 'Капуста'),
+    ];
 
     // временные моки для имитации запроса
     public categoriesMockData: SelectOption[] = [
@@ -50,7 +55,7 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
         this.form.valueChanges.pipe(
             takeUntil(this.ngUnsubscribe)
         ).subscribe(() => {
-            // делаем запрос в список с дебаунсом
+            // фильтруем список рецептов с дебаунсом
             console.log(this.form.value);
         });
     }

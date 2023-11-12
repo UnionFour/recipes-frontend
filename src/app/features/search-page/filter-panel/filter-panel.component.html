@@ -49,8 +49,9 @@
                 ></app-async-select>
             </li>
         </ul>
-        <ul class="ingredients">
-            <li>
+        <ul class="ingredients" *ngIf="selectedIngredients">
+            <li *ngFor="let ingredient of selectedIngredients">
+                <p>{{ingredient.title}}</p><div class="cross-icon"></div>
             </li>
         </ul>
     </form>
