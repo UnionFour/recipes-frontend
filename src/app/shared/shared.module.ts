@@ -15,8 +15,8 @@ import { TuiHintModule, TuiSvgModule, TuiTextfieldControllerModule } from '@taig
 import { AsyncSelectComponent } from './components/async-select/async-select.component';
 import { TuiLetModule } from '@taiga-ui/cdk';
 import { InputRangeComponent } from './components/input-range/input-range.component';
-import {LayoutComponent} from "./layout/layout.component";
-import {RouterOutlet} from "@angular/router";
+import { LayoutComponent } from './layout/layout.component';
+import { RouterOutlet } from '@angular/router';
 
 const modules = [
     CommonModule,
