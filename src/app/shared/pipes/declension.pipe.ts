@@ -11,15 +11,14 @@ export interface DeclensionsWord {
 })
 export class DeclensionPipe implements PipeTransform {
     public declensionNumber(value: number, word: DeclensionsWord): string {
-        if (['11', '12', '13', '14'].includes(value.toString())) {
+        const lastNumber: string = value.toString()[value.toString().length - 1];
+        if (['2', '3', '4'].includes(lastNumber)) {
             return word.genitiveCase;
-        } else if (value.toString().slice(value.toString().length - 1)==='1') {
+        } else if (lastNumber === '1' && value.toString()[value.toString().length - 2] !== '1') {
             return word.nominativeCase;
-        } else if ('234'.includes(value.toString().slice(value.toString().length - 1))) {
-            return word.pluralCase;
         }
 
-        return word.genitiveCase;
+        return word.pluralCase;
     }
 
 

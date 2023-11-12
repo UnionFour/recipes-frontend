@@ -7,11 +7,17 @@ import { DeclensionsWord } from '../../../shared/pipes/declension.pipe';
     styleUrls: ['./sort-panel.component.scss']
 })
 export class SortPanelComponent {
-    public recipesCount: number = 3;
+    public recipesCount: number = 11;
 
     public recipeDeclensions: DeclensionsWord = {
         nominativeCase: 'рецепт',
         pluralCase: 'рецептов',
         genitiveCase: 'рецепта'
+    };
+
+    public findDeclensions: DeclensionsWord = {
+        nominativeCase: 'Найден',
+        pluralCase: 'Найдено',
+        genitiveCase: 'Найдено'
     };
 }
