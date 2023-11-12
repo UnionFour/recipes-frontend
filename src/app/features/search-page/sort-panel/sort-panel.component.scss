@@ -21,6 +21,10 @@ h1 {
     }
 }
 
+ul {
+    flex-wrap: wrap;
+}
+
 li {
     display: flex;
     justify-content: space-between;
