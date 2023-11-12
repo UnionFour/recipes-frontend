@@ -45,15 +45,9 @@
                 <label>Игредиенты</label>
                 <app-async-select
                         [control]="getControl('ingredients')"
+                        [showList]="true"
                         [databaseMockData]="ingredientsMockData"
-                        [itemsChanged$]="ingredientsChanged$"
                 ></app-async-select>
-            </li>
-        </ul>
-        <ul class="ingredients" *ngIf="selectedIngredients">
-            <li *ngFor="let ingredient of selectedIngredients; index as i">
-                <p>{{ingredient.title}}</p>
-                <div class="cross-icon" (click)="deleteIngredient(i)"></div>
             </li>
         </ul>
     </form>

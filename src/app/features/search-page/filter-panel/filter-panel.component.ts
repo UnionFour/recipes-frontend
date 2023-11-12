@@ -11,8 +11,6 @@ import { SelectOption } from '../../../core/models/recipe/selectOption.model';
 export class FilterPanelComponent implements OnInit, OnDestroy {
     public form: FormGroup = new FormGroup({});
     public isSearchLoose: boolean = true;
-    public selectedIngredients: SelectOption[] = [];
-    public ingredientsChanged$: Subject<SelectOption[] | null> = new Subject<SelectOption[] | null>();
 
     // временные моки для имитации запроса
     public categoriesMockData: SelectOption[] = [
@@ -50,9 +48,6 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
         this.form.get('isSearchLoose')!.valueChanges.pipe(
             takeUntil(this.ngUnsubscribe)
         ).subscribe((value: boolean) => this.isSearchLoose = value);
-        this.form.get('ingredients')!.valueChanges.pipe(
-            takeUntil(this.ngUnsubscribe)
-        ).subscribe((value: SelectOption[]) => this.selectedIngredients = value);
 
         this.form.valueChanges.pipe(
             takeUntil(this.ngUnsubscribe)
@@ -69,12 +64,6 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
 
     public getControl(controlName: string): FormControl {
         return this.form.get(controlName) as FormControl;
-    }
-
-    public deleteIngredient(index: number) {
-        this.selectedIngredients.splice(index, 1);
-        this.form.get('ingredients')?.setValue(this.selectedIngredients);
-        this.ingredientsChanged$.next(this.selectedIngredients);
     }
 
     private createForm(): FormGroup {

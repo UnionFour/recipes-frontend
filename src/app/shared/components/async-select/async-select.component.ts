@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { async, delay, filter, Observable, of, startWith, Subject, switchMap } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { TUI_DEFAULT_MATCHER } from '@taiga-ui/cdk';
@@ -16,15 +16,12 @@ export class AsyncSelectComponent implements OnInit {
     @Input() public control: FormControl = new FormControl<string[]>([]);
     @Input() public size: Size = 's';
     @Input() public databaseMockData: SelectOption[] = [];
-    @Input() public itemsChanged$: Subject<SelectOption[] | null> = new Subject<SelectOption[] | null>();
-
+    @Input() public showList: boolean = false;
 
     public search$ = new Subject<string | null>();
     public items$!: Observable<SelectOption[] | null>;
-    public values: SelectOption[] | null = [];
 
-    constructor(private ref: ChangeDetectorRef) {
-    }
+    public values: SelectOption[] | null = [];
 
     ngOnInit() {
         this.items$ = this.search$.pipe(
@@ -34,22 +31,18 @@ export class AsyncSelectComponent implements OnInit {
             ),
             startWith(this.databaseMockData),
         );
-
-        this.itemsChanged$.subscribe((values: SelectOption[] | null) => {
-            this.control.setValue(values)
-            this.values = values;
-            console.log(values);
-            this.ref.detectChanges();
-            this.ref.markForCheck();
-        });
     }
 
-    onSearchChange(searchQuery: string | null): void {
+    public onSearchChange(searchQuery: string | null): void {
         this.search$.next(searchQuery);
     }
 
-    onValueChanges(value: any) {
+    public onValueChanges(value: any) {
         this.control.setValue(value);
+    }
+
+    public deleteItem(item: any) {
+        this.values?.splice(this.values?.indexOf(item), 1);
     }
 
     /**

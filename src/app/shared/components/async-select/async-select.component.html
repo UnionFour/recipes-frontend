@@ -36,6 +36,14 @@
                 class="t-tag"
                 [removable]="true"
                 [value]="item"
+                (edited)="deleteItem(item)"
         ></tui-tag>
     </ng-container>
 </ng-template>
+
+<ul class="values" *ngIf="values && showList">
+    <li *ngFor="let value of values; index as i">
+        <p>{{value.title}}</p>
+        <div class="cross-icon" (click)="deleteItem(value)"></div>
+    </li>
+</ul>
