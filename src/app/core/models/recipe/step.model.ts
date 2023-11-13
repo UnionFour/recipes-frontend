@@ -1,4 +1,7 @@
+import { IIngredient } from "./ingredient.model"
+
 export interface IStep {
     number: number,
-    step: string
+    description: string
+    ingredients: [IIngredient]
 }
