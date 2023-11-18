@@ -11,6 +11,8 @@ import { SearchPageModule } from './features/search-page/search-page.module';
 import { RecipePageComponent } from './features/recipe-page/recipe-page.component';
 import { RecommendationsPanelComponent } from './features/recipe-page/recommendations-panel/recommendations-panel.component';
 import { RecipePageModule } from './features/recipe-page/recipe-page.module';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -25,7 +27,9 @@ import { RecipePageModule } from './features/recipe-page/recipe-page.module';
         TuiAlertModule,
         AppRoutingModule,
         SearchPageModule,
-        RecipePageModule
+        RecipePageModule,
+        GraphQLModule,
+        HttpClientModule
     ],
     providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
     bootstrap: [AppComponent]

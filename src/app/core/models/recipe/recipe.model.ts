@@ -1,10 +1,10 @@
-import { IExtendedIngredient } from './extendedIngredient.model';
+import { IIngredient } from './ingredient.model';
 import { INutrient } from './nutrient.model';
-import { IStep } from './step.model';
-import { ObjectId } from './objectId.model';
+import { IInstruction } from './instruction.model'
 
 export interface IRecipe {
-    _id: ObjectId,
+    id: number,
+
     // категории
     vegetarian: boolean,
     vegan: boolean,
@@ -14,15 +14,16 @@ export interface IRecipe {
     cheap: boolean,
     veryPopular: boolean,
     //
+    readyInMinutes: number,
     preparationMinutes: number,
     cookingMinutes: number,
+
     healthScore: number,
-    extendedIngredients: [IExtendedIngredient],
-    id: number,
     title: string,
-    readyInMinutes: number,
     servings: number,
     image: string,
     nutrients: [INutrient],
-    steps: [IStep]
+
+    ingredients: [IIngredient],
+    instructions: [IInstruction]
 }
