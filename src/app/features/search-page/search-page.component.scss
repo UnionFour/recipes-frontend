@@ -17,5 +17,14 @@ app-filter-panel {
 }
 
 .recipes {
+    position: relative;
     margin-top: 15px;
+    min-width: 1px;
+
+    app-recipes-list {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
 }

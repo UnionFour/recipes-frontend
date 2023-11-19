@@ -6,6 +6,7 @@
                 <label *ngSwitchCase="false" for="isSearchLoose">Из того, что хочу</label>
             </ng-container>
             <tui-toggle
+                    [tuiHint]="tooltip"
                     id="isSearchLoose"
                     formControlName="isSearchLoose"
                     size="l"
@@ -52,3 +53,7 @@
         </ul>
     </form>
 </div>
+
+<ng-template #tooltip>
+    <div>Переключение строгости фильтрации</div>
+</ng-template>

@@ -12,6 +12,7 @@
     height: $card-image-height;
     width: $card-image-width;
     border-radius: $card-image-border-radius;
+    cursor: pointer;
 }
 
 .description-container {
@@ -20,6 +21,7 @@
     h2 {
         font-family: $card-title-font;
         font-size: $card-title-size;
+        cursor: pointer;
     }
 
     .characteristics-container {
@@ -32,6 +34,7 @@
             margin-right: 12px;
             font-family: $card-characteristics-font;
             font-size: $card-characteristics-size;
+            user-select: none;
         }
     }
 
@@ -50,6 +53,7 @@
             background-color: $icon-color;
             border-radius: $ingredient-border-radius;
             padding: $ingredient-padding;
+            cursor: pointer;
         }
     }
 
