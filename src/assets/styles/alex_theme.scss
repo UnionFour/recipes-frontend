@@ -1,0 +1,51 @@
+// root переменные для перезаписи taiga ui css и custom scss переменных
+:root {
+  --primary: #87B151;
+  --primary-hover: #abd37c;
+  --primary-active: #597c2b;
+
+  --secondary: #efebe7;
+  --secondary-hover: #e3dfda;
+  --secondary-active: #d2cbc5;
+}
+
+
+// цвета заливок
+$background-color: #F1F1F1;
+$base-element-color: #FFF;
+
+// округления
+$base-border-radius: 12px;
+
+// шрифты
+$regular-text-family: 'Gentium Plus', serif;
+$regular-text-color: #000;
+
+$regular-accents-text-family: 'Gentium Book Plus', serif;
+
+$accents-text-family: 'Morice Bejar', serif;
+$accents-text-color: #000;
+
+// размеры
+$max-media-width: 1328px;
+
+// размеры margins
+$base-element-top-margin: 15px;
+$min-media-margin: 30px;
+
+// размеры paddings
+$media-vertical-padding: 15px;
+
+// шрифт навигации
+$nav-font-size: 22px;
+$nav-font-family: $accents-text-family;
+$nav-text-color: #404040;
+
+// взаимодействие навигации
+$hover-nav-color: #555555;
+$active-nav-color: #727272;
+
+// иконки/кнопки
+$icon-color: var(--primary);
+$icon-border: 7px;
+$icon-text-color: #FFF;

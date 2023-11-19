@@ -1,39 +1,13 @@
-// цвета заливок
-$background-color: #DEE2E6;
-$base-element-color: #FFF;
+@import "src/assets/styles/cutterror_theme.scss";
 
-// округления
-$base-border-radius: 12px;
+// перезапись taiga ui
 
-// шрифты
-$regular-text-family: 'Gentium Plus', serif;
-$regular-text-color: #000;
-
-$regular-accents-text-family: 'Gentium Book Plus', serif;
-
-$accents-text-family: 'Morice Bejar', serif;
-$accents-text-color: #000;
-
-// размеры
-$max-media-width: 1328px;
-
-// размеры margins
-$base-element-top-margin: 15px;
-$min-media-margin: 30px;
-
-// размеры paddings
-$media-vertical-padding: 15px;
-
-// шрифт навигации
-$nav-font-size: 22px;
-$nav-font-family: $accents-text-family;
-$nav-text-color: #00171F;
-
-// взаимодействие
-$hover-nav-color: #007EA7;
-$active-nav-color: #64828B;
-
-// иконки/кнопки
-$icon-color: #1F7A8C;
-$icon-border: 7px;
-$icon-text-color: #FFF;
+// иконки-кнопки
+:root {
+  --tui-primary: var(--primary);
+  --tui-primary-hover: var(--primary-hover);
+  --tui-primary-active: var(--primary-active);
+  --tui-secondary: var(--secondary);
+  --tui-secondary-hover: var(--secondary-hover);
+  --tui-secondary-active: var(--secondary-active);
+}

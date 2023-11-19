@@ -1,17 +1,17 @@
-## Development server
-Run `npm i` for install dependencies.
+## Dev server
+`npm i` для установки зависимостей.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+`ng serve` для запуска dev сервера по адресу `http://localhost:4200/`.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+`ng build` для билда в `dist/` директорию.
 
 ## Refactor
 
-Run `ng lint` for see style errors and run `ng lint --fix` for fix them.
+`ng lint` для показа стилистических ошибок и `ng lint --fix` для их исправления.
+
+## Theme changed
+
+@import "src/assets/styles/`${theme_file_name}`.scss"; в _variavles.scss
 
