@@ -1,8 +1,53 @@
 @import 'src/assets/styles/_variables.scss';
 
 .container {
-  background-color: $base-element-color;
-  border-radius: $base-border-radius;
-  width: 1048px;
-  height: 150px;
+    background-color: $base-element-color;
+    border-radius: $base-border-radius;
+    display: flex;
+}
+
+.image {
+    background-position: center center;
+    background-size: cover;
+    height: $card-image-height;
+    width: $card-image-width;
+    border-radius: $card-image-border-radius;
+}
+
+.description-container {
+    padding: $card-padding;
+
+    h2 {
+        font-family: $card-title-font;
+        font-size: $card-title-size;
+    }
+
+    .characteristics-container {
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+
+        p {
+            margin-left: 6px;
+            margin-right: 12px;
+            font-family: $card-characteristics-font;
+            font-size: $card-characteristics-size;
+        }
+    }
+
+    .ingredients-container {
+        margin-top: 14px;
+        display: flex;
+        flex-wrap: wrap;
+
+        div {
+            margin-right: $ingredient-margin-right;
+            font-family: $regular-text-family;
+            font-size: 16px;
+            color: #FFF;
+            background-color: $icon-color;
+            border-radius: $ingredient-border-radius;
+            padding: $ingredient-padding;
+        }
+    }
 }

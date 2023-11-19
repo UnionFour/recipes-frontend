@@ -3,6 +3,7 @@ export const recipes: any = [
         id: 1,
         title: 'Чипотта Аргентина Мокачино',
         cookingMinutes: 125,
+        image: 'https://spoonacular.com/recipeImages/715544-312x231.jpg',
         ingredients: [
             {
                 id: 234,
@@ -25,16 +26,13 @@ export const recipes: any = [
                 name: 'Карамель'
             },
         ],
-        nutrition: {
-            nutrients: [
-                234
-            ]
-        }
+        nutrition: 234
     },
     {
         id: 2,
         title: 'Чаукатта Моргино кросс',
         cookingMinutes: 210,
+        image: 'https://spoonacular.com/recipeImages/715455-312x231.jpg',
         ingredients: [
             {
                 id: 285,
@@ -57,16 +55,13 @@ export const recipes: any = [
                 name: 'Мука'
             },
         ],
-        nutrition: {
-            nutrients: [
-                567
-            ]
-        }
+        nutrition: 567
     },
     {
         id: 3,
         title: 'Орауи Рикко ротто',
         cookingMinutes: 45,
+        image: 'https://spoonacular.com/recipeImages/716431-312x231.jpg',
         ingredients: [
             {
                 id: 11,
@@ -81,16 +76,13 @@ export const recipes: any = [
                 name: 'Хлеб'
             },
         ],
-        nutrition: {
-            nutrients: [
-                234
-            ]
-        }
+        nutrition: 234
     },
     {
         id: 4,
         title: 'Чогонно курио потто суп по бабушкиному рецепту',
         cookingMinutes: 12,
+        image: 'https://spoonacular.com/recipeImages/715381-312x231.jpg',
         ingredients: [
             {
                 id: 45,
@@ -125,10 +117,6 @@ export const recipes: any = [
                 name: 'Пудинг'
             },
         ],
-        nutrition: {
-            nutrients: [
-                700
-            ]
-        }
+        nutrition: 700
     }
 ];

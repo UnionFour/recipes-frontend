@@ -56,5 +56,26 @@ $active-nav-color: #64828B;
 // иконки/кнопки
 $icon-color: var(--primary);
 $second-icon-color: var(--primary-hover);
-$icon-border: 7px;
-$icon-text-color: #FFF;
+
+// элементы ингредиентов
+$ingredient-font: $regular-text-family;
+$ingredient-size: 16px;
+$ingredient-color: #FFF;
+$ingredient-background-color: $icon-color;
+$ingredient-border-radius: 7px;
+$ingredient-padding: 2px 8px 6px 8px;
+$ingredient-margin-right: 8px;
+
+
+// карточки рецептов
+$card-padding: 29px 30px 29px 20px;
+
+$card-image-height: 200px;
+$card-image-width: 200px;
+$card-image-border-radius: 20px 0px 0px 20px;
+
+$card-title-font: $regular-accents-text-family;
+$card-title-size: 22px;
+
+$card-characteristics-font: $regular-text-family;
+$card-characteristics-size: 16px;

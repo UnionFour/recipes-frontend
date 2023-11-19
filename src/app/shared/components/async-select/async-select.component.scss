@@ -12,16 +12,17 @@ tui-tag {
 
     li {
         background: $icon-color;
-        border-radius: $icon-border;
-        padding: 2px 8px 6px 8px;
+        border-radius: $ingredient-border-radius;
+        padding: $ingredient-padding;
         display: flex;
-        margin: 6px 8px 0 0;
+        margin-top: 6px;
+        margin-right: $ingredient-margin-right;
 
         p {
             margin: 0;
-            color: $icon-text-color;
-            font-family: $regular-accents-text-family;
-            font-size: 16px;
+            color: $ingredient-color;
+            font-family: $ingredient-font;
+            font-size: $ingredient-size;
             font-weight: 400;
         }
 
