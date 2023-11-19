@@ -9,12 +9,33 @@
 }
 
 .left-container {
+    display: flex;
+    align-items: center;
+
+    .min-search-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    h1 {
+        text-wrap: nowrap;
+        font-family: $accents-text-family;
+        font-size: $h1-size;
+        text-decoration-line: $h1-decoration;
+    }
+
+    .min-search-icon path{
+        fill: $icon-color;
+    }
+}
+
+.right-container {
     width: 100%;
     padding: 0 16px 0 16px;
     margin-left: auto;
     max-width: 967px;
-}
 
-input {
-    width: 100%;
+    input {
+        width: 100%;
+    }
 }
