@@ -48,13 +48,35 @@ a:active {
     color: $active-nav-color;
 }
 
+.logo-icon, .logo-icon svg {
+    width: 66px;
+    height: 30px;
+}
+
 .logo-icon svg path {
     fill: $nav-text-color;
-    width: 66.07px;
-    height: 29.54px;
 }
 
 .logo-icon {
+    &:hover svg path {
+        fill: $hover-nav-color;
+    }
+
+    &:active svg path {
+        fill: $active-nav-color;
+    }
+}
+
+.account-icon, .account-icon svg {
+    width: 30px;
+    height: 30px;
+}
+
+.account-icon svg path {
+    fill: $nav-text-color;
+}
+
+.account-icon {
     &:hover svg path {
         fill: $hover-nav-color;
     }
