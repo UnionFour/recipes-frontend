@@ -1,14 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
+import { takeUntil } from 'rxjs';
 import { SelectOption } from '../../../core/models/recipe/selectOption.model';
+import { DestroyableComponent } from '../../../shared/components/destroyable-component/destroyable.component';
 
 @Component({
     selector: 'app-filter-panel',
     templateUrl: './filter-panel.component.html',
     styleUrls: ['./filter-panel.component.scss']
 })
-export class FilterPanelComponent implements OnInit, OnDestroy {
+export class FilterPanelComponent extends DestroyableComponent implements OnInit, OnDestroy {
     public form: FormGroup = new FormGroup({});
     public isSearchLoose: boolean = true;
 
@@ -34,11 +35,10 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
         new SelectOption(19, 'Сахар'),
     ];
 
-    private ngUnsubscribe = new Subject<void>();
-
     constructor(
         private fb: FormBuilder
     ) {
+        super();
     }
 
     ngOnInit() {
@@ -46,20 +46,15 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
 
         // получаем значения в поля из формы по подписке
         this.form.get('isSearchLoose')!.valueChanges.pipe(
-            takeUntil(this.ngUnsubscribe)
+            takeUntil(this.destroy$)
         ).subscribe((value: boolean) => this.isSearchLoose = value);
 
         this.form.valueChanges.pipe(
-            takeUntil(this.ngUnsubscribe)
+            takeUntil(this.destroy$)
         ).subscribe(() => {
             // фильтруем список рецептов с дебаунсом
             // console.log(this.form.value);
         });
-    }
-
-    ngOnDestroy() {
-        this.ngUnsubscribe.next();
-        this.ngUnsubscribe.complete();
     }
 
     public getControl(controlName: string): FormControl {

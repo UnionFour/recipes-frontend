@@ -1,9 +1,9 @@
 [*]
 charset = utf-8
-end_of_line = crlf
+end_of_line = lf
 indent_size = 4
 indent_style = space
-insert_final_newline = true
+insert_final_newline = false
 max_line_length = 120
 tab_width = 4
 ij_continuation_indent_size = 8
@@ -11,7 +11,7 @@ ij_formatter_off_tag = @formatter:off
 ij_formatter_on_tag = @formatter:on
 ij_formatter_tags_enabled = true
 ij_smart_tabs = false
-ij_visual_guides = none
+ij_visual_guides = 
 ij_wrap_on_typing = false
 
 [*.css]
@@ -84,6 +84,7 @@ ij_sass_use_double_quotes = true
 ij_sass_value_alignment = 0
 
 [*.scss]
+indent_size = 2
 ij_scss_align_closing_brace_with_properties = false
 ij_scss_blank_lines_around_nested_selector = 1
 ij_scss_blank_lines_between_blocks = 1
@@ -184,7 +185,7 @@ ij_typescript_comma_on_new_line = false
 ij_typescript_do_while_brace_force = never
 ij_typescript_else_on_new_line = false
 ij_typescript_enforce_trailing_comma = keep
-ij_typescript_enum_constants_wrap = off
+ij_typescript_enum_constants_wrap = on_every_item
 ij_typescript_extends_keyword_wrap = off
 ij_typescript_extends_list_wrap = off
 ij_typescript_field_prefix = _
@@ -232,8 +233,9 @@ ij_typescript_prefer_explicit_types_function_expression_returns = false
 ij_typescript_prefer_explicit_types_function_returns = false
 ij_typescript_prefer_explicit_types_vars_fields = false
 ij_typescript_prefer_parameters_wrap = false
+ij_typescript_property_prefix = 
 ij_typescript_reformat_c_style_comments = false
-ij_typescript_space_after_colon = false
+ij_typescript_space_after_colon = true
 ij_typescript_space_after_comma = true
 ij_typescript_space_after_dots_in_rest_parameter = false
 ij_typescript_space_after_generator_mult = true
@@ -247,7 +249,7 @@ ij_typescript_space_before_catch_left_brace = true
 ij_typescript_space_before_catch_parentheses = true
 ij_typescript_space_before_class_lbrace = true
 ij_typescript_space_before_class_left_brace = true
-ij_typescript_space_before_colon = false
+ij_typescript_space_before_colon = true
 ij_typescript_space_before_comma = false
 ij_typescript_space_before_do_left_brace = true
 ij_typescript_space_before_else_keyword = true
@@ -278,7 +280,7 @@ ij_typescript_spaces_around_additive_operators = true
 ij_typescript_spaces_around_arrow_function_operator = true
 ij_typescript_spaces_around_assignment_operators = true
 ij_typescript_spaces_around_bitwise_operators = true
-ij_typescript_spaces_around_equality_operators = false
+ij_typescript_spaces_around_equality_operators = true
 ij_typescript_spaces_around_logical_operators = true
 ij_typescript_spaces_around_multiplicative_operators = true
 ij_typescript_spaces_around_relational_operators = true
@@ -293,7 +295,7 @@ ij_typescript_spaces_within_imports = true
 ij_typescript_spaces_within_interpolation_expressions = false
 ij_typescript_spaces_within_method_call_parentheses = false
 ij_typescript_spaces_within_method_parentheses = false
-ij_typescript_spaces_within_object_literal_braces = true
+ij_typescript_spaces_within_object_literal_braces = false
 ij_typescript_spaces_within_object_type_braces = true
 ij_typescript_spaces_within_parentheses = false
 ij_typescript_spaces_within_switch_parentheses = false
@@ -410,6 +412,7 @@ ij_javascript_prefer_explicit_types_function_expression_returns = false
 ij_javascript_prefer_explicit_types_function_returns = false
 ij_javascript_prefer_explicit_types_vars_fields = false
 ij_javascript_prefer_parameters_wrap = false
+ij_javascript_property_prefix = 
 ij_javascript_reformat_c_style_comments = false
 ij_javascript_space_after_colon = true
 ij_javascript_space_after_comma = true
@@ -494,6 +497,7 @@ ij_javascript_while_on_new_line = false
 ij_javascript_wrap_comments = false
 
 [{*.har,*.jsb2,*.jsb3,*.json,.babelrc,.eslintrc,.prettierrc,.stylelintrc,bowerrc,jest.config}]
+indent_size = 2
 ij_json_array_wrapping = split_into_lines
 ij_json_keep_blank_lines_in_code = 0
 ij_json_keep_indents_on_empty_lines = false
@@ -540,7 +544,10 @@ ij_html_text_wrap = normal
 [{*.http,*.rest}]
 indent_size = 0
 ij_continuation_indent_size = 4
-ij_http request_call_parameters_wrap = normal
+ij_http-request_call_parameters_wrap = normal
+ij_http-request_method_parameters_wrap = split_into_lines
+ij_http-request_space_before_comma = true
+ij_http-request_spaces_around_assignment_operators = true
 
 [{*.markdown,*.md}]
 ij_markdown_force_one_space_after_blockquote_symbol = true
