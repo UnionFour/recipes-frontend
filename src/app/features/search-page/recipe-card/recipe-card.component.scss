@@ -1,0 +1,8 @@
+@import 'src/assets/styles/_variables.scss';
+
+.container {
+  background-color: $base-element-color;
+  border-radius: $base-border-radius;
+  width: 1048px;
+  height: 150px;
+}

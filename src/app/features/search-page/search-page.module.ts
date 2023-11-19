@@ -8,11 +8,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgSwitch, NgSwitchCase } from '@angular/common';
 import { TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiLetModule } from '@taiga-ui/cdk';
+import { RecipesListComponent } from './resipes-list/recipes-list.component';
+import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 
 const components = [
     SearchPageComponent,
     FilterPanelComponent,
-    SortPanelComponent
+    SortPanelComponent,
+    RecipesListComponent,
+    RecipeCardComponent
 ];
 
 @NgModule({
