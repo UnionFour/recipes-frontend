@@ -24,6 +24,7 @@ tui-tag {
             font-family: $ingredient-font;
             font-size: $ingredient-size;
             font-weight: 400;
+            user-select: none;
         }
 
         .cross-icon {

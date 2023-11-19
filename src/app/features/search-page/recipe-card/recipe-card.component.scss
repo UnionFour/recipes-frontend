@@ -54,6 +54,7 @@
             border-radius: $ingredient-border-radius;
             padding: $ingredient-padding;
             cursor: pointer;
+            text-wrap: nowrap;
         }
     }
 
