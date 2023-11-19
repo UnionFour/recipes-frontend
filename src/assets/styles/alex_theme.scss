@@ -17,6 +17,7 @@ $base-element-color: #FFF;
 // округления
 $base-border-radius: 12px;
 
+
 // шрифты
 $regular-text-family: 'Gentium Plus', serif;
 $regular-text-color: #000;
@@ -25,6 +26,13 @@ $regular-accents-text-family: 'Gentium Book Plus', serif;
 
 $accents-text-family: 'Morice Bejar', serif;
 $accents-text-color: #000;
+
+// размеры шрифтов
+$h1-size: 25px;
+
+// стили шрифтов
+$h1-decoration: underline;
+
 
 // размеры
 $max-media-width: 1328px;
@@ -47,5 +55,6 @@ $active-nav-color: #727272;
 
 // иконки/кнопки
 $icon-color: var(--primary);
+$second-icon-color: #9E8279;
 $icon-border: 7px;
 $icon-text-color: #FFF;
