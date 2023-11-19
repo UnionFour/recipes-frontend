@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { takeUntil } from 'rxjs';
 import { SelectOption } from '../../../core/models/recipe/selectOption.model';
 import { DestroyableComponent } from '../../../shared/components/destroyable-component/destroyable.component';
+import { categories, Category } from '../../../core/mocks/categories.mock';
 
 @Component({
     selector: 'app-filter-panel',
@@ -14,15 +15,7 @@ export class FilterPanelComponent extends DestroyableComponent implements OnInit
     public isSearchLoose: boolean = true;
 
     // временные моки для имитации запроса
-    public categoriesMockData: SelectOption[] = [
-        new SelectOption(121, 'Вегатерианское'),
-        new SelectOption(122, 'Веганское'),
-        new SelectOption(123, 'Без глютена'),
-        new SelectOption(124, 'Без молока'),
-        new SelectOption(125, 'Здоровое меню'),
-        new SelectOption(125, 'Дешевое'),
-        new SelectOption(125, 'Популярное'),
-    ];
+    public categoriesMockData: Category[] = categories;
 
     public ingredientsMockData: SelectOption[] = [
         new SelectOption(11, 'Сливочное масло'),

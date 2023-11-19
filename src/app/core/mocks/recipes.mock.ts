@@ -1,9 +1,18 @@
-export const recipes: any = [
+import { Recipe } from '../../../gql/graphql';
+
+export const recipes: any[] = [
     {
         id: 1,
         title: 'Чипотта Аргентина Мокачино',
         cookingMinutes: 125,
         image: 'https://spoonacular.com/recipeImages/715544-312x231.jpg',
+        vegetarian: false,
+        vegan: true,
+        glutenFree: true,
+        dairyFree: true,
+        veryHealthy: true,
+        cheap: true,
+        veryPopular: true,
         ingredients: [
             {
                 id: 234,
@@ -33,6 +42,13 @@ export const recipes: any = [
         title: 'Чаукатта Моргино кросс',
         cookingMinutes: 210,
         image: 'https://spoonacular.com/recipeImages/715455-312x231.jpg',
+        vegetarian: false,
+        vegan: true,
+        glutenFree: false,
+        dairyFree: false,
+        veryHealthy: true,
+        cheap: true,
+        veryPopular: true,
         ingredients: [
             {
                 id: 285,
@@ -62,6 +78,13 @@ export const recipes: any = [
         title: 'Орауи Рикко ротто',
         cookingMinutes: 45,
         image: 'https://spoonacular.com/recipeImages/716431-312x231.jpg',
+        vegetarian: true,
+        vegan: true,
+        glutenFree: false,
+        dairyFree: false,
+        veryHealthy: true,
+        cheap: true,
+        veryPopular: true,
         ingredients: [
             {
                 id: 11,
@@ -83,6 +106,13 @@ export const recipes: any = [
         title: 'Чогонно курио потто суп по бабушкиному рецепту',
         cookingMinutes: 12,
         image: 'https://spoonacular.com/recipeImages/715381-312x231.jpg',
+        vegetarian: true,
+        vegan: true,
+        glutenFree: true,
+        dairyFree: true,
+        veryHealthy: true,
+        cheap: true,
+        veryPopular: true,
         ingredients: [
             {
                 id: 45,

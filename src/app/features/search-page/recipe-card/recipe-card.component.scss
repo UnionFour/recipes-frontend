@@ -35,10 +35,12 @@
         }
     }
 
-    .ingredients-container {
+    .data-container {
         margin-top: 14px;
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        // переделать с кнопкой на разворачивание
+        overflow-x: hidden;
 
         div {
             margin-right: $ingredient-margin-right;
