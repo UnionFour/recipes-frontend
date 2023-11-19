@@ -48,39 +48,55 @@ a:active {
     color: $active-nav-color;
 }
 
-.account-icon {
-    width: 31px;
-    height: 31px;
-    background: url("../../../../assets/img/account.svg");
-    background-size: 31px;
-}
-
-.account-icon:hover {
-    background: url("../../../../assets/img/account_hover.svg");
-    background-size: 31px;
-}
-
-.account-icon:active {
-    background: url("../../../../assets/img/account_active.svg");
-    background-size: 31px;
+.logo-icon svg path {
+    fill: $nav-text-color;
+    width: 66.07px;
+    height: 29.54px;
 }
 
 .logo-icon {
-    width: 66px;
-    height: 30px;
-    background: url("../../../../assets/img/logo.svg");
-    background-size: 66px 30px;
-    background-position-y: 0;
+    &:hover svg path {
+        fill: $hover-nav-color;
+    }
+
+    &:active svg path {
+        fill: $active-nav-color;
+    }
 }
 
-.logo-icon:hover {
-    background: url("../../../../assets/img/logo_hover.svg");
-    background-size: 66px 30px;
-    background-position-y: 0;
-}
-
-.logo-icon:active {
-    background: url("../../../../assets/img/logo_active.svg") top;
-    background-size: 66px 30px;
-    background-position-y: 0;
-}
+//.account-icon {
+//    width: 31px;
+//    height: 31px;
+//    background: url("../../../../assets/img/account.svg");
+//    background-size: 31px;
+//}
+//
+//.account-icon:hover {
+//    background: url("../../../../assets/img/account_hover.svg");
+//    background-size: 31px;
+//}
+//
+//.account-icon:active {
+//    background: url("../../../../assets/img/account_active.svg");
+//    background-size: 31px;
+//}
+//
+//.logo-icon {
+//    width: 66px;
+//    height: 30px;
+//    background: url("../../../../assets/img/logo.svg");
+//    background-size: 66px 30px;
+//    background-position-y: 0;
+//}
+//
+//.logo-icon:hover {
+//    background: url("../../../../assets/img/logo_hover.svg");
+//    background-size: 66px 30px;
+//    background-position-y: 0;
+//}
+//
+//.logo-icon:active {
+//    background: url("../../../../assets/img/logo_active.svg") top;
+//    background-size: 66px 30px;
+//    background-position-y: 0;
+//}

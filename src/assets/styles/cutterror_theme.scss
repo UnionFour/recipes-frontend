@@ -50,8 +50,8 @@ $nav-font-family: $accents-text-family;
 $nav-text-color: #00171F;
 
 // взаимодействие
-$hover-nav-color: #007EA7;
-$active-nav-color: #64828B;
+$hover-nav-color: var(--primary-active);
+$active-nav-color: var(--primary-hover);
 
 // иконки/кнопки
 $icon-color: var(--primary);
