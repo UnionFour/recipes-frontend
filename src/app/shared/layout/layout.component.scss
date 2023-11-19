@@ -6,3 +6,10 @@
   margin: $base-element-top-margin auto 0 auto;
   font-family: $regular-text-family;
 }
+
+footer {
+    margin-top: 50px;
+    background-color: $base-element-color;
+    height: 130px;
+    width: 100%;
+}

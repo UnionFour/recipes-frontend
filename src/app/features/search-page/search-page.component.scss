@@ -1,17 +1,21 @@
 @import 'src/assets/styles/_variables.scss';
 
-section {
+.container {
     display: flex;
     justify-content: space-between;
     align-items: start;
     margin-top: $base-element-top-margin;
+
+    .right-panel {
+        width: 100%;
+        margin-left: 20px;
+    }
 }
 
 app-filter-panel {
     width: 260px;
 }
 
-app-sort-panel {
-    width: 100%;
-    margin-left: 20px;
+.recipes {
+    margin-top: 15px;
 }
