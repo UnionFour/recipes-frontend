@@ -1,0 +1,32 @@
+@import 'src/assets/styles/_variables.scss';
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-right: 26px;
+
+    .order-icon, .order-icon svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
+
+    .order-icon svg path {
+        fill: $icon-color;
+    }
+
+    p {
+        font-family: $regular-accents-text-family;
+        font-size: 18px;
+        user-select: none;
+    }
+
+    p:hover {
+        color: $icon-color;
+    }
+
+    .select {
+        color: $icon-color;
+    }
+}
