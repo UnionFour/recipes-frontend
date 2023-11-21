@@ -21,31 +21,3 @@ h1 {
         font-size: 20px;
     }
 }
-
-ul {
-    flex-wrap: wrap;
-}
-
-li {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    cursor: pointer;
-    margin-right: 26px;
-
-    p {
-        font-family: $regular-accents-text-family;
-        font-size: 18px;
-    }
-
-    .sort-icon {
-        background: url("../../../../assets/img/sort_icon.svg") 20px;
-        width: 20px;
-        height: 20px;
-        margin-right: 5px;
-    }
-}
-
-ul li:last-child {
-    margin-right: 0;
-}

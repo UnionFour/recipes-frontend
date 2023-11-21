@@ -1,0 +1,11 @@
+<ul class="flex">
+    <app-sort-method
+            *ngFor="let sortMethod of sortMethods"
+            [name]="sortMethod.name"
+            [isOrdinal]="sortMethod.isOrdinal"
+            [isSelect]="isSelectedSortMethod(sortMethod)"
+            [isAscendingSorting]="isAscendingSorting(sortMethod)"
+            [isDescendingSorting]="isDescendingSorting(sortMethod)"
+            (click)="changSortMethod(sortMethod)"
+    ></app-sort-method>
+</ul>

@@ -1,13 +1,12 @@
 <div class="container flex">
     <h1>
-        {{recipesCount | declension: findDeclensions}} <b>{{recipesCount}}</b> {{recipesCount | declension: recipeDeclensions}}
+        {{recipesCount | declension: findDeclensions}}
+        <b>{{recipesCount}}</b>
+        {{recipesCount | declension: recipeDeclensions}}
     </h1>
-    <ul class="flex">
-        <li>
-            <div class="sort-icon"></div><p>Каллории</p>
-        </li>
-        <li>
-            <div class="sort-icon"></div><p>Время</p>
-        </li>
-    </ul>
+    <app-sort
+            [sortMethods]="sortMethods"
+            [defaultSortMethod]="sortMethods[0]"
+            (changedSortMethod)="log($event)"
+    ></app-sort>
 </div>
