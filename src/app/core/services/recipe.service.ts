@@ -1,7 +1,27 @@
 import { Apollo, gql } from 'apollo-angular';
 import { Injectable } from '@angular/core';
-import { Recipe, RecipesConnection } from '../../../gql/graphql';
+import { Recipe, RecipesConnection, RecipeSortInput } from '../../../gql/graphql';
 import { map, Observable } from 'rxjs';
+
+const queryFind = gql`
+    query GetRecipes($ingredientsFilter: [RecipeFilterInput!], $recipeSorts: [RecipeSortInput!]) {
+        recipes(first: 10, where: { or: $ingredientsFilter }, order: $recipeSorts) {
+            nodes {
+                id
+                title {
+                    rus
+                }
+                image
+                ingredients {
+                    name {
+                        rus
+                    }
+                }
+                aggregateLikes
+            }
+        }
+    }
+`;
 
 @Injectable({
     providedIn: 'root',
@@ -9,7 +29,9 @@ import { map, Observable } from 'rxjs';
 export class RecipeService {
     constructor(private apollo: Apollo) {}
 
-    public findByIngredients(ingredients: [string]): Observable<Recipe[]> {
+    public find(ingredients: string[], sorts: RecipeSortInput[] | null = null): Observable<Recipe[]> {
+        if (sorts?.length == 0) sorts = null;
+
         const ingredientsFilter = [];
 
         for (const ingredient of ingredients) {
@@ -17,30 +39,13 @@ export class RecipeService {
         }
 
         return this.apollo
-            .query<{recipes: RecipesConnection}>({
-                query: gql`
-                    query GetRecipes($ingredientsFilter: [RecipeFilterInput!]) {
-                        recipes(first: 10, where: { or: $ingredientsFilter }) {
-                            nodes {
-                                id
-                                title {
-                                    rus
-                                }
-                                image
-                                ingredients {
-                                    name {
-                                        rus
-                                    }
-                                }
-                            }
-                        }
-                    }
-                `,
+            .query<{ recipes: RecipesConnection }>({
+                query: queryFind,
                 variables: {
                     ingredientsFilter,
+                    recipeSorts: sorts,
                 },
-            }).pipe(
-                map(result => result.data.recipes.nodes ?? [])
-            )
+            })
+            .pipe(map((result) => result.data.recipes.nodes ?? []));
     }
 }
