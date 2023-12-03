@@ -6,6 +6,10 @@ import { map, Observable } from 'rxjs';
 const recipeFragment = gql`
     fragment RecipeInfo on Recipe {
         id
+        vegetarian
+        vegan
+        glutenFree
+        dairyFree
         title {
             rus
         }
@@ -14,7 +18,55 @@ const recipeFragment = gql`
             name {
                 rus
             }
+            image
+            amount
+            unit {
+                rus
+            }
         }
+        readyInMinutes
+        preparationMinutes
+        cookingMinutes
+        servings
+        pricePerServing {
+            rub
+        }
+        instructions {
+            name {
+                rus
+            }
+            steps {
+                number
+                description {
+                    rus
+                }
+                ingredients {
+                    id
+                    name {
+                        rus
+                    }
+                    image
+                    amount
+                    unit {
+                        rus
+                    }
+                }
+                equipments {
+                    id
+                    name {
+                        rus
+                    }
+                    image
+                }
+                length {
+                    number
+                    unit {
+                        rus
+                    }
+                }
+            }
+        }
+        spoonacularSourceUrl
         aggregateLikes
     }
 `;
