@@ -3,24 +3,42 @@ import { Injectable } from '@angular/core';
 import { Recipe, RecipesConnection, RecipeSortInput } from '../../../gql/graphql';
 import { map, Observable } from 'rxjs';
 
+const recipeFragment = gql`
+    fragment RecipeInfo on Recipe {
+        id
+        title {
+            rus
+        }
+        image
+        ingredients {
+            name {
+                rus
+            }
+        }
+        aggregateLikes
+    }
+`;
+
 const queryFind = gql`
     query GetRecipes($ingredientsFilter: [RecipeFilterInput!], $recipeSorts: [RecipeSortInput!]) {
         recipes(first: 10, where: { or: $ingredientsFilter }, order: $recipeSorts) {
             nodes {
-                id
-                title {
-                    rus
-                }
-                image
-                ingredients {
-                    name {
-                        rus
-                    }
-                }
-                aggregateLikes
+                ...RecipeInfo
             }
         }
     }
+    ${recipeFragment}
+`;
+
+const queryGet = gql`
+    query GetRecipe($recipeId: String!) {
+        recipes(first: 1, where: { id: { eq: $recipeId } }) {
+            nodes {
+                ...RecipeInfo
+            }
+        }
+    }
+    ${recipeFragment}
 `;
 
 @Injectable({
@@ -47,5 +65,16 @@ export class RecipeService {
                 },
             })
             .pipe(map((result) => result.data.recipes.nodes ?? []));
+    }
+
+    public getRecipe(recipeId: string): Observable<Recipe | null> {
+        return this.apollo
+            .query<{ recipes: RecipesConnection }>({
+                query: queryGet,
+                variables: {
+                    recipeId,
+                },
+            })
+            .pipe(map((result) => result.data.recipes.nodes?.at(0) ?? null));
     }
 }
