@@ -7,6 +7,7 @@ import {
     MiniRecipeCardComponent
 } from './recommendations-panel/mini-recipes-list/mini-recipe-card/mini-recipe-card.component';
 import {RouterLink} from "@angular/router";
+import {RecipeComponent} from "./recipe/recipe.component";
 
 
 const components = [
@@ -18,7 +19,8 @@ const components = [
 
 @NgModule({
     declarations: [
-        components
+        components,
+        RecipeComponent
     ],
     imports: [
         CommonModule,
