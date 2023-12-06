@@ -1,0 +1,11 @@
+<tui-svg
+        *ngIf="iconAlignLeft"
+        [src]="icon || ''"
+        [style.margin-right]="indent"
+></tui-svg>
+<ng-content></ng-content>
+<tui-svg
+        *ngIf="iconAlignRight"
+        [src]="icon || ''"
+        [style.margin-left]="indent"
+></tui-svg>

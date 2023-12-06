@@ -18,6 +18,7 @@ import { InputRangeComponent } from './components/input-range/input-range.compon
 import { LayoutComponent } from './layout/layout.component';
 import { RouterOutlet } from '@angular/router';
 import { DeclensionPipe } from './pipes/declension.pipe';
+import {SideIconComponent} from "./components/side-icon/side-icon.component";
 
 const modules = [
     CommonModule,
@@ -33,7 +34,8 @@ const components = [
     SearchComponent,
     AsyncSelectComponent,
     InputRangeComponent,
-    LayoutComponent
+    LayoutComponent,
+    SideIconComponent
 ];
 
 const pipes = [
