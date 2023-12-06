@@ -25,14 +25,14 @@ export type Equipment = {
   __typename?: 'Equipment';
   id: Scalars['Int']['output'];
   image: Scalars['String']['output'];
-  name: Scalars['String']['output'];
+  name: LocalizedString;
 };
 
 export type EquipmentFilterInput = {
   and?: InputMaybe<Array<EquipmentFilterInput>>;
   id?: InputMaybe<IntOperationFilterInput>;
   image?: InputMaybe<StringOperationFilterInput>;
-  name?: InputMaybe<StringOperationFilterInput>;
+  name?: InputMaybe<LocalizedStringFilterInput>;
   or?: InputMaybe<Array<EquipmentFilterInput>>;
 };
 
@@ -56,9 +56,8 @@ export type Ingredient = {
   amount?: Maybe<Scalars['Float']['output']>;
   id: Scalars['Int']['output'];
   image: Scalars['String']['output'];
-  measure?: Maybe<Measure>;
-  name: Scalars['String']['output'];
-  unit?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<LocalizedString>;
+  unit?: Maybe<LocalizedString>;
 };
 
 export type IngredientFilterInput = {
@@ -66,21 +65,20 @@ export type IngredientFilterInput = {
   and?: InputMaybe<Array<IngredientFilterInput>>;
   id?: InputMaybe<IntOperationFilterInput>;
   image?: InputMaybe<StringOperationFilterInput>;
-  measure?: InputMaybe<MeasureFilterInput>;
-  name?: InputMaybe<StringOperationFilterInput>;
+  name?: InputMaybe<LocalizedStringFilterInput>;
   or?: InputMaybe<Array<IngredientFilterInput>>;
-  unit?: InputMaybe<StringOperationFilterInput>;
+  unit?: InputMaybe<LocalizedStringFilterInput>;
 };
 
 export type Instruction = {
   __typename?: 'Instruction';
-  name: Scalars['String']['output'];
+  name: LocalizedString;
   steps: Array<Step>;
 };
 
 export type InstructionFilterInput = {
   and?: InputMaybe<Array<InstructionFilterInput>>;
-  name?: InputMaybe<StringOperationFilterInput>;
+  name?: InputMaybe<LocalizedStringFilterInput>;
   or?: InputMaybe<Array<InstructionFilterInput>>;
   steps?: InputMaybe<ListFilterInputTypeOfStepFilterInput>;
 };
@@ -103,14 +101,14 @@ export type IntOperationFilterInput = {
 export type Length = {
   __typename?: 'Length';
   number: Scalars['Int']['output'];
-  unit: Scalars['String']['output'];
+  unit: LocalizedString;
 };
 
 export type LengthFilterInput = {
   and?: InputMaybe<Array<LengthFilterInput>>;
   number?: InputMaybe<IntOperationFilterInput>;
   or?: InputMaybe<Array<LengthFilterInput>>;
-  unit?: InputMaybe<StringOperationFilterInput>;
+  unit?: InputMaybe<LocalizedStringFilterInput>;
 };
 
 export type ListFilterInputTypeOfEquipmentFilterInput = {
@@ -141,19 +139,22 @@ export type ListFilterInputTypeOfStepFilterInput = {
   some?: InputMaybe<StepFilterInput>;
 };
 
-export type Measure = {
-  __typename?: 'Measure';
-  amount: Scalars['Float']['output'];
-  unitLong: Scalars['String']['output'];
-  unitShort: Scalars['String']['output'];
+export type LocalizedString = {
+  __typename?: 'LocalizedString';
+  eng: Scalars['String']['output'];
+  rus: Scalars['String']['output'];
 };
 
-export type MeasureFilterInput = {
-  amount?: InputMaybe<FloatOperationFilterInput>;
-  and?: InputMaybe<Array<MeasureFilterInput>>;
-  or?: InputMaybe<Array<MeasureFilterInput>>;
-  unitLong?: InputMaybe<StringOperationFilterInput>;
-  unitShort?: InputMaybe<StringOperationFilterInput>;
+export type LocalizedStringFilterInput = {
+  and?: InputMaybe<Array<LocalizedStringFilterInput>>;
+  eng?: InputMaybe<StringOperationFilterInput>;
+  or?: InputMaybe<Array<LocalizedStringFilterInput>>;
+  rus?: InputMaybe<StringOperationFilterInput>;
+};
+
+export type LocalizedStringSortInput = {
+  eng?: InputMaybe<SortEnumType>;
+  rus?: InputMaybe<SortEnumType>;
 };
 
 export type Money = {
@@ -224,7 +225,7 @@ export type Recipe = {
   sourceName: Scalars['String']['output'];
   sourceUrl: Scalars['String']['output'];
   spoonacularSourceUrl: Scalars['String']['output'];
-  title: Scalars['String']['output'];
+  title: LocalizedString;
   vegan: Scalars['Boolean']['output'];
   vegetarian: Scalars['Boolean']['output'];
   veryHealthy: Scalars['Boolean']['output'];
@@ -255,7 +256,7 @@ export type RecipeFilterInput = {
   sourceName?: InputMaybe<StringOperationFilterInput>;
   sourceUrl?: InputMaybe<StringOperationFilterInput>;
   spoonacularSourceUrl?: InputMaybe<StringOperationFilterInput>;
-  title?: InputMaybe<StringOperationFilterInput>;
+  title?: InputMaybe<LocalizedStringFilterInput>;
   vegan?: InputMaybe<BooleanOperationFilterInput>;
   vegetarian?: InputMaybe<BooleanOperationFilterInput>;
   veryHealthy?: InputMaybe<BooleanOperationFilterInput>;
@@ -282,7 +283,7 @@ export type RecipeSortInput = {
   sourceName?: InputMaybe<SortEnumType>;
   sourceUrl?: InputMaybe<SortEnumType>;
   spoonacularSourceUrl?: InputMaybe<SortEnumType>;
-  title?: InputMaybe<SortEnumType>;
+  title?: InputMaybe<LocalizedStringSortInput>;
   vegan?: InputMaybe<SortEnumType>;
   vegetarian?: InputMaybe<SortEnumType>;
   veryHealthy?: InputMaybe<SortEnumType>;
@@ -317,7 +318,7 @@ export enum SortEnumType {
 
 export type Step = {
   __typename?: 'Step';
-  description: Scalars['String']['output'];
+  description: LocalizedString;
   equipments: Array<Equipment>;
   ingredients: Array<Ingredient>;
   length?: Maybe<Length>;
@@ -326,7 +327,7 @@ export type Step = {
 
 export type StepFilterInput = {
   and?: InputMaybe<Array<StepFilterInput>>;
-  description?: InputMaybe<StringOperationFilterInput>;
+  description?: InputMaybe<LocalizedStringFilterInput>;
   equipments?: InputMaybe<ListFilterInputTypeOfEquipmentFilterInput>;
   ingredients?: InputMaybe<ListFilterInputTypeOfIngredientFilterInput>;
   length?: InputMaybe<LengthFilterInput>;
@@ -349,10 +350,13 @@ export type StringOperationFilterInput = {
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type GetRecipesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetRecipesQueryVariables = Exact<{
+  ingredientsFilter?: InputMaybe<Array<RecipeFilterInput> | RecipeFilterInput>;
+  recipeSorts?: InputMaybe<Array<RecipeSortInput> | RecipeSortInput>;
+}>;
 
 
-export type GetRecipesQuery = { __typename?: 'Query', recipes?: { __typename?: 'RecipesConnection', nodes?: Array<{ __typename?: 'Recipe', title: string }> | null } | null };
+export type GetRecipesQuery = { __typename?: 'Query', recipes?: { __typename?: 'RecipesConnection', nodes?: Array<{ __typename?: 'Recipe', id: string, image: string, title: { __typename?: 'LocalizedString', rus: string }, ingredients: Array<{ __typename?: 'Ingredient', name?: { __typename?: 'LocalizedString', rus: string } | null }> }> | null } | null };
 
 
-export const GetRecipesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetRecipes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"recipes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"10"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}}]} as unknown as DocumentNode<GetRecipesQuery, GetRecipesQueryVariables>;
+export const GetRecipesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetRecipes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"ingredientsFilter"}},"type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RecipeFilterInput"}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"recipeSorts"}},"type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RecipeSortInput"}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"recipes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"10"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"or"},"value":{"kind":"Variable","name":{"kind":"Name","value":"ingredientsFilter"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"order"},"value":{"kind":"Variable","name":{"kind":"Name","value":"recipeSorts"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"ingredients"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetRecipesQuery, GetRecipesQueryVariables>;
