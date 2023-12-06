@@ -8,13 +8,18 @@ import {
 } from './recommendations-panel/mini-recipes-list/mini-recipe-card/mini-recipe-card.component';
 import {RouterLink} from "@angular/router";
 import {RecipeComponent} from "./recipe/recipe.component";
+import {NutrientsComponent} from "./recipe/nutrients/nutrients.component";
+import {NutrientComponent} from "./recipe/nutrients/nutrient/nutrient.component";
 
 
 const components = [
     RecipePageComponent,
     RecommendationsPanelComponent,
     MiniRecipesListComponent,
-    MiniRecipeCardComponent
+    MiniRecipeCardComponent,
+    RecipeComponent,
+    NutrientsComponent,
+    NutrientComponent
 ];
 
 @NgModule({

@@ -1,0 +1,21 @@
+@import 'src/assets/styles/_variables.scss';
+
+.container {
+    width: 70px;
+    text-align: center;
+}
+
+.name {
+    font-family: $regular-text-family;
+    font-size: 10px;
+}
+
+.amount {
+    font-family: $regular-accents-text-family;
+    font-size: 20px;
+}
+
+.unit {
+    font-family: $regular-text-family;
+    font-size: 16px;
+}
