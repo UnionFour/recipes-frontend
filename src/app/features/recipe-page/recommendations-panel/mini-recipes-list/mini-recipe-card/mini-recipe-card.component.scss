@@ -1,0 +1,54 @@
+@import 'src/assets/styles/_variables.scss';
+
+.container {
+    background-color: $base-element-color;
+    border-radius: $card-border-radius;
+    display: flex;
+}
+
+.image {
+    background-position: center center;
+    background-size: cover;
+    height: $mini-card-image-height;
+    width: $mini-card-image-width;
+    border-radius: $mini-card-image-border-radius;
+    cursor: pointer;
+}
+
+.description-container {
+    margin-left: 10px;
+    width: 156px;
+
+    h2 {
+        font-family: $mini-card-title-font;
+        font-size: $mini-card-title-size;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: pointer;
+    }
+
+    .ingredients-container {
+        margin: 4px 0;
+        font-family: $mini-card-ingredients-font;
+        font-size: $mini-card-ingredients-size;
+        white-space: normal;
+        overflow: hidden;
+        -webkit-line-clamp: 2;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        line-height: 1em;
+    }
+
+    .characteristics-container {
+        display: flex;
+        align-items: center;
+
+        p {
+            margin-right: 6px;
+            margin-left: 2px;
+            font-family: $mini-card-characteristics-font;
+            font-size: $mini-card-characteristics-size;
+        }
+    }
+}
