@@ -1,1 +1,28 @@
+@import 'src/assets/styles/_variables.scss';
+
+.container {
+    background-color: $base-element-color;
+    border-radius: $base-border-radius;
+    padding: 20px 15px 15px 15px;
+    width: 230px;
+}
+
+h2 {
+    margin-bottom: 18px;
+    font-family: $regular-accents-text-family;
+    font-size: 21px;
+    text-align: center;
+}
+
+a {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    font-family: $regular-accents-text-family;
+    font-size: 16px;
+
+    svg {
+        margin-right: 4px;
+    }
+}
 

@@ -6,6 +6,7 @@ import { MiniRecipesListComponent } from './recommendations-panel/mini-recipes-l
 import {
     MiniRecipeCardComponent
 } from './recommendations-panel/mini-recipes-list/mini-recipe-card/mini-recipe-card.component';
+import {RouterLink} from "@angular/router";
 
 
 const components = [
@@ -20,7 +21,8 @@ const components = [
         components
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        RouterLink
     ]
 })
 export class RecipePageModule {
