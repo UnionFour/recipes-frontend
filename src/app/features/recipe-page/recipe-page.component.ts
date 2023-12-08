@@ -1,27 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
-import { IRecipe } from '../../core/models/recipe/recipe.model';
-import { ObjectId } from '../../core/models/recipe/objectId.model';
+import { Observable, switchMap, takeUntil } from 'rxjs';
+import { RecipeService } from '../../core/services/recipe.service';
+import { Recipe } from '../../../gql/graphql';
+import { DestroyableComponent } from '../../shared/components/destroyable-component/destroyable.component';
 
 @Component({
     selector: 'app-recipe-page',
     templateUrl: './recipe-page.component.html',
     styleUrls: ['./recipe-page.component.scss']
 })
-export class RecipePageComponent implements OnInit{
-    recipe$!: Observable<any>
-    recipe!: IRecipe
-    recipeId!: ObjectId
+export class RecipePageComponent extends DestroyableComponent implements OnInit {
+    private recipe$!: Observable<Recipe | null>;
+    public recipe!: Recipe | null;
+
     constructor(
         private route: ActivatedRoute,
-    ) {}
+        private recipeService: RecipeService,
+    ) {
+        super();
+    }
 
     ngOnInit(): void {
         this.recipe$ = this.route.params
             .pipe(switchMap((params: Params) => {
-                this.recipeId = new ObjectId(params['id']);
-                return new Observable()
+                const recipeId = params['id'];
+                return this.recipeService.getRecipe(recipeId);
             }))
+
+        this.recipe$.pipe(takeUntil(this.destroy$))
+            .subscribe((recipe) => this.recipe = recipe);
     }
 }

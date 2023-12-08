@@ -6,10 +6,11 @@ import { MiniRecipesListComponent } from './recommendations-panel/mini-recipes-l
 import {
     MiniRecipeCardComponent
 } from './recommendations-panel/mini-recipes-list/mini-recipe-card/mini-recipe-card.component';
-import {RouterLink} from "@angular/router";
-import {RecipeComponent} from "./recipe/recipe.component";
-import {NutrientsComponent} from "./recipe/nutrients/nutrients.component";
-import {NutrientComponent} from "./recipe/nutrients/nutrient/nutrient.component";
+import { RouterLink } from '@angular/router';
+import { RecipeComponent } from './recipe/recipe.component';
+import { NutrientsComponent } from './recipe/nutrients/nutrients.component';
+import { NutrientComponent } from './recipe/nutrients/nutrient/nutrient.component';
+import { TuiLoaderModule } from '@taiga-ui/core';
 
 
 const components = [
@@ -29,7 +30,8 @@ const components = [
     ],
     imports: [
         CommonModule,
-        RouterLink
+        RouterLink,
+        TuiLoaderModule
     ]
 })
 export class RecipePageModule {
