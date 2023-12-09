@@ -21,14 +21,7 @@
                         style="background-image: url({{recipe.image}})"
                 ></div>
 <!--                <app-nutrients [nutrients]="recipe.nutrients"></app-nutrients>-->
-                <div class="ingredients">
-                    <h2>Ингридиенты:</h2>
-                    <ul>
-                        <li *ngFor="let ingredient of recipe.ingredients">
-                            {{ingredient.name?.rus}} - {{ingredient.amount}} {{ingredient.unit?.rus}}
-                        </li>
-                    </ul>
-                </div>
+                <app-ingredients-list [ingredients]="recipe.ingredients"></app-ingredients-list>
                 <div class="ingredients">
                     <h2>Способы приготовления:</h2>
                     <ul>
@@ -40,8 +33,10 @@
             </div>
             <div class="steps">
                 <h2>Шаги приготовления:</h2>
-                <ul >
-                    <li *ngFor="let step of recipe.instructions[0].steps"></li>
+                <ul>
+                    <li *ngFor="let step of recipe.instructions[0].steps">
+                        {{step.description.rus}}
+                    </li>
                 </ul>
             </div>
         </div>

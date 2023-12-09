@@ -291,12 +291,12 @@ export type RecipeSortInput = {
   weightWatcherSmartPoints?: InputMaybe<SortEnumType>;
 };
 
-/** A connection to a list of items. */
+/** A connection to a ingredients-list of items. */
 export type RecipesConnection = {
   __typename?: 'RecipesConnection';
-  /** A list of edges. */
+  /** A ingredients-list of edges. */
   edges?: Maybe<Array<RecipesEdge>>;
-  /** A flattened list of the nodes. */
+  /** A flattened ingredients-list of the nodes. */
   nodes?: Maybe<Array<Recipe>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;

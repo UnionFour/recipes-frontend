@@ -16,6 +16,7 @@ import { TagComponent } from './recipe/tags/tag/tag.component';
 import { CharacteristicsComponent } from './recipe/characteristics/characteristics.component';
 import { CharacteristicComponent } from './recipe/characteristics/characteristic/characteristic.component';
 import { SharedModule } from '../../shared/shared.module';
+import { IngredientsListComponent } from './recipe/ingredients-list/ingredients-list.component';
 
 
 const components = [
@@ -34,7 +35,8 @@ const components = [
 
 @NgModule({
     declarations: [
-        components
+        components,
+        IngredientsListComponent
     ],
     imports: [
         CommonModule,
