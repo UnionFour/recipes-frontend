@@ -1,5 +1,5 @@
 <div class="container">
-    <div *ngIf="recipe; else loading">
+    <div *ngIf="recipe; else loader">
         <h1>{{recipe.title.rus}}</h1>
         <app-characteristics
                 [cookingTime]="recipe.readyInMinutes"
@@ -28,7 +28,9 @@
             <app-steps-list [steps]="recipe.instructions[0].steps"></app-steps-list>
         </div>
     </div>
-    <ng-template #loading>
-        <tui-loader [inheritColor]="true" size="l"></tui-loader>
+    <ng-template #loader>
+        <div class="loader">
+            <tui-loader [inheritColor]="true" size="l"></tui-loader>
+        </div>
     </ng-template>
 </div>

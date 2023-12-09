@@ -4,6 +4,7 @@
     padding: $recipe-padding;
     background-color: $base-element-color;
     border-radius: $card-border-radius;
+    min-height: 450px;
 }
 
 h1 {
@@ -24,3 +25,6 @@ h1 {
     }
 }
 
+.loader {
+    padding-top: 200px;
+}
