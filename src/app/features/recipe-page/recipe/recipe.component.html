@@ -22,23 +22,8 @@
                 ></div>
 <!--                <app-nutrients [nutrients]="recipe.nutrients"></app-nutrients>-->
                 <app-ingredients-list [ingredients]="recipe.ingredients"></app-ingredients-list>
-                <div class="ingredients">
-                    <h2>Способы приготовления:</h2>
-                    <ul>
-                        <li *ngFor="let ingredient of recipe.ingredients">
-                            {{ingredient.name}}
-                        </li>
-                    </ul>
-                </div>
             </div>
-            <div class="steps">
-                <h2>Шаги приготовления:</h2>
-                <ul>
-                    <li *ngFor="let step of recipe.instructions[0].steps">
-                        {{step.description.rus}}
-                    </li>
-                </ul>
-            </div>
+            <app-steps-list [steps]="recipe.instructions[0].steps"></app-steps-list>
         </div>
     </div>
     <ng-template #loading>
