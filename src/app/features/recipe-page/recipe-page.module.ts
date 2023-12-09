@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TuiLoaderModule } from '@taiga-ui/core';
 import { SharedModule } from '../../shared/shared.module';
@@ -45,7 +45,8 @@ const components = [
         CommonModule,
         RouterLink,
         TuiLoaderModule,
-        SharedModule
+        SharedModule,
+        NgOptimizedImage
     ]
 })
 export class RecipePageModule {

@@ -15,11 +15,13 @@
                 [isVeryPopular]="recipe.veryPopular"
         ></app-tags>
         <div class="main-container">
-            <div class="left-container">
-                <div
-                        class="image"
-                        style="background-image: url({{recipe.image}})"
-                ></div>
+            <div>
+                <img
+                        [ngSrc]="recipe.image"
+                        [alt]="recipe.title.rus"
+                        width="312"
+                        height="230"
+                >
 <!--                <app-nutrients [nutrients]="recipe.nutrients"></app-nutrients>-->
                 <app-ingredients-list [ingredients]="recipe.ingredients"></app-ingredients-list>
             </div>
