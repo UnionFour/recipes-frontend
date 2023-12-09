@@ -7,6 +7,5 @@ import { INutrient } from '../../../../../core/models/recipe/nutrient.model';
     styleUrls: ['./nutrient.component.scss']
 })
 export class NutrientComponent {
-  @Input() nutrient!: INutrient;
-
+  @Input() public nutrient!: INutrient;
 }

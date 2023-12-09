@@ -8,6 +8,6 @@ import { INutrient } from '../../../../core/models/recipe/nutrient.model';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NutrientsComponent {
-  @Input() nutrients!: INutrient[]
+  @Input() public nutrients!: INutrient[];
 
 }

@@ -13,6 +13,9 @@ import { NutrientComponent } from './recipe/nutrients/nutrient/nutrient.componen
 import { TuiLoaderModule } from '@taiga-ui/core';
 import { TagsComponent } from './recipe/tags/tags.component';
 import { TagComponent } from './recipe/tags/tag/tag.component';
+import { CharacteristicsComponent } from './recipe/characteristics/characteristics.component';
+import { CharacteristicComponent } from './recipe/characteristics/characteristic/characteristic.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 const components = [
@@ -25,6 +28,8 @@ const components = [
     NutrientComponent,
     TagsComponent,
     TagComponent,
+    CharacteristicsComponent,
+    CharacteristicComponent,
 ];
 
 @NgModule({
@@ -34,7 +39,8 @@ const components = [
     imports: [
         CommonModule,
         RouterLink,
-        TuiLoaderModule
+        TuiLoaderModule,
+        SharedModule
     ]
 })
 export class RecipePageModule {

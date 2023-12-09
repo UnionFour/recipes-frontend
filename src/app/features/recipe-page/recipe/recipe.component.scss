@@ -7,6 +7,7 @@
 }
 
 h1 {
+    margin-bottom: 18px;
     text-align: center;
     font-family: $recipe-title-font;
     font-size: $recipe-title-size;
@@ -17,28 +18,7 @@ ul {
     padding-left: 24px;
 }
 
-.characteristics-container {
-    margin-top: 18px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 16px;
-
-    .characteristic-item {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-
-    }
-
-    p {
-        font-family: $card-characteristics-font;
-        font-size: 20px;
-    }
-}
-
 .main-container {
-    margin-top: 40px;
     display: flex;
     gap: 40px;
 
