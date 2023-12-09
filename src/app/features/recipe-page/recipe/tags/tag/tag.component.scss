@@ -1,0 +1,14 @@
+@import 'src/assets/styles/_variables.scss';
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+span {
+    font-family: $regular-text-family;
+    font-size: 20px;
+    color: $icon-color;
+    text-decoration: underline;
+}

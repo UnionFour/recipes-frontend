@@ -11,6 +11,8 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { NutrientsComponent } from './recipe/nutrients/nutrients.component';
 import { NutrientComponent } from './recipe/nutrients/nutrient/nutrient.component';
 import { TuiLoaderModule } from '@taiga-ui/core';
+import { TagsComponent } from './recipe/tags/tags.component';
+import { TagComponent } from './recipe/tags/tag/tag.component';
 
 
 const components = [
@@ -20,13 +22,14 @@ const components = [
     MiniRecipeCardComponent,
     RecipeComponent,
     NutrientsComponent,
-    NutrientComponent
+    NutrientComponent,
+    TagsComponent,
+    TagComponent,
 ];
 
 @NgModule({
     declarations: [
-        components,
-        RecipeComponent
+        components
     ],
     imports: [
         CommonModule,

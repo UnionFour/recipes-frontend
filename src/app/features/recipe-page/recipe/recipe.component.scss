@@ -37,27 +37,6 @@ ul {
     }
 }
 
-.tags-container {
-    margin-top: 22px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 24px;
-
-    .tag {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-    }
-
-    p {
-        font-family: $card-characteristics-font;
-        font-size: 20px;
-        color: $icon-color;
-        text-decoration: underline;
-    }
-}
-
 .main-container {
     margin-top: 40px;
     display: flex;

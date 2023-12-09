@@ -1,0 +1,67 @@
+<div class="container">
+    <app-tag *ngIf="isCheap" value="Дешевое">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+            <path d="M9.89575 6.77084H14.5833C16.0215 6.77084 17.1874 7.93677 17.1874 9.37501C17.1874 10.8133 16.0215 11.9792 14.5833 11.9792H9.89575V6.77084ZM9.89575 6.77084V18.2292M10.1562 11.9792H8.33325M13.5416 15.3646H8.33325M22.9166 12.5C22.9166 18.253 18.2529 22.9167 12.4999 22.9167C6.74695 22.9167 2.08325 18.253 2.08325 12.5C2.08325 6.74704 6.74695 2.08334 12.4999 2.08334C18.2529 2.08334 22.9166 6.74704 22.9166 12.5Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </app-tag>
+    <app-tag *ngIf="isDairyFree" value="Без млочных продуктов">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+            <path d="M18.9617 13.3077L16.5386 10.0769H8.46166L6.03857 13.3077V21.3846C6.03857 21.813 6.20877 22.2239 6.51171 22.5269C6.81466 22.8298 7.22554 23 7.65397 23H17.3463C17.7748 23 18.1856 22.8298 18.4886 22.5269C18.7915 22.2239 18.9617 21.813 18.9617 21.3846V13.3077Z" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18.9614 13.3077L22.9999 10.0769" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 24L23 1" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6.03848 13.3077L2 10.0769" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8.46158 2H16.5386C16.967 2 17.3779 2.17019 17.6808 2.47314C17.9838 2.77608 18.1539 3.18696 18.1539 3.61538V6.03846H6.84619V3.61538C6.84619 3.18696 7.01638 2.77608 7.31933 2.47314C7.62227 2.17019 8.03316 2 8.46158 2Z" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8.46143 6.03846V10.0769" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16.5388 6.03846V10.0769" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </app-tag>
+    <app-tag *ngIf="isGlutenFree" value="Без глютена">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+            <path d="M9.875 19.375L11.375 23.5714" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3.53589 1.73215L4.14303 3.41072" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9.875 19.375L6.75 18.6071" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9.875 19.375L11.7857 16.7857" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8.35718 15.1786L5.23218 14.3929" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8.35718 15.1786L10.2857 12.5893" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6.85718 10.9643L3.73218 10.1964" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6.85718 10.9643L8.76789 8.39287" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5.33936 6.76786L2.21436 6" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5.33936 6.76786L7.26793 4.17857" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16.9822 18.3036L15.9822 22.3214" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21.1607 1.42857L20.7678 3.03572" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16.9822 18.3036L14.9644 16.0893" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16.9822 18.3036L19.7857 17.3036" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M17.9644 14.2857L15.9644 12.0714" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M17.9644 14.2857L20.7858 13.2679" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18.9644 10.2679L16.9644 8.05357" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18.9644 10.2679L21.7858 9.25" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19.9644 6.25001L17.9644 4.03572" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19.9644 6.25L22.7858 5.23215" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 24L23 1" stroke="#000001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </app-tag>
+    <app-tag *ngIf="isVegan" value="Веганское">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+            <path d="M12.5 23C12.5 23 23 23 23 13.3169C23 6.19012 17.2647 5.88026 14.2647 6.19012H10.7353C7.7353 5.88026 2 6.19012 2 13.3169C2 23 12.5 23 12.5 23Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12.4999 6.2676C12.4999 6.2676 11.3529 2.54928 8.88232 1.92957" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M17.9705 1C17.9705 2.0067 17.5149 2.97214 16.7041 3.68399C15.8933 4.39584 14.7936 4.79575 13.6469 4.79575C13.6469 3.78905 14.1024 2.82361 14.9133 2.11176C15.7241 1.39991 16.8238 1 17.9705 1Z" fill="black"/>
+        </svg>
+    </app-tag>
+    <app-tag *ngIf="isVegetarian" value="Веготерианское">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+            <path d="M12.5003 17.3462C11.2888 17.3462 10.2388 17.0231 9.26953 16.4577L10.0772 18.9615V23H14.9234V18.9615L15.7311 16.4577C14.7618 17.0231 13.7118 17.3462 12.5003 17.3462Z" stroke="black" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M17.8308 17.8307C18.3154 18.073 18.8 18.1538 19.3654 18.1538C21.3846 18.1538 23 16.5384 23 14.5192C23 12.9846 22.0308 11.6923 20.7385 11.1269C21.6269 10.5615 22.1923 9.59229 22.1923 8.46152C22.1923 6.6846 20.7385 5.23076 18.9615 5.23076C18.5577 5.23076 18.0731 5.31153 17.75 5.47307C16.8615 3.45384 14.8423 2 12.5 2C10.1577 2 8.13846 3.45384 7.25 5.47307C6.92692 5.31153 6.44231 5.23076 6.03846 5.23076C4.26154 5.23076 2.80769 6.6846 2.80769 8.46152C2.80769 9.59229 3.37308 10.5615 4.26154 11.1269C2.96923 11.6923 2 12.9846 2 14.5192C2 16.5384 3.61538 18.1538 5.63462 18.1538C6.2 18.1538 6.68461 17.9923 7.16923 17.8307C7.89615 18.8807 8.86538 19.6884 10.0769 20.173" stroke="black" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8.21899 15.7307C9.34976 16.6999 10.8844 17.3461 12.4998 17.3461C14.1151 17.3461 15.6498 16.6999 16.7805 15.7307" stroke="black" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </app-tag>
+    <app-tag *ngIf="isVeryHealthy" value="Полезное">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+            <path d="M22.5435 12.998H21.666C22.4103 11.6554 22.6893 10.0689 22.4532 8.52325C22.217 6.97752 21.4812 5.57374 20.3775 4.56364C19.2739 3.55356 17.8747 3.00331 16.4311 3.0116C14.9874 3.01989 13.5937 3.58618 12.5 4.60888C11.4072 3.58117 10.0122 3.01068 8.56629 3.00015C7.1203 2.98962 5.71841 3.53973 4.61301 4.55143C3.50762 5.56313 2.77138 6.96994 2.53688 8.51849C2.30239 10.067 2.58505 11.6555 3.33396 12.998H2.45652C2.33544 12.998 2.21933 13.0502 2.13371 13.1431C2.0481 13.236 2 13.362 2 13.4934C2 13.6248 2.0481 13.7509 2.13371 13.8438C2.21933 13.9367 2.33544 13.9889 2.45652 13.9889H4.01235C4.0863 14.0781 4.15615 14.1702 4.23513 14.2554L10.5726 21.1334C10.8257 21.4081 11.1261 21.6261 11.4568 21.7748C11.7876 21.9235 12.142 22 12.5 22C12.858 22 13.2124 21.9235 13.5432 21.7748C13.8739 21.6261 14.1743 21.4081 14.4274 21.1334L20.763 14.2554C20.842 14.1702 20.9119 14.0781 20.9858 13.9889H22.5435C22.6645 13.9889 22.7807 13.9367 22.8663 13.8438C22.9519 13.7509 23 13.6248 23 13.4934C23 13.362 22.9519 13.236 22.8663 13.1431C22.7807 13.0502 22.6645 12.998 22.5435 12.998ZM3.36957 9.59566C3.37026 8.48851 3.67325 7.40648 4.24028 6.48612C4.80731 5.56576 5.61294 4.84844 6.5554 4.42473C7.49785 4.00103 8.53488 3.88995 9.53548 4.10553C10.5361 4.32111 11.4554 4.85368 12.1772 5.63596C12.2628 5.72886 12.3789 5.78103 12.5 5.78103C12.6211 5.78103 12.7372 5.72886 12.8228 5.63596C13.7499 4.63816 14.9912 4.05905 16.2963 4.01542C17.6014 3.97179 18.8732 4.4669 19.8552 5.40087C20.8372 6.33486 21.4563 7.63826 21.5877 9.04813C21.719 10.458 21.3529 11.8695 20.5631 12.998H16.1522C16.0609 12.9979 15.9717 13.0276 15.8961 13.0832C15.8205 13.1387 15.7619 13.2176 15.7281 13.3096L15.2848 14.5096L13.6194 8.8827C13.5896 8.78202 13.5309 8.69433 13.4518 8.63249C13.3728 8.57061 13.2776 8.53781 13.1802 8.53885C13.0828 8.53989 12.9882 8.57477 12.9104 8.63834C12.8325 8.70186 12.7754 8.79079 12.7474 8.89211L11.0889 14.8921L9.73348 10.8467C9.70189 10.7524 9.64459 10.6707 9.56927 10.6125C9.49394 10.5543 9.4041 10.5223 9.31165 10.5207C9.21939 10.5203 9.12909 10.5498 9.05226 10.6053C8.97542 10.6608 8.91557 10.7398 8.88024 10.8323L8.08224 12.998H4.43691C3.74345 12.0237 3.36799 10.8268 3.36957 9.59566ZM13.7819 20.4328C13.4366 20.7906 12.9774 20.9902 12.5 20.9902C12.0226 20.9902 11.5634 20.7906 11.2181 20.4328L5.28056 13.9889H8.3913C8.48261 13.9889 8.57181 13.9593 8.64741 13.9037C8.72301 13.8481 8.78154 13.7693 8.81541 13.6772L9.28426 12.4034L10.6995 16.6336C10.7313 16.7299 10.7899 16.8131 10.867 16.8719C10.9442 16.9306 11.0362 16.9619 11.1304 16.9616H11.1437C11.2396 16.9586 11.3322 16.9228 11.4084 16.8594C11.4845 16.796 11.5403 16.7082 11.5678 16.6084L13.1998 10.704L14.8045 16.1223C14.8333 16.2193 14.8889 16.3044 14.9638 16.3658C15.0388 16.4272 15.1293 16.4621 15.2232 16.4657C15.3179 16.4741 15.4125 16.448 15.4922 16.3917C15.5718 16.3354 15.632 16.252 15.6632 16.1545L16.4612 13.9889H19.7194L13.7819 20.4328Z" fill="black" stroke="black" stroke-width="1.1"/>
+        </svg>
+    </app-tag>
+    <app-tag *ngIf="isVeryPopular" value="Популярное">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+            <path d="M15.0636 10.4627C15.0636 10.4627 15.9068 4.19403 11.5035 2C10.1005 4.95861 8.13946 7.70994 5.69497 10.1493C2.22857 13.597 1.10433 19.5522 8.50557 23C9.42876 21.8672 10.2134 20.6597 10.8477 19.3955C11.3673 17.6995 11.7121 15.9692 11.8783 14.2239C11.8783 14.2239 16.8437 18.2201 15.9068 23C15.9068 23 27.1492 18.4552 19.0921 9.05224" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </app-tag>
+</div>
