@@ -1,23 +1,24 @@
 @import 'src/assets/styles/_variables.scss';
 
 .container {
+    min-height: 450px;
     padding: $recipe-padding;
     background-color: $base-element-color;
     border-radius: $card-border-radius;
-    min-height: 450px;
 }
 
 h1 {
-    margin-bottom: 18px;
-    text-align: center;
     font-family: $recipe-title-font;
     font-size: $recipe-title-size;
+    text-align: center;
     line-height: 100%;
+    margin-bottom: 18px;
 }
 
 .main-container {
     display: flex;
     gap: 40px;
+    margin-top: 40px;
 
     img {
         margin-bottom: 20px;

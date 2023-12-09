@@ -1,11 +1,11 @@
 @import 'src/assets/styles/_variables.scss';
 
 .container {
-    margin-bottom: 22px;;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 16px;
+    margin-bottom: 22px;
 }
 
 svg path {
