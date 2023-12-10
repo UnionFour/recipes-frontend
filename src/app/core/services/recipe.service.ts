@@ -72,8 +72,8 @@ const recipeFragment = gql`
 `;
 
 const queryFind = gql`
-    query GetRecipes($ingredientsFilter: [RecipeFilterInput!], $recipeSorts: [RecipeSortInput!]) {
-        recipes(first: 10, where: { or: $ingredientsFilter }, order: $recipeSorts) {
+    query GetRecipes($searchCount: Int!, $ingredientsFilter: [RecipeFilterInput!], $recipeSorts: [RecipeSortInput!]) {
+        recipes(first: $searchCount, where: { or: $ingredientsFilter }, order: $recipeSorts) {
             nodes {
                 ...RecipeInfo
             }
@@ -104,7 +104,7 @@ export class RecipeService {
     ) {
     }
 
-    public find(ingredients: string[], sorts: RecipeSortInput[] | null = null): Observable<Recipe[]> {
+    public find(searchCount: number, ingredients: string[], sorts: RecipeSortInput[] | null = null): Observable<Recipe[]> {
         if (sorts?.length == 0) sorts = null;
 
         const ingredientsFilter = [];
@@ -118,6 +118,7 @@ export class RecipeService {
             .query<{ recipes: RecipesConnection }>({
                 query: queryFind,
                 variables: {
+                    searchCount,
                     ingredientsFilter,
                     recipeSorts: sorts,
                 },

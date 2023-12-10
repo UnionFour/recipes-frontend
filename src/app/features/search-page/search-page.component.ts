@@ -27,7 +27,7 @@ export class SearchPageComponent extends DestroyableComponent implements OnInit 
     }
 
     public findRecipes(ingredients: string[] = [], recipeSortInput: RecipeSortInput = { likes: SortEnumType.Asc }) {
-        this.recipeService.find(ingredients, [recipeSortInput])
+        this.recipeService.find(this.showRecipeCount, ingredients, [recipeSortInput])
             .pipe(takeUntil(this.destroy$))
             .subscribe((recipes) => {
                 this.recipes = recipes;
