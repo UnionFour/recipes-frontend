@@ -7,6 +7,6 @@
     <app-sort
             [sortMethods]="sortMethods"
             [defaultSortMethod]="sortMethods[0]"
-            (changedSortMethod)="log($event)"
+            (changedSortMethod)="onChangedSortMethod($event)"
     ></app-sort>
 </div>

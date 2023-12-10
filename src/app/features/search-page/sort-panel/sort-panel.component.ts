@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import { DeclensionsWord } from '../../../shared/pipes/declension.pipe';
-import { ISortMethod } from '../../../core/models/sorting/sortMethod.model';
-import { ISelectedSortMethod } from '../../../core/models/sorting/selectedSortMethod.model';
+import { SortMethod } from '../../../core/models/sorting/sortMethod.model';
+import { RecipeSortInput } from '../../../../gql/graphql';
 
 @Component({
     selector: 'app-sort-panel',
@@ -10,6 +10,8 @@ import { ISelectedSortMethod } from '../../../core/models/sorting/selectedSortMe
 })
 export class SortPanelComponent {
     public recipesCount = 11;
+
+    @Output() changedSortMethod = new EventEmitter<RecipeSortInput>;
 
     public recipeDeclensions: DeclensionsWord = {
         nominativeCase: 'рецепт',
@@ -23,14 +25,14 @@ export class SortPanelComponent {
         genitiveCase: 'Найдено'
     };
 
-    public sortMethods: ISortMethod[] =
+    public sortMethods: SortMethod[] =
         [
-            { name: 'Популярность', value: 'popularity', isOrdinal: false },
+            { name: 'Популярность', value: 'aggregateLikes', isOrdinal: false },
             { name: 'Калории', value: 'calories', isOrdinal: true },
-            { name: 'Время', value: 'time', isOrdinal: true }
+            { name: 'Время', value: 'readyInMinutes', isOrdinal: true }
         ]
 
-    log(event: ISelectedSortMethod) {
-        console.log(event)
+    onChangedSortMethod(recipeSortInput: RecipeSortInput) {
+        this.changedSortMethod.next(recipeSortInput)
     }
 }

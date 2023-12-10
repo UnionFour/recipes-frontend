@@ -1,7 +1,7 @@
 <div class="container">
     <app-filter-panel (filterValuesChanges)="findRecipes($event)"></app-filter-panel>
     <div class="right-panel">
-        <app-sort-panel></app-sort-panel>
+        <app-sort-panel (changedSortMethod)="findRecipes(undefined, $event)"></app-sort-panel>
         <div class="recipes">
             <app-recipes-list [recipes]="recipes"></app-recipes-list>
         </div>

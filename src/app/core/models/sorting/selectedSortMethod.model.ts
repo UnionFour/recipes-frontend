@@ -1,7 +1,7 @@
-import { ISortMethod } from './sortMethod.model';
+import { SortMethod } from './sortMethod.model';
 import { Order } from './order.model';
 
-export interface ISelectedSortMethod {
-    sortMethod: ISortMethod;
+export type SelectedSortMethod = {
+    sortMethod: SortMethod;
     order: Order;
 }

@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ISelectedSortMethod } from '../../../../core/models/sorting/selectedSortMethod.model';
-import { ISortMethod } from '../../../../core/models/sorting/sortMethod.model';
-import { Order } from '../../../../core/models/sorting/order.model';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {SelectedSortMethod} from '../../../../core/models/sorting/selectedSortMethod.model';
+import {SortMethod} from '../../../../core/models/sorting/sortMethod.model';
+import {Order} from '../../../../core/models/sorting/order.model';
+import {RecipeSortInput, SortEnumType} from "../../../../../gql/graphql";
 
 @Component({
     selector: 'app-sort',
@@ -10,13 +11,12 @@ import { Order } from '../../../../core/models/sorting/order.model';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SortComponent implements OnInit{
-    selectedSortMethod!: ISelectedSortMethod;
+    selectedSortMethod!: SelectedSortMethod;
 
-    @Input() public sortMethods!: ISortMethod[];
-    @Input() public defaultSortMethod!: ISortMethod;
+    @Input() public sortMethods!: SortMethod[];
+    @Input() public defaultSortMethod!: SortMethod;
     @Input() public defaultOrder: Order = 'ascending';
-    @Output() public changedSortMethod: EventEmitter<ISelectedSortMethod>
-        = new EventEmitter<ISelectedSortMethod>();
+    @Output() public changedSortMethod = new EventEmitter<RecipeSortInput>();
 
     public ngOnInit(): void {
         const order: Order = this.defaultSortMethod.isOrdinal && this.defaultOrder
@@ -27,21 +27,21 @@ export class SortComponent implements OnInit{
         };
     }
 
-    public isSelectedSortMethod(sortMethod: ISortMethod) {
+    public isSelectedSortMethod(sortMethod: SortMethod) {
         return this.selectedSortMethod.sortMethod === sortMethod;
     }
 
-    public isAscendingSorting(sortMethod: ISortMethod): boolean {
+    public isAscendingSorting(sortMethod: SortMethod): boolean {
         return sortMethod.isOrdinal && this.isSelectedSortMethod(sortMethod)
             && this.selectedSortMethod.order === 'ascending';
     }
 
-    public isDescendingSorting(sortMethod: ISortMethod): boolean {
+    public isDescendingSorting(sortMethod: SortMethod): boolean {
         return sortMethod.isOrdinal && this.isSelectedSortMethod(sortMethod)
             && this.selectedSortMethod.order === 'descending';
     }
 
-    public changSortMethod(sortMethod: ISortMethod): void {
+    public changSortMethod(sortMethod: SortMethod): void {
         if (!this.isSelectedSortMethod(sortMethod) || sortMethod.isOrdinal) {
             const newSortOrder: Order = !sortMethod.isOrdinal ? 'indefinite'
                 : this.isAscendingSorting(sortMethod) ? 'descending' : 'ascending';
@@ -49,7 +49,14 @@ export class SortComponent implements OnInit{
                 sortMethod: sortMethod,
                 order: newSortOrder,
             };
-            this.changedSortMethod.next(this.selectedSortMethod);
+            this.changedSortMethod.next(this.preparedSelectedSortMethod);
         }
+    }
+
+    private get preparedSelectedSortMethod(): RecipeSortInput {
+        return {
+            [this.selectedSortMethod.sortMethod.value]: this.selectedSortMethod.order === 'indefinite'
+            || this.selectedSortMethod.order === 'descending' ? SortEnumType.Desc : SortEnumType.Asc
+        };
     }
 }

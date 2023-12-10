@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { RecipeService } from '../../core/services/recipe.service';
-import { DestroyableComponent } from '../../shared/components/destroyable-component/destroyable.component';
-import { Observable, takeUntil } from 'rxjs';
-import { Recipe } from '../../../gql/graphql';
+import {Component, OnInit} from '@angular/core';
+import {RecipeService} from '../../core/services/recipe.service';
+import {DestroyableComponent} from '../../shared/components/destroyable-component/destroyable.component';
+import {Observable, takeUntil} from 'rxjs';
+import {Recipe, RecipeSortInput, SortEnumType} from '../../../gql/graphql';
 
 @Component({
     selector: 'app-search-page',
@@ -22,9 +22,9 @@ export class SearchPageComponent extends DestroyableComponent implements OnInit{
         this.findRecipes();
     }
 
-    public findRecipes(ingredients: string[] = []) {
-        this.recipes$ = this.recipeService.find(ingredients);
-
+    public findRecipes(ingredients: string[] = [], recipeSortInput: RecipeSortInput = { likes: SortEnumType.Asc }) {
+        this.recipes$ = this.recipeService.find(ingredients, [recipeSortInput]);
+        console.log(recipeSortInput)
         this.recipes$
             .pipe(takeUntil(this.destroy$))
             .subscribe((recipes) => this.recipes = recipes);
