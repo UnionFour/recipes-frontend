@@ -2,27 +2,22 @@
     <app-filter-panel (filterValuesChanges)="findRecipes($event)"></app-filter-panel>
     <div class="right-panel">
         <app-sort-panel (changedSortMethod)="findRecipes(undefined, $event)"></app-sort-panel>
-        <div class="recipes" *ngIf="!loading; else loadingPicture">
-            <app-recipes-list [recipes]="recipes"></app-recipes-list>
+        <div class="recipes">
+            <ng-container *ngIf="!loading; else loadingPicture">
+                <app-recipes-list [recipes]="recipes"></app-recipes-list>
+            </ng-container>
         </div>
     </div>
 </div>
 
-<ng-template
-        [class.tui-skeleton_short]="loading"
-        [class.tui-skeleton_text]="loading"
-        [class.tui-skeleton]="loading"
->
-</ng-template>
-
 <ng-template #loadingPicture>
-    <tui-loader [overlay]="true">
+    <div class="skeletons">
+        <tui-loader [overlay]="true">
+        </tui-loader>
         <div
-                *ngFor="let recipe of [showRecipeCount]"
-                [class.tui-skeleton_short]="true"
-                [class.tui-skeleton_text]="true"
+                *ngFor="let skeleton of skeletonArray"
+                class="recipe-skeleton"
                 [class.tui-skeleton]="true"
-                style="width: 100%; height: 150px"
         ></div>
-    </tui-loader>
+    </div>
 </ng-template>

@@ -10,4 +10,8 @@
   --tui-secondary: var(--secondary);
   --tui-secondary-hover: var(--secondary-hover);
   --tui-secondary-active: var(--secondary-active);
+
+  // цвет скелетонов
+  --tui-clear-hover: rgba(255, 255, 255, 0.75);
+  --tui-skeleton-radius: var(--card-radius);
 }

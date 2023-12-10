@@ -13,6 +13,7 @@ export class SearchPageComponent extends DestroyableComponent implements OnInit{
     public recipes: Recipe[] = [];
     public loading: boolean = true;
     public showRecipeCount: number = 10;
+    public skeletonArray = Array(this.showRecipeCount);
 
     constructor(
         public recipeService: RecipeService

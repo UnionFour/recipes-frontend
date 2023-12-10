@@ -24,9 +24,11 @@
 <!--            <p>{{recipe.nutrition}}</p>-->
         </div>
         <div class="data-container">
-            <div *ngFor="let ingredient of recipe.ingredients">
-                {{ingredient.name}}
-            </div>
+            <ng-container *ngFor="let ingredient of recipe.ingredients">
+                <div *ngIf="ingredient.name?.rus" class="ingredient">
+                    {{ingredient.name?.rus}}
+                </div>
+            </ng-container>
         </div>
         <div class="data-container categories-container">
             <div *ngFor="let category of recipeCategories">

@@ -56,6 +56,12 @@
             cursor: pointer;
             text-wrap: nowrap;
         }
+
+        .ingredient {
+            &:first-letter {
+                text-transform: uppercase;
+            }
+        }
     }
 
     .categories-container {

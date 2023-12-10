@@ -7,6 +7,7 @@
   --secondary: #e1e5ea;
   --secondary-hover: #d4dae0;
   --secondary-active: #bfcad2;
+  --card-radius: 20px;
 }
 
 
@@ -69,7 +70,7 @@ $ingredient-margin-right: 8px;
 
 // карточки рецептов
 $card-padding: 29px 30px 29px 20px;
-$card-border-radius: 20px;
+$card-border-radius: var(--card-radius);
 
 $card-image-height: 200px;
 $card-image-width: 200px;
