@@ -69,7 +69,8 @@ $ingredient-margin-right: 8px;
 
 
 // карточки рецептов
-$card-padding: 29px 30px 29px 20px;
+$card-vertical-padding: 29px;
+$card-horizontal-padding: 30px;
 $card-border-radius: var(--card-radius);
 
 $card-image-height: 200px;

@@ -16,7 +16,8 @@
 }
 
 .description-container {
-    padding: $card-padding;
+    padding: $card-vertical-padding $card-horizontal-padding;
+    width: calc(100% - 200px - $card-horizontal-padding * 2);
 
     h2 {
         font-family: $card-title-font;

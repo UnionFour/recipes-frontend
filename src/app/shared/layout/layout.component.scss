@@ -1,15 +1,14 @@
 @import 'src/assets/styles/_variables.scss';
 
-.media{
-  min-height: 100vh;
-  width: min($max-media-width, calc(100% - $min-media-margin));
-  margin: $base-element-top-margin auto 0 auto;
-  font-family: $regular-text-family;
+.media {
+    min-height: 100vh;
+    width: min($max-media-width, calc(100% - $min-media-margin));
+    margin: $base-element-top-margin auto 0 auto;
+    font-family: $regular-text-family;
 }
 
-footer {
-    margin-top: 50px;
-    height: 130px;
+.footer {
+    margin-top: 100px;
+    height: 150px;
     width: 100%;
 }
-
