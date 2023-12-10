@@ -14,7 +14,7 @@ export class TagsComponent {
     @Input() public isVeryHealthy = false;
     @Input() public isVeryPopular = false;
 
-    get tagsExist(): boolean {
+    public get tagsExist(): boolean {
         return this.isCheap || this.isDairyFree || this.isGlutenFree
             || this.isVegan || this.isVegetarian || this.isVeryHealthy || this.isVeryPopular
     }

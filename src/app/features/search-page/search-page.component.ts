@@ -10,6 +10,7 @@ import { Recipe } from '../../../gql/graphql';
     styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent extends DestroyableComponent implements OnInit{
+    private recipes$!: Observable<Recipe[]>;
     public recipes!: Recipe[];
 
     constructor(
@@ -17,12 +18,15 @@ export class SearchPageComponent extends DestroyableComponent implements OnInit{
     ) {
         super()
     }
-    ngOnInit(): void {
-        const recipeList$: Observable<Recipe[]> = this.recipeService.find([]);
+    public ngOnInit(): void {
+        this.findRecipes();
+    }
 
-        recipeList$
+    public findRecipes(ingredients: string[] = []) {
+        this.recipes$ = this.recipeService.find(ingredients);
+
+        this.recipes$
             .pipe(takeUntil(this.destroy$))
             .subscribe((recipes) => this.recipes = recipes);
     }
-
 }

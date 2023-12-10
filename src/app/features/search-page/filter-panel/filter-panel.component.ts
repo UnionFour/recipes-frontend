@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { takeUntil } from 'rxjs';
 import { SelectOption } from '../../../core/models/recipe/selectOption.model';
@@ -14,18 +14,20 @@ export class FilterPanelComponent extends DestroyableComponent implements OnInit
     public form: FormGroup = new FormGroup({});
     public isSearchLoose: boolean = true;
 
+    @Output() public filterValuesChanges = new EventEmitter()
+
     // временные моки для имитации запроса
     public categoriesMockData: Category[] = categories;
 
     public ingredientsMockData: SelectOption[] = [
-        new SelectOption(11, 'Сливочное масло'),
-        new SelectOption(12, 'Морковь'),
-        new SelectOption(13, 'Капуста'),
-        new SelectOption(14, 'Помидоры'),
-        new SelectOption(15, 'Пшеничная мука'),
-        new SelectOption(16, 'Молоко'),
-        new SelectOption(17, 'Картофель'),
-        new SelectOption(19, 'Сахар'),
+        new SelectOption(11, 'сливочное масло'),
+        new SelectOption(12, 'морковь'),
+        new SelectOption(13, 'капуста'),
+        new SelectOption(14, 'помидоры'),
+        new SelectOption(15, 'пшеничная мука'),
+        new SelectOption(16, 'молоко'),
+        new SelectOption(17, 'картофель'),
+        new SelectOption(19, 'сахар'),
     ];
 
     constructor(
@@ -47,6 +49,8 @@ export class FilterPanelComponent extends DestroyableComponent implements OnInit
         ).subscribe(() => {
             // фильтруем список рецептов с дебаунсом
             // console.log(this.form.value);
+            this.filterValuesChanges.next(this.form.value.ingredients
+                .map((ingredient: {id: number, title: string}) => ingredient.title));
         });
     }
 
