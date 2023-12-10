@@ -1,9 +1,11 @@
 @import 'variables';
 
+$space-size: 22px;
+
 .container {
     background: $base-element-color;
     border-radius: $base-border-radius;
-    padding: 7px 28px 10px 28px;
+    padding: 7px 0 10px 0;
     display: flex;
     align-items: center;
 }
@@ -11,6 +13,7 @@
 .left-container {
     display: flex;
     align-items: center;
+    margin: 0 $space-size 0 $space-size;
 
     .min-search-icon {
         width: 30px;
@@ -32,8 +35,8 @@
 
 .right-container {
     width: 100%;
-    padding: 0 16px 0 16px;
-    margin-left: auto;
+    padding: 0 $space-size 0 $space-size;
+    margin: 0 auto 0 auto;
     max-width: 967px;
 
     input {
