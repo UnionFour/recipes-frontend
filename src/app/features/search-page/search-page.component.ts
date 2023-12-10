@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../../core/services/recipe.service';
 import { DestroyableComponent } from '../../shared/components/destroyable-component/destroyable.component';
-import { Observable, takeUntil } from 'rxjs';
+import { takeUntil } from 'rxjs';
 import { Recipe, RecipeSortInput, SortEnumType } from '../../../gql/graphql';
 
 @Component({
@@ -31,7 +31,6 @@ export class SearchPageComponent extends DestroyableComponent implements OnInit 
             .pipe(takeUntil(this.destroy$))
             .subscribe((recipes) => {
                 this.recipes = recipes;
-                this.loading = false;
             }, (e) => {
                 this.loading = false;
                 console.log(e);

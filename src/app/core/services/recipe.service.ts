@@ -124,7 +124,9 @@ export class RecipeService {
             })
             .pipe(
                 map((result) => result.data.recipes.nodes ?? []),
-                tap(() => this.$loading.next(false)),
+                tap(() => {
+                    this.$loading.next(false);
+                }),
             );
     }
 
