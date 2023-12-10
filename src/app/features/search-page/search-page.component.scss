@@ -24,7 +24,7 @@
         animation-name: hide;
 
         .right-panel {
-            width: 100%;
+            width: calc(100% - 280px);
             margin-left: 20px;
         }
     }
@@ -34,14 +34,9 @@
     }
 
     .recipes {
-        position: relative;
-        min-width: 1px;
 
         app-recipes-list {
-            position: absolute;
-            width: 100%;
-            top: 0;
-            left: 0;
+
         }
     }
 }
