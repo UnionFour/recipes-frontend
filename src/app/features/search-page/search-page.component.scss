@@ -55,6 +55,7 @@
 }
 
 .skeletons {
+    cursor: wait;
     position: relative;
 
     .recipe-skeleton {
@@ -74,4 +75,9 @@ tui-loader {
     top: 88px;
     left: calc(50% - 12px);
     z-index: 100;
+}
+
+.loaded {
+    animation-duration: 1s;
+    animation-name: hide;
 }

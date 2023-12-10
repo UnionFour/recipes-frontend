@@ -2,7 +2,7 @@
     <app-filter-panel (filterValuesChanges)="findRecipes($event)"></app-filter-panel>
     <div class="right-panel">
         <app-sort-panel (changedSortMethod)="findRecipes(undefined, $event)"></app-sort-panel>
-        <div class="recipes">
+        <div class="recipes" [class]="!loading ? 'loaded' : ''">
             <ng-container *ngIf="!loading; else loadingPicture">
                 <app-recipes-list [recipes]="recipes"></app-recipes-list>
             </ng-container>
