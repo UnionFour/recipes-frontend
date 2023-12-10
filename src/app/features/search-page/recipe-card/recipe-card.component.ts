@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { categories, Category } from '../../../core/mocks/categories.mock';
+import { Recipe } from '../../../../gql/graphql';
 
 @Component({
     selector: 'app-recipe-card',
@@ -7,7 +8,7 @@ import { categories, Category } from '../../../core/mocks/categories.mock';
     styleUrls: ['./recipe-card.component.scss']
 })
 export class RecipeCardComponent implements OnInit {
-    @Input() public recipe: any;
+    @Input() public recipe!: Recipe;
 
     public recipeCategories: Category[] = [];
 

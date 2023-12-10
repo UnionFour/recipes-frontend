@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { recipes } from '../../../core/mocks/recipes.mock';
+import { Component, Input } from '@angular/core';
+import { Recipe } from '../../../../gql/graphql';
 
 @Component({
     selector: 'app-recipes-list',
@@ -7,5 +7,5 @@ import { recipes } from '../../../core/mocks/recipes.mock';
     styleUrls: ['./recipes-list.component.scss']
 })
 export class RecipesListComponent {
-    public recipes: any = recipes;
+    @Input() public recipes!: Recipe[];
 }

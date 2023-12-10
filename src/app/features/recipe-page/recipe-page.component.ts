@@ -11,7 +11,6 @@ import { DestroyableComponent } from '../../shared/components/destroyable-compon
     styleUrls: ['./recipe-page.component.scss']
 })
 export class RecipePageComponent extends DestroyableComponent implements OnInit {
-    private recipe$!: Observable<Recipe | null>;
     public recipe!: Recipe | null;
 
     constructor(
@@ -22,13 +21,14 @@ export class RecipePageComponent extends DestroyableComponent implements OnInit 
     }
 
     ngOnInit(): void {
-        this.recipe$ = this.route.params
+        const recipe$: Observable<Recipe | null> = this.route.params
             .pipe(switchMap((params: Params) => {
                 const recipeId = params['id'];
                 return this.recipeService.getRecipe(recipeId);
             }))
 
-        this.recipe$.pipe(takeUntil(this.destroy$))
+        recipe$
+            .pipe(takeUntil(this.destroy$))
             .subscribe((recipe) => this.recipe = recipe);
     }
 }
