@@ -2,8 +2,12 @@
     <app-filter-panel (filterValuesChanges)="findRecipes($event)"></app-filter-panel>
     <div class="right-panel">
         <app-sort-panel (changedSortMethod)="findRecipes(undefined, $event)"></app-sort-panel>
-        <div class="recipes">
+        <div class="recipes" *ngIf="!loading; else loadingPicture">
             <app-recipes-list [recipes]="recipes"></app-recipes-list>
         </div>
     </div>
 </div>
+
+<ng-template #loadingPicture>
+    <h1>ЗАГРУЗКА</h1>
+</ng-template>

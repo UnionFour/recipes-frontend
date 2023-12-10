@@ -4,6 +4,16 @@
     margin-top: $base-element-top-margin;
 }
 
+@keyframes hide {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
 @media (min-width: 900px) {
     .container {
         display: flex;
@@ -11,17 +21,7 @@
         align-items: start;
 
         animation-duration: 1s;
-        animation-name: start-hide;
-
-        @keyframes start-hide {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
+        animation-name: hide;
 
         .right-panel {
             width: 100%;
@@ -56,15 +56,5 @@
 
         animation-duration: 1s;
         animation-name: hide;
-    }
-
-    @keyframes hide {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
     }
 }
