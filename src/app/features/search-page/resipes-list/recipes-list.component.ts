@@ -7,5 +7,5 @@ import { Recipe } from '../../../../gql/graphql';
     styleUrls: ['./recipes-list.component.scss']
 })
 export class RecipesListComponent {
-    @Input() public recipes!: Recipe[];
+    @Input() public recipes: Recipe[] = [];
 }

@@ -8,7 +8,7 @@ import { NgSwitch, NgSwitchCase } from '@angular/common';
 import {
     TuiDataListModule,
     TuiHostedDropdownModule,
-    TuiLinkModule,
+    TuiLinkModule, TuiLoaderModule,
     TuiSvgModule,
     TuiTextfieldControllerModule
 } from '@taiga-ui/core';
@@ -44,7 +44,8 @@ const components = [
         TuiHostedDropdownModule,
         TuiDataListModule,
         TuiSvgModule,
-        TuiLinkModule
+        TuiLinkModule,
+        TuiLoaderModule
     ],
     declarations: components
 })

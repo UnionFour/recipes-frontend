@@ -8,6 +8,21 @@
     </div>
 </div>
 
+<ng-template
+        [class.tui-skeleton_short]="loading"
+        [class.tui-skeleton_text]="loading"
+        [class.tui-skeleton]="loading"
+>
+</ng-template>
+
 <ng-template #loadingPicture>
-    <h1>ЗАГРУЗКА</h1>
+    <tui-loader [overlay]="true">
+        <div
+                *ngFor="let recipe of [showRecipeCount]"
+                [class.tui-skeleton_short]="true"
+                [class.tui-skeleton_text]="true"
+                [class.tui-skeleton]="true"
+                style="width: 100%; height: 150px"
+        ></div>
+    </tui-loader>
 </ng-template>

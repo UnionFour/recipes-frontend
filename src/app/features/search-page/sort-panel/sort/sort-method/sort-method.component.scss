@@ -1,10 +1,9 @@
 @import 'src/assets/styles/_variables.scss';
 
-li {
+.container {
     display: flex;
     justify-content: space-between;
     align-items: start;
-    margin-right: 26px;
 
     .order-icon, .order-icon svg {
         width: 20px;

@@ -97,7 +97,10 @@ const queryGet = gql`
     providedIn: 'root',
 })
 export class RecipeService {
-    constructor(private apollo: Apollo) {}
+    constructor(
+        private apollo: Apollo
+    ) {
+    }
 
     public find(ingredients: string[], sorts: RecipeSortInput[] | null = null): Observable<Recipe[]> {
         if (sorts?.length == 0) sorts = null;

@@ -10,8 +10,9 @@ import {Recipe, RecipeSortInput, SortEnumType} from '../../../gql/graphql';
     styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent extends DestroyableComponent implements OnInit{
-    public recipes!: Recipe[];
+    public recipes: Recipe[] = [];
     public loading: boolean = true;
+    public showRecipeCount: number = 10;
 
     constructor(
         public recipeService: RecipeService
@@ -26,8 +27,8 @@ export class SearchPageComponent extends DestroyableComponent implements OnInit{
         this.recipeService.find(ingredients, [recipeSortInput])
             .pipe(takeUntil(this.destroy$))
             .subscribe((recipes) => {
-                this.loading = false;
                 this.recipes = recipes;
+                this.loading = false;
             });
     }
 }
