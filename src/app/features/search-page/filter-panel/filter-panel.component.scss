@@ -60,3 +60,21 @@ ul.filters {
         margin-bottom: 4px;
     }
 }
+
+@media (max-width: 899px) {
+    .container {
+        animation-duration: 1s;
+        animation-name: widthchange;
+        width: calc(100% - 44px);
+    }
+
+    @keyframes widthchange {
+        from {
+            width: 216px;
+        }
+
+        to {
+            width: calc(100% - 44px);
+        }
+    }
+}

@@ -16,7 +16,7 @@ export class SearchPageComponent extends DestroyableComponent implements OnInit{
     constructor(
         public recipeService: RecipeService
     ) {
-        super()
+        super();
     }
     public ngOnInit(): void {
         this.findRecipes();
@@ -24,7 +24,6 @@ export class SearchPageComponent extends DestroyableComponent implements OnInit{
 
     public findRecipes(ingredients: string[] = [], recipeSortInput: RecipeSortInput = { likes: SortEnumType.Asc }) {
         this.recipes$ = this.recipeService.find(ingredients, [recipeSortInput]);
-        console.log(recipeSortInput)
         this.recipes$
             .pipe(takeUntil(this.destroy$))
             .subscribe((recipes) => this.recipes = recipes);
