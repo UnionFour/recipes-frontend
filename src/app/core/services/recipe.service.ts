@@ -7,13 +7,15 @@ import {
     RecipeSortInput,
     StringOperationFilterInput,
 } from '../../../gql/graphql';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { queryFind, queryGet } from './recipe.queries';
 
 @Injectable({
     providedIn: 'root',
 })
 export class RecipeService {
+    public $loading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+
     public ingredients: string[] = [];
     public sorts: RecipeSortInput[] | null = null;
     public filtration: RecipeFilterInput | null = null;
@@ -21,7 +23,7 @@ export class RecipeService {
 
     constructor(private apollo: Apollo) {}
 
-    public find(): Observable<Recipe[]> {
+    public find(showRecipeCount: number, ingredients: string[], recipeSortInputs: RecipeSortInput[]): Observable<Recipe[]> {
         if (this.sorts?.length == 0) this.sorts = null;
 
         const containedIngredients: StringOperationFilterInput[] = this.ingredients.map(
@@ -40,6 +42,7 @@ export class RecipeService {
         if (this.filtration != null)
             filterInput.and?.push(this.filtration);
 
+        this.$loading.next(true);
         return this.apollo
             .query<{ recipes: RecipesConnection }>({
                 query: queryFind,
@@ -50,6 +53,9 @@ export class RecipeService {
             })
             .pipe(
                 map((result) => result.data.recipes.nodes ?? []),
+                tap(() => {
+                    this.$loading.next(false);
+                }),
             );
     }
 
