@@ -22,14 +22,14 @@ export class RecipePageComponent extends DestroyableComponent implements OnInit 
     }
 
     public ngOnInit(): void {
-        this.recipe$ = this.route.params
-            .pipe(switchMap((params: Params) => {
-                const recipeId = params['id'];
-                return this.recipeService.getRecipe(recipeId);
-            }))
-
-        this.recipe$
-            .pipe(takeUntil(this.destroy$))
+        this.route.params
+            .pipe(
+                switchMap((params) => {
+                    const recipeId = params['id'];
+                    return this.recipeService.getRecipe(recipeId);
+                }),
+                takeUntil(this.destroy$)
+            )
             .subscribe((recipe) => this.recipe = recipe);
     }
 }

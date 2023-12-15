@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { DeclensionsWord } from '../../../shared/pipes/declension.pipe';
 import { SortMethod } from '../../../core/models/sorting/sortMethod.model';
 import { RecipeSortInput } from '../../../../gql/graphql';
+import { RecipeParametersService } from '../../../core/services/recipe-parameters.service';
 
 @Component({
     selector: 'app-sort-panel',
@@ -12,6 +13,9 @@ export class SortPanelComponent {
     public recipesCount = 11;
 
     @Output() changedSortMethod = new EventEmitter<RecipeSortInput>;
+    
+    constructor(public recipeParametersService: RecipeParametersService) {
+    }
 
     public recipeDeclensions: DeclensionsWord = {
         nominativeCase: 'рецепт',
@@ -33,6 +37,6 @@ export class SortPanelComponent {
         ]
 
     onChangedSortMethod(recipeSortInput: RecipeSortInput) {
-        this.changedSortMethod.next(recipeSortInput)
+        this.recipeParametersService.changeSortingParameter(recipeSortInput);
     }
 }

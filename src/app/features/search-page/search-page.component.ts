@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../../core/services/recipe.service';
 import { DestroyableComponent } from '../../shared/components/destroyable-component/destroyable.component';
-import { takeUntil } from 'rxjs';
-import { Recipe, RecipeSortInput, SortEnumType } from '../../../gql/graphql';
+import { switchMap, takeUntil } from 'rxjs';
+import { Recipe } from '../../../gql/graphql';
+import { RecipeParametersService } from '../../core/services/recipe-parameters.service';
 
 @Component({
     selector: 'app-search-page',
@@ -11,29 +12,32 @@ import { Recipe, RecipeSortInput, SortEnumType } from '../../../gql/graphql';
 })
 export class SearchPageComponent extends DestroyableComponent implements OnInit {
     public recipes: Recipe[] = [];
-    public loading: boolean = true;
-    public showRecipeCount: number = 10;
+    public loading = true;
+    public showRecipeCount = 10;
     public skeletonArray = Array(this.showRecipeCount);
 
     constructor(
-        public recipeService: RecipeService
+        public recipeService: RecipeService,
+        public recipeParametersService: RecipeParametersService
     ) {
         super();
         recipeService.$loading.subscribe((value) => this.loading = value);
     }
 
     public ngOnInit(): void {
-        this.findRecipes();
+        this.recipeParametersService.parameters$
+            .pipe(
+                switchMap((parameters) => this.recipeService.find(parameters)),
+                takeUntil(this.destroy$)
+            )
+            .subscribe({
+                next: (recipes) => this.recipes = recipes,
+                error: (error) => {
+                    this.loading = false;
+                    console.log(error)
+                }
+            })
     }
 
-    public findRecipes(ingredients: string[] = [], recipeSortInput: RecipeSortInput = { likes: SortEnumType.Asc }) {
-        this.recipeService.find(this.showRecipeCount, ingredients, [recipeSortInput])
-            .pipe(takeUntil(this.destroy$))
-            .subscribe((recipes) => {
-                this.recipes = recipes;
-            }, (e) => {
-                this.loading = false;
-                console.log(e);
-            });
-    }
+
 }

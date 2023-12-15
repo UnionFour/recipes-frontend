@@ -13,7 +13,7 @@ test('Поиск без ингредиентов и сортировки', (done
 
     const recipeService = new RecipeService(apollo);
 
-    recipeService.find(this.showRecipeCount, ingredients, [recipeSortInput]).subscribe((result) => {
+    recipeService.find().subscribe((result) => {
         console.log(result);
         done();
     });
@@ -30,7 +30,7 @@ test('Поиск c ингредиентами и сортировкой по п�
     recipeService.ingredients = ['кукуруза', 'крылышки'];
     recipeService.sorts = [{ aggregateLikes: SortEnumType.Desc }];
 
-    recipeService.find(this.showRecipeCount, ingredients, [recipeSortInput]).subscribe((result) => {
+    recipeService.find().subscribe((result) => {
         console.log(result);
         done();
     });
@@ -63,7 +63,7 @@ test('Отфилтровать рецепты по отдельным полям
         glutenFree: { eq: true }
     };
 
-    recipeService.find(this.showRecipeCount, ingredients, [recipeSortInput]).subscribe((result) => {
+    recipeService.find().subscribe((result) => {
         console.log(result);
         done();
     });
@@ -86,7 +86,7 @@ test('Строгий поиск', (done) => {
 
     recipeService.isStrict = true;
 
-    recipeService.find(this.showRecipeCount, ingredients, [recipeSortInput]).subscribe((result) => {
+    recipeService.find().subscribe((result) => {
         console.log(result);
         done();
     });

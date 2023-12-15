@@ -10,27 +10,30 @@ import {
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { queryFind, queryGet } from './recipe.queries';
 
+export type params = {
+    ingredients: string[],
+    sorts: RecipeSortInput[] | null,
+    filtration: RecipeFilterInput | null,
+    isStrict: boolean,
+}
+
+
 @Injectable({
     providedIn: 'root',
 })
 export class RecipeService {
     public $loading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
-    public ingredients: string[] = [];
-    public sorts: RecipeSortInput[] | null = null;
-    public filtration: RecipeFilterInput | null = null;
-    public isStrict = false;
-
     constructor(private apollo: Apollo) {}
 
-    public find(showRecipeCount: number, ingredients: string[], recipeSortInputs: RecipeSortInput[]): Observable<Recipe[]> {
-        if (this.sorts?.length == 0) this.sorts = null;
+    public find(parameters: params): Observable<Recipe[]> {
+        if (parameters.sorts?.length == 0) parameters.sorts = null;
 
-        const containedIngredients: StringOperationFilterInput[] = this.ingredients.map(
+        const containedIngredients: StringOperationFilterInput[] = parameters.ingredients.map(
             (ingredient) => new Object({ contains: ingredient }),
         );
 
-        const ingredientsFilter: RecipeFilterInput = this.isStrict
+        const ingredientsFilter: RecipeFilterInput = parameters.isStrict
             ? { ingredients: { all: { name: { rus: { or: containedIngredients } } } } }
             : { ingredients: { some: { name: { rus: { or: containedIngredients } } } } };
 
@@ -39,8 +42,8 @@ export class RecipeService {
         if (containedIngredients.length > 0)
             filterInput.and?.push(ingredientsFilter);
 
-        if (this.filtration != null)
-            filterInput.and?.push(this.filtration);
+        if (parameters.filtration != null)
+            filterInput.and?.push(parameters.filtration);
 
         this.$loading.next(true);
         return this.apollo
@@ -48,7 +51,7 @@ export class RecipeService {
                 query: queryFind,
                 variables: {
                     filtration: filterInput,
-                    recipeSorts: this.sorts,
+                    recipeSorts: parameters.sorts,
                 },
             })
             .pipe(

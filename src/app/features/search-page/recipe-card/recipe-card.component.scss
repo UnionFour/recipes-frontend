@@ -19,7 +19,7 @@
     padding: $card-vertical-padding $card-horizontal-padding;
     width: calc(100% - 200px - $card-horizontal-padding * 2);
 
-    h2 {
+    a {
         font-family: $card-title-font;
         font-size: $card-title-size;
         cursor: pointer;

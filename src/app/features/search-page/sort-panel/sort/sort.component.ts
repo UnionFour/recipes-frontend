@@ -1,8 +1,9 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {SelectedSortMethod} from '../../../../core/models/sorting/selectedSortMethod.model';
-import {SortMethod} from '../../../../core/models/sorting/sortMethod.model';
-import {Order} from '../../../../core/models/sorting/order.model';
-import {RecipeSortInput, SortEnumType} from "../../../../../gql/graphql";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { SelectedSortMethod } from '../../../../core/models/sorting/selectedSortMethod.model';
+import { SortMethod } from '../../../../core/models/sorting/sortMethod.model';
+import { Order } from '../../../../core/models/sorting/order.model';
+import { RecipeSortInput, SortEnumType } from '../../../../../gql/graphql';
+import {RecipeParametersService} from "../../../../core/services/recipe-parameters.service";
 
 @Component({
     selector: 'app-sort',
@@ -11,20 +12,24 @@ import {RecipeSortInput, SortEnumType} from "../../../../../gql/graphql";
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SortComponent implements OnInit{
-    selectedSortMethod!: SelectedSortMethod;
+    private selectedSortMethod!: SelectedSortMethod;
 
     @Input() public sortMethods!: SortMethod[];
     @Input() public defaultSortMethod!: SortMethod;
     @Input() public defaultOrder: Order = 'ascending';
+
     @Output() public changedSortMethod = new EventEmitter<RecipeSortInput>();
 
     public ngOnInit(): void {
         const order: Order = this.defaultSortMethod.isOrdinal && this.defaultOrder
             !== 'indefinite' ? this.defaultOrder : 'indefinite';
+
         this.selectedSortMethod = {
             sortMethod: this.defaultSortMethod,
             order: order
         };
+
+        this.changedSortMethod.next(this.preparedSelectedSortMethod);
     }
 
     public isSelectedSortMethod(sortMethod: SortMethod) {
@@ -49,6 +54,7 @@ export class SortComponent implements OnInit{
                 sortMethod: sortMethod,
                 order: newSortOrder,
             };
+
             this.changedSortMethod.next(this.preparedSelectedSortMethod);
         }
     }
