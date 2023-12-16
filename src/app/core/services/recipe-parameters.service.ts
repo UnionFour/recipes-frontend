@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { RecipeFilterInput, RecipeSortInput, SortEnumType } from '../../../gql/graphql';
-
-export type RecipeParameters = {
-    ingredients: string[],
-    sorts: RecipeSortInput[] | null,
-    filtration: RecipeFilterInput | null,
-    isStrict: boolean,
-}
+import { RecipeParameters } from '../models/recipe/recipeParameters';
 
 @Injectable({
     providedIn: 'root'
 })
 export class RecipeParametersService {
-    private parametersSubject = new BehaviorSubject<RecipeParameters>
-    ({ ingredients: [], sorts: [{ aggregateLikes: SortEnumType.Desc }], filtration: null, isStrict: false });
+    private readonly initialParameters = {
+        ingredients: [],
+        sorts: [{ aggregateLikes: SortEnumType.Desc }],
+        filtration: null,
+        isStrict: false
+    };
+
+    private parametersSubject = new BehaviorSubject<RecipeParameters>(this.initialParameters)
     public readonly parameters$ = this.parametersSubject.asObservable();
 
     changeSortingParameter(newSortingParameter: RecipeSortInput) {

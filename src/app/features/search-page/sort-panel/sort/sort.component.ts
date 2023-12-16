@@ -2,8 +2,6 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 import { SelectedSortMethod } from '../../../../core/models/sorting/selectedSortMethod.model';
 import { SortMethod } from '../../../../core/models/sorting/sortMethod.model';
 import { Order } from '../../../../core/models/sorting/order.model';
-import { RecipeSortInput, SortEnumType } from '../../../../../gql/graphql';
-import {RecipeParametersService} from "../../../../core/services/recipe-parameters.service";
 
 @Component({
     selector: 'app-sort',
@@ -18,7 +16,7 @@ export class SortComponent implements OnInit{
     @Input() public defaultSortMethod!: SortMethod;
     @Input() public defaultOrder: Order = 'ascending';
 
-    @Output() public changedSortMethod = new EventEmitter<RecipeSortInput>();
+    @Output() public changedSortMethod = new EventEmitter<SelectedSortMethod>();
 
     public ngOnInit(): void {
         const order: Order = this.defaultSortMethod.isOrdinal && this.defaultOrder
@@ -29,7 +27,7 @@ export class SortComponent implements OnInit{
             order: order
         };
 
-        this.changedSortMethod.next(this.preparedSelectedSortMethod);
+        this.changedSortMethod.next(this.selectedSortMethod);
     }
 
     public isSelectedSortMethod(sortMethod: SortMethod) {
@@ -55,14 +53,7 @@ export class SortComponent implements OnInit{
                 order: newSortOrder,
             };
 
-            this.changedSortMethod.next(this.preparedSelectedSortMethod);
+            this.changedSortMethod.next(this.selectedSortMethod);
         }
-    }
-
-    private get preparedSelectedSortMethod(): RecipeSortInput {
-        return {
-            [this.selectedSortMethod.sortMethod.value]: this.selectedSortMethod.order === 'indefinite'
-            || this.selectedSortMethod.order === 'descending' ? SortEnumType.Desc : SortEnumType.Asc
-        };
     }
 }

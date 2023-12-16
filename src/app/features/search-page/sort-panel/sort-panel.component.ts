@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { DeclensionsWord } from '../../../shared/pipes/declension.pipe';
 import { SortMethod } from '../../../core/models/sorting/sortMethod.model';
-import { RecipeSortInput } from '../../../../gql/graphql';
+import { RecipeSortInput, SortEnumType } from '../../../../gql/graphql';
 import { RecipeParametersService } from '../../../core/services/recipe-parameters.service';
+import { SelectedSortMethod } from '../../../core/models/sorting/selectedSortMethod.model';
 
 @Component({
     selector: 'app-sort-panel',
@@ -12,31 +13,36 @@ import { RecipeParametersService } from '../../../core/services/recipe-parameter
 export class SortPanelComponent {
     public recipesCount = 11;
 
-    @Output() changedSortMethod = new EventEmitter<RecipeSortInput>;
-    
-    constructor(public recipeParametersService: RecipeParametersService) {
-    }
-
-    public recipeDeclensions: DeclensionsWord = {
+    public readonly recipeDeclensions: DeclensionsWord = {
         nominativeCase: 'рецепт',
         pluralCase: 'рецептов',
         genitiveCase: 'рецепта'
     };
 
-    public findDeclensions: DeclensionsWord = {
+    public readonly findDeclensions: DeclensionsWord = {
         nominativeCase: 'Найден',
         pluralCase: 'Найдено',
         genitiveCase: 'Найдено'
     };
 
-    public sortMethods: SortMethod[] =
-        [
-            { name: 'Популярность', value: 'aggregateLikes', isOrdinal: false },
-            { name: 'Калории', value: 'calories', isOrdinal: true },
-            { name: 'Время', value: 'readyInMinutes', isOrdinal: true }
-        ]
+    public readonly sortMethods: SortMethod[] = [
+        { name: 'Популярность', value: 'aggregateLikes', isOrdinal: false },
+        { name: 'Калории', value: 'calories', isOrdinal: true },
+        { name: 'Время', value: 'readyInMinutes', isOrdinal: true }
+    ]
+    
+    constructor(public recipeParametersService: RecipeParametersService) {
+    }
 
-    onChangedSortMethod(recipeSortInput: RecipeSortInput) {
-        this.recipeParametersService.changeSortingParameter(recipeSortInput);
+    public onChangedSortMethod(recipeSortInput: SelectedSortMethod) {
+        const preparedSortingMethod = this.prepareSortingMethod(recipeSortInput);
+        this.recipeParametersService.changeSortingParameter(preparedSortingMethod);
+    }
+
+    private prepareSortingMethod(sortMethod: SelectedSortMethod): RecipeSortInput {
+        return {
+            [sortMethod.sortMethod.value]: sortMethod.order === 'indefinite'
+            || sortMethod.order === 'descending' ? SortEnumType.Desc : SortEnumType.Asc
+        };
     }
 }
