@@ -25,9 +25,9 @@ export class RecipeParametersService {
     //     this.parametersSubject.next({ ...this.parametersSubject.getValue(), filtration: newFilteringParameter });
     // }
 
-    // addIngredient(ingredient: string) {
-    //     this.parametersSubject.next({ ...this.parametersSubject.getValue(), filteringParameter: newFilteringParameter });
-    // }
+    changeIngredientsParameter(ingredients: string[]) {
+        this.parametersSubject.next({ ...this.parametersSubject.getValue(), ingredients: ingredients });
+    }
 
 
 }

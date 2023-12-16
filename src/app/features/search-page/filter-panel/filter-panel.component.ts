@@ -4,6 +4,7 @@ import { takeUntil } from 'rxjs';
 import { SelectOption } from '../../../core/models/recipe/selectOption.model';
 import { DestroyableComponent } from '../../../shared/components/destroyable-component/destroyable.component';
 import { categories, Category } from '../../../core/mocks/categories.mock';
+import {RecipeParametersService} from "../../../core/services/recipe-parameters.service";
 
 @Component({
     selector: 'app-filter-panel',
@@ -31,7 +32,8 @@ export class FilterPanelComponent extends DestroyableComponent implements OnInit
     ];
 
     constructor(
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        public recipeParametersService: RecipeParametersService,
     ) {
         super();
     }
@@ -40,17 +42,19 @@ export class FilterPanelComponent extends DestroyableComponent implements OnInit
         this.form = this.createForm();
 
         // получаем значения в поля из формы по подписке
-        this.form.get('isSearchLoose')!.valueChanges.pipe(
-            takeUntil(this.destroy$)
-        ).subscribe((value: boolean) => this.isSearchLoose = value);
+        this.form.get('isSearchLoose')!.valueChanges
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((value: boolean) => this.isSearchLoose = value);
 
         this.form.valueChanges.pipe(
             takeUntil(this.destroy$)
         ).subscribe(() => {
             // фильтруем список рецептов с дебаунсом
-            // console.log(this.form.value);
-            this.filterValuesChanges.next(this.form.value.ingredients
-                .map((ingredient: {id: number, title: string}) => ingredient.title));
+            // console.log(this.form.value);\
+            this.recipeParametersService.changeIngredientsParameter((this.form.value.ingredients
+                .map((ingredient: {id: number, title: string}) => ingredient.title)));
+            // this.filterValuesChanges.next(this.form.value.ingredients
+            //     .map((ingredient: {id: number, title: string}) => ingredient.title));
         });
     }
 
