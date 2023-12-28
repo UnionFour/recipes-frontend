@@ -9,29 +9,22 @@ import { Order } from '../../../../core/models/sorting/order.model';
     styleUrls: ['./sort.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SortComponent implements OnInit{
-    private selectedSortMethod!: SelectedSortMethod;
+export class SortComponent implements OnInit {
+    @Input() public selectedSortMethod!: SelectedSortMethod;
 
     @Input() public sortMethods!: SortMethod[];
-    @Input() public defaultSortMethod!: SortMethod;
+    // @Input() public defaultSortMethod!: SelectedSortMethod;
     @Input() public defaultOrder: Order = 'ascending';
 
     @Output() public changedSortMethod = new EventEmitter<SelectedSortMethod>();
 
     public ngOnInit(): void {
-        const order: Order = this.defaultSortMethod.isOrdinal && this.defaultOrder
-            !== 'indefinite' ? this.defaultOrder : 'indefinite';
+        console.log('sort', )
 
-        this.selectedSortMethod = {
-            sortMethod: this.defaultSortMethod,
-            order: order
-        };
-
-        this.changedSortMethod.next(this.selectedSortMethod);
     }
 
     public isSelectedSortMethod(sortMethod: SortMethod) {
-        return this.selectedSortMethod.sortMethod === sortMethod;
+        return this.selectedSortMethod.value === sortMethod.value;
     }
 
     public isAscendingSorting(sortMethod: SortMethod): boolean {
@@ -49,7 +42,7 @@ export class SortComponent implements OnInit{
             const newSortOrder: Order = !sortMethod.isOrdinal ? 'indefinite'
                 : this.isAscendingSorting(sortMethod) ? 'descending' : 'ascending';
             this.selectedSortMethod = {
-                sortMethod: sortMethod,
+                value: sortMethod.value,
                 order: newSortOrder,
             };
 

@@ -6,7 +6,7 @@
     </h1>
     <app-sort
             [sortMethods]="sortMethods"
-            [defaultSortMethod]="sortMethods[0]"
+            [selectedSortMethod]="value"
             (changedSortMethod)="onChangedSortMethod($event)"
     ></app-sort>
 </div>

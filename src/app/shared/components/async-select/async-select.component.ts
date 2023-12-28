@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { async, delay, filter, Observable, of, startWith, Subject, switchMap, takeUntil } from 'rxjs';
+import { delay, filter, Observable, of, startWith, Subject, switchMap, takeUntil } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { TUI_DEFAULT_MATCHER } from '@taiga-ui/cdk';
 import { SelectOption } from '../../../core/models/recipe/selectOption.model';
 import { DestroyableComponent } from '../destroyable-component/destroyable.component';
+import {ISelectItem} from "../../../core/models/filtering/selectItem.model";
 
 type Size = 's' | 'l' | 'm';
 
@@ -13,23 +14,19 @@ type Size = 's' | 'l' | 'm';
     styleUrls: ['./async-select.component.scss']
 })
 export class AsyncSelectComponent extends DestroyableComponent implements OnInit {
-    @Input() public placeholder: string = 'Введите значение';
-    @Input() public control: FormControl = new FormControl<string[]>([]);
+    public search$ = new Subject<string | null>();
+    public items$!: Observable<ISelectItem[]>;
+
+    @Input() public placeholder = 'Введите значение';
+    @Input() public control: FormControl = new FormControl();
     @Input() public size: Size = 's';
-    @Input() public databaseMockData: SelectOption[] = [];
-    @Input() public showList: boolean = false;
-
-    public search$: Subject<string | null> = new Subject<string | null>();
-    public items$!: Observable<SelectOption[] | null>;
-
-    public values: SelectOption[] | null = [];
+    @Input() public databaseMockData: ISelectItem[] = [];
 
     ngOnInit() {
         this.items$ = this.search$.pipe(
-            takeUntil(this.destroy$),
-            filter((value: any) => value !== null),
+            filter(value => value !== null),
             switchMap(search =>
-                this.serverRequest(search).pipe(startWith<SelectOption[] | null>(null)),
+                this.serverRequest(search).pipe(startWith<ISelectItem[]>([])),
             ),
             startWith(this.databaseMockData),
         );
@@ -39,19 +36,11 @@ export class AsyncSelectComponent extends DestroyableComponent implements OnInit
         this.search$.next(searchQuery);
     }
 
-    public onValueChanges(value: any): void {
-        this.control.setValue(value);
-    }
-
-    public deleteItem(item: SelectOption): void {
-        this.values!.splice(this.values!.indexOf(item), 1);
-    }
-
     /**
      * Server request emulation
      */
-    private serverRequest(searchQuery: string | null): Observable<SelectOption[]> {
-        const result: SelectOption[] = this.databaseMockData.filter((user: SelectOption) =>
+    private serverRequest(searchQuery: string | null): Observable<ISelectItem[]> {
+        const result = this.databaseMockData.filter(user =>
             TUI_DEFAULT_MATCHER(user, searchQuery || ''),
         );
 

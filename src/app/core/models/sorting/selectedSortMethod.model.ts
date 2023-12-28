@@ -2,6 +2,6 @@ import { SortMethod } from './sortMethod.model';
 import { Order } from './order.model';
 
 export type SelectedSortMethod = {
-    sortMethod: SortMethod;
+    value: string;
     order: Order;
 }

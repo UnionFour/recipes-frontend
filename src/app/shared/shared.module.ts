@@ -19,6 +19,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { RouterOutlet } from '@angular/router';
 import { DeclensionPipe } from './pipes/declension.pipe';
 import {SideIconComponent} from "./components/side-icon/side-icon.component";
+import { SelectComponent } from './components/select/select.component';
+import { HideSelectedPipe } from './pipes/hide-selected.pipe';
 
 const modules = [
     CommonModule,
@@ -58,12 +60,15 @@ const pipes = [
     ],
     declarations: [
         ...components,
-        ...pipes
+        ...pipes,
+        SelectComponent,
+        HideSelectedPipe
     ],
     exports: [
         ...components,
         ...modules,
-        ...pipes
+        ...pipes,
+        SelectComponent
     ]
 })
 export class SharedModule {

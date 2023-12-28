@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { categories, Category } from '../../../core/mocks/categories.mock';
 import { Recipe } from '../../../../gql/graphql';
+import { Category, categories } from '../../../core/models/filtering/category';
 
 @Component({
     selector: 'app-recipe-card',
@@ -15,7 +15,7 @@ export class RecipeCardComponent implements OnInit {
     ngOnInit() {
         categories.forEach((possibleCategory: Category) => {
             for (const [key, value] of Object.entries(this.recipe)) {
-                if (possibleCategory.alias === key && value) {
+                if (possibleCategory.value === key && value) {
                     this.recipeCategories.push(possibleCategory);
                 }
             }

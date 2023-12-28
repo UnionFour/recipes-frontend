@@ -18,7 +18,7 @@ import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 import { SortPanelComponent } from './sort-panel/sort-panel.component';
 import { SortComponent } from './sort-panel/sort/sort.component';
 import { SortMethodComponent } from './sort-panel/sort/sort-method/sort-method.component';
-import {RouterLink} from "@angular/router";
+import { RouterLink } from '@angular/router';
 
 const components = [
     SearchPageComponent,

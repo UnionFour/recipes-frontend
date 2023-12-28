@@ -4,11 +4,14 @@ import {
     Recipe,
     RecipeFilterInput,
     RecipesConnection,
-    RecipeSortInput,
+    RecipeSortInput, SortEnumType,
     StringOperationFilterInput,
 } from '../../../gql/graphql';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { queryFind, queryGet } from './recipe.queries';
+import {Parameters} from "../../features/search-page/search-page.component";
+import {SelectedSortMethod} from "../models/sorting/selectedSortMethod.model";
+
 
 export type params = {
     ingredients: string[],
@@ -26,24 +29,32 @@ export class RecipeService {
 
     constructor(private apollo: Apollo) {}
 
-    public find(parameters: params): Observable<Recipe[]> {
-        if (parameters.sorts?.length == 0) parameters.sorts = null;
-
-        const containedIngredients: StringOperationFilterInput[] = parameters.ingredients.map(
-            (ingredient) => new Object({ contains: ingredient }),
-        );
-
-        const ingredientsFilter: RecipeFilterInput = parameters.isStrict
-            ? { ingredients: { all: { name: { rus: { or: containedIngredients } } } } }
-            : { ingredients: { some: { name: { rus: { or: containedIngredients } } } } };
+    public find(parameters: Parameters): Observable<Recipe[]> {
+        console.log('find',parameters)
+        let containedIngredients!: StringOperationFilterInput[];
+        if (parameters.ingredients) {
+            if (typeof parameters.ingredients == 'string') {
+                containedIngredients = [new Object({ contains: parameters.ingredients })]
+            } else {
+                containedIngredients = parameters.ingredients.map(
+                    (ingredient) => new Object({ contains: ingredient }),
+                );
+            }
+        }
+        else {
+            containedIngredients = []
+        }
+        const ingredientsFilter: RecipeFilterInput = parameters.isSearchLoose
+            ? { ingredients: { some: { name: { rus: { or: containedIngredients } } } } }
+            : { ingredients: { all: { name: { rus: { or: containedIngredients } } } } };
 
         const filterInput: RecipeFilterInput = { and: [] };
 
         if (containedIngredients.length > 0)
             filterInput.and?.push(ingredientsFilter);
 
-        if (parameters.filtration != null)
-            filterInput.and?.push(parameters.filtration);
+        // if (parameters.filtration != null)
+        //     filterInput.and?.push(parameters.filtration);
 
         this.$loading.next(true);
         return this.apollo
@@ -51,7 +62,7 @@ export class RecipeService {
                 query: queryFind,
                 variables: {
                     filtration: filterInput,
-                    recipeSorts: parameters.sorts,
+                    recipeSorts: this.prepareSortingMethod(parameters.sorting),
                 },
             })
             .pipe(
@@ -60,6 +71,16 @@ export class RecipeService {
                     this.$loading.next(false);
                 }),
             );
+    }
+
+    private prepareSortingMethod(sortMethod: string[] | undefined): RecipeSortInput | undefined {
+        if (sortMethod) {
+            return { [sortMethod[0]]: sortMethod[1] === 'indefinite'
+            || sortMethod[1] === 'descending' ? SortEnumType.Desc : SortEnumType.Asc} 
+        } else {
+            return undefined
+        }
+    
     }
 
     public getRecipe(recipeId: string): Observable<Recipe | null> {

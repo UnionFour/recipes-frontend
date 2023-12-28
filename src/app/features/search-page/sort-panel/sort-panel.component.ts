@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { DeclensionsWord } from '../../../shared/pipes/declension.pipe';
 import { SortMethod } from '../../../core/models/sorting/sortMethod.model';
 import { RecipeSortInput, SortEnumType } from '../../../../gql/graphql';
 import { RecipeParametersService } from '../../../core/services/recipe-parameters.service';
 import { SelectedSortMethod } from '../../../core/models/sorting/selectedSortMethod.model';
+import {ActivatedRoute, Router} from "@angular/router";
+import {TimeFormat} from "@tsed/schema";
 
 @Component({
     selector: 'app-sort-panel',
     templateUrl: './sort-panel.component.html',
     styleUrls: ['./sort-panel.component.scss']
 })
-export class SortPanelComponent {
+export class SortPanelComponent implements OnInit{
     public recipesCount = 11;
+    public value!:  SelectedSortMethod;
 
     public readonly recipeDeclensions: DeclensionsWord = {
         nominativeCase: 'рецепт',
@@ -31,18 +34,41 @@ export class SortPanelComponent {
         { name: 'Время', value: 'readyInMinutes', isOrdinal: true }
     ]
     
-    constructor(public recipeParametersService: RecipeParametersService) {
+    constructor(
+        public recipeParametersService: RecipeParametersService,
+        public router: Router,
+        public route: ActivatedRoute,
+
+    ) {
     }
 
-    public onChangedSortMethod(recipeSortInput: SelectedSortMethod) {
-        const preparedSortingMethod = this.prepareSortingMethod(recipeSortInput);
-        this.recipeParametersService.changeSortingParameter(preparedSortingMethod);
+    ngOnInit(): void {
+        this.value = this.route.snapshot.queryParams['sorting'] ? {
+            value: this.route.snapshot.queryParams['sorting'][0],
+            order: this.route.snapshot.queryParams['sorting'][1]
+        } : {
+            value: 'aggregateLikes',
+            order: 'descending'
+        }
+    }
+
+    public onChangedSortMethod(selectedSortMethod: SelectedSortMethod) {
+        console.log('sort-pael', new Date())
+        this.router.navigate([], {
+            relativeTo: this.route,
+            queryParams: { sorting: [selectedSortMethod.value, selectedSortMethod.order] }, // Указываем параметр, который нужно удалить, и устанавливаем для него null
+            queryParamsHandling: 'merge'
+        }).then()
+
+        // const preparedSortingMethod = this.prepareSortingMethod(selectedSortMethod);
+        // this.recipeParametersService.changeSortingParameter(preparedSortingMethod);
     }
 
     private prepareSortingMethod(sortMethod: SelectedSortMethod): RecipeSortInput {
         return {
-            [sortMethod.sortMethod.value]: sortMethod.order === 'indefinite'
+            [sortMethod.value]: sortMethod.order === 'indefinite'
             || sortMethod.order === 'descending' ? SortEnumType.Desc : SortEnumType.Asc
         };
     }
+
 }

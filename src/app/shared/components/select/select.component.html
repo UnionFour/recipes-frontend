@@ -1,19 +1,17 @@
 <tui-multi-select
-        *tuiLet="items$ | async as items"
+        *tuiLet="items"
         placeholder="placeholder"
         class="b-form"
         [editable]="false"
         [formControl]="control"
         [tuiTextfieldSize]="size"
-        (searchChange)="onSearchChange($event)"
+        [tuiTextfieldLabelOutside]="true"
 
 >
     {{placeholder}}
     <tui-data-list-wrapper
             *tuiDataList
-            [items]="items | hideSelected: control.value"
+            [items]="items | hideSelected:control.value"
     ></tui-data-list-wrapper>
 </tui-multi-select>
-
-
 

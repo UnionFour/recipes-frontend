@@ -1,7 +1,7 @@
 <div class="container">
-    <form [formGroup]="form">
+    <form [formGroup]="filteringParamsForm">
         <div class="search-severity flex">
-            <ng-container [ngSwitch]="isSearchLoose">
+            <ng-container [ngSwitch]="getControl('isSearchLoose').value">
                 <label *ngSwitchCase="true" for="isSearchLoose">Из того, что есть</label>
                 <label *ngSwitchCase="false" for="isSearchLoose">Из того, что хочу</label>
             </ng-container>
@@ -12,7 +12,7 @@
                     size="l"
             ></tui-toggle>
         </div>
-        <ng-container [ngSwitch]="isSearchLoose">
+        <ng-container [ngSwitch]="getControl('isSearchLoose').value">
             <p *ngSwitchCase="true"><i>Строгий</i> поиск рецептов из того, что есть.</p>
             <p *ngSwitchCase="false"><i>Нестрогий</i> поиск рецептов из того, что хочется.</p>
         </ng-container>
@@ -29,24 +29,24 @@
                         [placeholder]="'Пищевая ценность на 100 гр.'"
                         [pluralize]="{other: 'Ккал'}"
                         [control]="getControl('nutritionalValues')"
-                        [maxValue]="1000"
-                        [minValue]="100"
-                        [steps]="18"
+                        [minValue]="nutritionalInputMinValue"
+                        [maxValue]="nutritionalInputMaxValue"
+                        [steps]="nutritionalInputSteps"
                 ></app-input-range>
             </li>
             <li>
                 <label>Категории</label>
-                <app-async-select
-                        [control]="getControl('categories')"
-                        [databaseMockData]="categoriesMockData"
-                ></app-async-select>
+               <app-select
+                    [items]="categories"
+                    [control]="getControl('categories')"
+               >
+               </app-select>
             </li>
             <hr>
             <li>
                 <label>Игредиенты</label>
                 <app-async-select
                         [control]="getControl('ingredients')"
-                        [showList]="true"
                         [databaseMockData]="ingredientsMockData"
                 ></app-async-select>
             </li>
