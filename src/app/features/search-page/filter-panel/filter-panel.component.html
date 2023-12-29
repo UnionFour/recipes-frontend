@@ -26,9 +26,8 @@
             <li>
                 <label>Пищевая ценность</label>
                 <app-input-range
-                        [placeholder]="'Пищевая ценность на 100 гр.'"
-                        [pluralize]="{other: 'Ккал'}"
                         [control]="getControl('nutritionalValues')"
+                        [pluralize]="{other: 'Ккал'}"
                         [minValue]="nutritionalInputMinValue"
                         [maxValue]="nutritionalInputMaxValue"
                         [steps]="nutritionalInputSteps"
@@ -37,8 +36,8 @@
             <li>
                 <label>Категории</label>
                <app-select
-                    [items]="categories"
                     [control]="getControl('categories')"
+                    [items]="categories"
                >
                </app-select>
             </li>
@@ -46,8 +45,8 @@
             <li>
                 <label>Игредиенты</label>
                 <app-async-select
-                        [control]="getControl('ingredients')"
-                        [databaseMockData]="ingredientsMockData"
+                    [control]="getControl('ingredients')"
+                    [databaseMockData]="ingredientsMockData"
                 ></app-async-select>
             </li>
         </ul>

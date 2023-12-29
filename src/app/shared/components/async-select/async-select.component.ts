@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { delay, filter, Observable, of, startWith, Subject, switchMap, takeUntil } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { TUI_DEFAULT_MATCHER } from '@taiga-ui/cdk';
-import { SelectOption } from '../../../core/models/recipe/selectOption.model';
-import { DestroyableComponent } from '../destroyable-component/destroyable.component';
-import {ISelectItem} from "../../../core/models/filtering/selectItem.model";
+import { delay, filter, Observable, of, startWith, Subject, switchMap } from 'rxjs';
 
-type Size = 's' | 'l' | 'm';
+import { TUI_DEFAULT_MATCHER } from '@taiga-ui/cdk';
+
+import { DestroyableComponent } from '../destroyable-component/destroyable.component';
+import { ISelectItem } from '../../../core/models/filtering/selectItem.model';
+import { Size } from '../../../core/models/filtering/size';
 
 @Component({
     selector: 'app-async-select',
@@ -14,11 +14,11 @@ type Size = 's' | 'l' | 'm';
     styleUrls: ['./async-select.component.scss']
 })
 export class AsyncSelectComponent extends DestroyableComponent implements OnInit {
-    public search$ = new Subject<string | null>();
-    public items$!: Observable<ISelectItem[]>;
+    public items$!: Observable<ISelectItem[] | null>;
+    public readonly  search$ = new Subject<string | null>();
 
-    @Input() public placeholder = 'Введите значение';
     @Input() public control: FormControl = new FormControl();
+    @Input() public placeholder = 'Введите значение';
     @Input() public size: Size = 's';
     @Input() public databaseMockData: ISelectItem[] = [];
 
@@ -26,13 +26,13 @@ export class AsyncSelectComponent extends DestroyableComponent implements OnInit
         this.items$ = this.search$.pipe(
             filter(value => value !== null),
             switchMap(search =>
-                this.serverRequest(search).pipe(startWith<ISelectItem[]>([])),
+                this.serverRequest(search).pipe(startWith<ISelectItem[] | null>(null)),
             ),
             startWith(this.databaseMockData),
         );
     }
 
-    public onSearchChange(searchQuery: string | null): void {
+    public onSearchChange(searchQuery: string | null) {
         this.search$.next(searchQuery);
     }
 

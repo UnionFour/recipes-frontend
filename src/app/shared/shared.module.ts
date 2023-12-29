@@ -11,14 +11,14 @@ import {
     TuiInputRangeModule,
     TuiMultiSelectModule, TuiTagModule
 } from '@taiga-ui/kit';
-import { TuiHintModule, TuiSvgModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import { TuiHintModule, TuiLoaderModule, TuiSvgModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { AsyncSelectComponent } from './components/async-select/async-select.component';
 import { TuiLetModule, TuiValueChangesModule } from '@taiga-ui/cdk';
 import { InputRangeComponent } from './components/input-range/input-range.component';
 import { LayoutComponent } from './layout/layout.component';
 import { RouterOutlet } from '@angular/router';
 import { DeclensionPipe } from './pipes/declension.pipe';
-import {SideIconComponent} from "./components/side-icon/side-icon.component";
+import { SideIconComponent } from './components/side-icon/side-icon.component';
 import { SelectComponent } from './components/select/select.component';
 import { HideSelectedPipe } from './pipes/hide-selected.pipe';
 
@@ -37,11 +37,13 @@ const components = [
     AsyncSelectComponent,
     InputRangeComponent,
     LayoutComponent,
-    SideIconComponent
+    SideIconComponent,
+    SelectComponent,
 ];
 
 const pipes = [
-    DeclensionPipe
+    DeclensionPipe,
+    HideSelectedPipe
 ];
 
 @NgModule({
@@ -56,19 +58,17 @@ const pipes = [
         RouterOutlet,
         TuiValueChangesModule,
         FormsModule,
-        TuiTagModule
+        TuiTagModule,
+        TuiLoaderModule
     ],
     declarations: [
         ...components,
         ...pipes,
-        SelectComponent,
-        HideSelectedPipe
     ],
     exports: [
         ...components,
         ...modules,
         ...pipes,
-        SelectComponent
     ]
 })
 export class SharedModule {

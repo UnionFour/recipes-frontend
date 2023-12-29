@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ISelectItem } from '../../../core/models/filtering/selectItem.model';
 
-type Size = 's' | 'm' | 'l';
+import { ISelectItem } from '../../../core/models/filtering/selectItem.model';
+import { Size } from '../../../core/models/filtering/size';
 
 @Component({
     selector: 'app-select',
@@ -11,10 +11,9 @@ type Size = 's' | 'm' | 'l';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectComponent {
-
-    @Input() public placeholder = 'Введите значение';
     @Input() public control: FormControl = new FormControl();
-    @Input() public size: Size = 's';
     @Input() public items: ISelectItem[] = [];
+    @Input() public placeholder = 'Введите значение';
+    @Input() public size: Size = 's';
 
 }

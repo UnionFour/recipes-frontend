@@ -1,16 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {ISelectItem} from "../../core/models/filtering/selectItem.model";
+import { ISelectItem } from '../../core/models/filtering/selectItem.model';
 
 @Pipe({
     name: 'hideSelected'
 })
 export class HideSelectedPipe implements PipeTransform {
-
-    transform(value: ISelectItem[] | null, args: ISelectItem[]): ISelectItem[] {
-        if (value === null) {
-            return []
+    transform(items: ISelectItem[] | null, selectedItems: ISelectItem[]): ISelectItem[] | null {
+        if (items === null || selectedItems.length === 0) {
+            return items;
         }
-        return value.filter((r) => !args.find((rr) => rr.toString() === r.toString() ));
+
+        return items.filter((item) =>
+            !selectedItems.some((selectedItem) =>
+                selectedItem.toString() === item.toString()));
     }
 
 }

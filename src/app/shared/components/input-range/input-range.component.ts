@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-
-type Size = 's' | 'l' | 'm';
+import {Size} from "../../../core/models/filtering/size";
 
 @Component({
     selector: 'app-input-range',
@@ -12,12 +11,12 @@ type Size = 's' | 'l' | 'm';
 export class InputRangeComponent {
     @Input() public control = new FormControl([20, 40]);
 
-    @Input() public maxValue: number = 100;
-    @Input() public minValue: number = 0;
-    @Input() public steps: number = 5;
+    @Input() public maxValue = 100;
+    @Input() public minValue = 0;
+    @Input() public steps = 5;
 
     @Input() public ticksLabels: [] = [];
-    @Input() public placeholder: string = 'Введите значение';
+    @Input() public placeholder = 'Введите значение';
     @Input() public size: Size = 's';
 
     @Input() public pluralize = {
