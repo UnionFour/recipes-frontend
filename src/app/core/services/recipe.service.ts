@@ -9,8 +9,7 @@ import {
 } from '../../../gql/graphql';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { queryFind, queryGet } from './recipe.queries';
-import {Parameters} from "../../features/search-page/search-page.component";
-import {SelectedSortMethod} from "../models/sorting/selectedSortMethod.model";
+import { RecipeParameters } from '../models/filtering/recipeParameters';
 
 
 export type params = {
@@ -29,7 +28,7 @@ export class RecipeService {
 
     constructor(private apollo: Apollo) {}
 
-    public find(parameters: Parameters): Observable<Recipe[]> {
+    public find(parameters: RecipeParameters): Observable<Recipe[]> {
         console.log('find',parameters)
         let containedIngredients!: StringOperationFilterInput[];
         if (parameters.ingredients) {

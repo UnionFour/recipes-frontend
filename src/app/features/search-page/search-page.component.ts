@@ -1,22 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { filter, switchMap, takeUntil } from 'rxjs';
+
 import { RecipeService } from '../../core/services/recipe.service';
 import { DestroyableComponent } from '../../shared/components/destroyable-component/destroyable.component';
-import {debounceTime, switchMap, takeUntil} from 'rxjs';
-import {Recipe, RecipeSortInput, SortEnumType} from '../../../gql/graphql';
-import { RecipeParametersService } from '../../core/services/recipe-parameters.service';
-import { ActivatedRoute, Router } from "@angular/router";
-import {SelectedSortMethod} from "../../core/models/sorting/selectedSortMethod.model";
-import {Category} from "../../core/models/filtering/category";
-
-export type Parameters = {
-    isSearchLoose?: boolean,
-    containerMethods?: string[],
-    nutritionalValues?: number[],
-    categories?: string[],
-    ingredients?: string[],
-    sorting?: string[]
-}
-
+import { Recipe } from '../../../gql/graphql';
+import { Category } from '../../core/models/filtering/category';
+import {RecipeParameters} from "../../core/models/filtering/recipeParameters";
 
 @Component({
     selector: 'app-search-page',
@@ -31,74 +21,46 @@ export class SearchPageComponent extends DestroyableComponent implements OnInit 
 
     constructor(
         public recipeService: RecipeService,
-        public recipeParametersService: RecipeParametersService,
         public route: ActivatedRoute,
         public router: Router,
     ) {
         super();
-        recipeService.$loading.subscribe((value) => this.loading = value);
     }
 
     public ngOnInit() {
-        console.log('ngOnInit SearchPageComponent')
+        this.recipeService.$loading.pipe(
+            takeUntil(this.destroy$)
+        ).subscribe((isLoading) => this.loading = isLoading);
 
-        // this.route.queryParams
-        //     .pipe(
-        //         switchMap((params) => {
-        //             const parameters: Parameters = {
-        //                 isSearchLoose: !!params['isSearchLoose'],
-        //                 containerMethods: params['containerMethods'],
-        //                 nutritionalValues: params['nutritionalValues'].map((nutritionalValue: string) => +nutritionalValue),
-        //                 categories: params['categories'],
-        //                 ingredients: params['ingredients'],
-        //                 sorting: params['sorting']
-        //             }
-        //             console.log(parameters)
-        //             return this.recipeService.find(parameters);
-        //         }),
-        //         takeUntil(this.destroy$)
-        //     )
-        //     .subscribe((res) => this.recipes = res)
-
-        this.route.queryParams
-            .subscribe((params) => {
-                if (params) {
-                    const parameters: Parameters = {
-                        isSearchLoose: params['isSearchLoose'] === 'true',
-                        containerMethods: params['containerMethods'],
-                        nutritionalValues: params['nutritionalValues']?.map((nutritionalValue: string) => +nutritionalValue),
-                        categories: params['categories']?.map((car: string) => {
-                            const str: any = JSON.parse(car)
-                            return new Category(str.title, str.value)
-                        }),
-                        ingredients: params['ingredients'],
-                        sorting: params['sorting']
-                    }
-                    console.log('route.queryParams', params)
-                    this.recipeService.find(parameters).subscribe((res) => this.recipes = res)
-                }
-            })
-
-        // this.recipeParametersService.parameters$
-        //     .pipe(
-        //         switchMap((parameters) => this.recipeService.find(parameters)),
-        //         takeUntil(this.destroy$)
-        //     )
-        //     .subscribe({
-        //         next: (recipes) => this.recipes = recipes,
-        //         error: (error) => {
-        //             this.loading = false;
-        //             console.log(error)
-        //         }
-        //     })
+        this.route.queryParams.pipe(
+            filter((params) => !!params),
+            switchMap((params) => this.getRecipes(params)),
+            takeUntil(this.destroy$)
+        ).subscribe((recipes) => this.recipes = recipes);
     }
 
-    private prepareSortingMethod(sortMethod: string[]): RecipeSortInput {
-        return {
-            [sortMethod[0]]: sortMethod[1] === 'indefinite'
-            || sortMethod[1] === 'descending' ? SortEnumType.Desc : SortEnumType.Asc
+    private getRecipes(params: Params){
+        const RecipeParameters: RecipeParameters = {
+            isSearchLoose: params['isSearchLoose'] === 'true',
+            containerMethods: params['containerMethods'],
+            nutritionalValues: this.parseNutritionalValues(params['nutritionalValues']),
+            categories: this.parseCategories(params['categories']),
+            ingredients: params['ingredients'],
+            sorting: params['sorting']
         };
+
+        return this.recipeService.find(RecipeParameters);
     }
 
+    private parseNutritionalValues(nutritionalValues: string[] | undefined): number[] {
+        return nutritionalValues ? nutritionalValues.map((nutritionalValue: string) =>
+            +nutritionalValue) : [];
+    }
 
+    private parseCategories(categories: string[] | undefined): Category[] {
+        return categories ? categories.map((car: string) => {
+            const parsedCategories = JSON.parse(car);
+            return new Category(parsedCategories.title, parsedCategories.value);
+        }) : [];
+    }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { delay, filter, Observable, of, startWith, Subject, switchMap } from 'rxjs';
 
@@ -11,7 +11,8 @@ import { Size } from '../../../core/models/filtering/size';
 @Component({
     selector: 'app-async-select',
     templateUrl: './async-select.component.html',
-    styleUrls: ['./async-select.component.scss']
+    styleUrls: ['./async-select.component.scss'],
+
 })
 export class AsyncSelectComponent extends DestroyableComponent implements OnInit {
     public items$!: Observable<ISelectItem[] | null>;

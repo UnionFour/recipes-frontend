@@ -76,12 +76,9 @@ export class FilterPanelComponent extends DestroyableComponent implements OnInit
         const queryParams: Params = {
             isSearchLoose: filteringParams.isSearchLoose,
             nutritionalValues: filteringParams.nutritionalValues,
-            categories: filteringParams.categories.map((r) => JSON.stringify(r)),
+            categories: filteringParams.categories.map((category) => JSON.stringify(category)),
             ingredients: filteringParams.ingredients
         };
-
-        console.log('form.valueChanges', filteringParams);
-        console.log('this.form', this.filteringParamsForm.value);
 
         return this.router.navigate([], {
             relativeTo: this.route,
@@ -92,12 +89,14 @@ export class FilterPanelComponent extends DestroyableComponent implements OnInit
 
     private get isSearchLooseInitialValue() {
         const isSearchLooseQueryValue = this.route.snapshot.queryParams['isSearchLoose'];
+
         return isSearchLooseQueryValue ? isSearchLooseQueryValue === 'true'
             : this.isSearchLooseDefaultValue;
     }
 
     private get nutritionalInitialValue(): number[] {
         const nutritionalQueryValue = this.route.snapshot.queryParams['nutritionalValues'];
+
         return nutritionalQueryValue
             ? nutritionalQueryValue.map((nutritionalValue: string) => +nutritionalValue)
             : this.nutritionalDefaultValue;
