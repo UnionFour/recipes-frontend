@@ -11,15 +11,6 @@ import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { queryFind, queryGet } from './recipe.queries';
 import { RecipeParameters } from '../models/filtering/recipeParameters';
 
-
-export type params = {
-    ingredients: string[],
-    sorts: RecipeSortInput[] | null,
-    filtration: RecipeFilterInput | null,
-    isStrict: boolean,
-}
-
-
 @Injectable({
     providedIn: 'root',
 })
@@ -51,6 +42,45 @@ export class RecipeService {
 
         if (containedIngredients.length > 0)
             filterInput.and?.push(ingredientsFilter);
+
+        filterInput.vegetarian = undefined
+        filterInput.vegan = undefined
+        filterInput.glutenFree = undefined
+        filterInput.dairyFree = undefined
+        filterInput.veryHealthy = undefined
+        filterInput.cheap = undefined
+        filterInput.veryPopular = undefined
+
+        parameters.categories?.forEach((category) => {
+            if (category.value === 'vegetarian') {
+                filterInput.vegetarian = { eq: true }
+            }
+
+            if (category.value === 'vegan') {
+                filterInput.vegan = { eq: true }
+            }
+
+            if (category.value === 'glutenFree') {
+                filterInput.glutenFree = { eq: true }
+            }
+
+            if (category.value === 'dairyFree') {
+                filterInput.dairyFree = { eq: true }
+            }
+
+            if (category.value === 'veryHealthy') {
+                filterInput.veryHealthy = { eq: true }
+            }
+
+            if (category.value === 'cheap') {
+                filterInput.cheap = { eq: true }
+            }
+
+            if (category.value === 'veryPopular') {
+                filterInput.veryPopular = { eq: true }
+            }
+
+        })
 
         // if (parameters.filtration != null)
         //     filterInput.and?.push(parameters.filtration);
