@@ -5,13 +5,18 @@ import { GraphQLModule } from '../../graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SortEnumType } from '../../../gql/graphql';
 
-test('Поиск без ингредиентов и сортировки', (done) => {
+function getRecipeService(): RecipeService{
     TestBed.configureTestingModule({
         imports: [GraphQLModule, HttpClientModule],
     });
+
     const apollo = TestBed.inject(Apollo);
 
-    const recipeService = new RecipeService(apollo);
+    return new RecipeService(apollo);
+}
+
+test('Поиск без ингредиентов и сортировки', (done) => {
+    const recipeService = getRecipeService();
 
     recipeService.find().subscribe((result) => {
         console.log(result);
@@ -20,12 +25,7 @@ test('Поиск без ингредиентов и сортировки', (done
 });
 
 test('Поиск c ингредиентами и сортировкой по популярности', (done) => {
-    TestBed.configureTestingModule({
-        imports: [GraphQLModule, HttpClientModule],
-    });
-    const apollo = TestBed.inject(Apollo);
-
-    const recipeService = new RecipeService(apollo);
+    const recipeService = getRecipeService();
 
     recipeService.ingredients = ['кукуруза', 'крылышки'];
     recipeService.sorts = [{ aggregateLikes: SortEnumType.Desc }];
@@ -37,12 +37,7 @@ test('Поиск c ингредиентами и сортировкой по п�
 });
 
 test('Получить один рецепт по id', (done) => {
-    TestBed.configureTestingModule({
-        imports: [GraphQLModule, HttpClientModule],
-    });
-    const apollo = TestBed.inject(Apollo);
-
-    const recipeService = new RecipeService(apollo);
+    const recipeService = getRecipeService();
 
     recipeService.getRecipe('6535566e607944a91084f87d').subscribe((result) => {
         console.log(result);
@@ -51,12 +46,7 @@ test('Получить один рецепт по id', (done) => {
 });
 
 test('Отфилтровать рецепты по отдельным полям', (done) => {
-    TestBed.configureTestingModule({
-        imports: [GraphQLModule, HttpClientModule],
-    });
-    const apollo = TestBed.inject(Apollo);
-
-    const recipeService = new RecipeService(apollo);
+    const recipeService = getRecipeService();
 
     recipeService.filtration = {
         vegan: { eq: false },
@@ -70,12 +60,7 @@ test('Отфилтровать рецепты по отдельным полям
 })
 
 test('Строгий поиск', (done) => {
-    TestBed.configureTestingModule({
-        imports: [GraphQLModule, HttpClientModule],
-    });
-    const apollo = TestBed.inject(Apollo);
-
-    const recipeService = new RecipeService(apollo);
+    const recipeService = getRecipeService();
 
     recipeService.ingredients = ['картошка', 'бекон', 'мука', 'крем', 'пекана', 'соль'];
 
