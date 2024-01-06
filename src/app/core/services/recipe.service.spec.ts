@@ -3,9 +3,10 @@ import { RecipeService } from './recipe.service';
 import { Apollo } from 'apollo-angular';
 import { GraphQLModule } from '../../graphql.module';
 import { HttpClientModule } from '@angular/common/http';
-import { SortEnumType } from '../../../gql/graphql';
+import { Recipe, SortEnumType } from '../../../gql/graphql';
+import { concat } from 'rxjs';
 
-function getRecipeService(): RecipeService{
+function getRecipeService(): RecipeService {
     TestBed.configureTestingModule({
         imports: [GraphQLModule, HttpClientModule],
     });
@@ -50,14 +51,14 @@ test('Отфилтровать рецепты по отдельным полям
 
     recipeService.filtration = {
         vegan: { eq: false },
-        glutenFree: { eq: true }
+        glutenFree: { eq: true },
     };
 
     recipeService.find().subscribe((result) => {
         console.log(result);
         done();
     });
-})
+});
 
 test('Строгий поиск', (done) => {
     const recipeService = getRecipeService();
@@ -66,7 +67,7 @@ test('Строгий поиск', (done) => {
 
     recipeService.filtration = {
         vegan: { eq: false },
-        glutenFree: { eq: false }
+        glutenFree: { eq: false },
     };
 
     recipeService.isStrict = true;
@@ -75,4 +76,48 @@ test('Строгий поиск', (done) => {
         console.log(result);
         done();
     });
-})
+});
+
+test('Диапозон калорий от 800 до 840 ккал', (done) => {
+    const recipeService = getRecipeService();
+
+    const min = 800;
+    const max = 840;
+
+    recipeService.filtration = {
+        and: [{ callories: { gte: min } }, { callories: { lte: max } }],
+    };
+
+    recipeService.find().subscribe((result) => {
+        const recipe = result.at(0);
+        const callories = recipe?.callories ?? 0;
+
+        expect(callories).toBeGreaterThanOrEqual(min);
+        expect(callories).toBeLessThanOrEqual(max);
+        done();
+    });
+});
+
+test('Получение следующей страницы данных', (done) => {
+    const recipeService = getRecipeService();
+
+    const firstPage = recipeService.find();
+    const nextPage = recipeService.find(true);
+
+    let recipes: Recipe[] = [];
+
+    concat(firstPage, nextPage).subscribe({
+        next(result) {
+            recipes = recipes.concat(result);
+        },
+        complete() {
+            const firstRecipe = recipes[0];
+            const nextRecipe = recipes[(recipes.length / 2) - 1];
+
+            expect(firstRecipe).not.toBe(nextRecipe);
+
+            console.log(recipes);
+            done();
+        },
+    });
+});
