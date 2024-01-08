@@ -1,6 +1,7 @@
-import { Apollo } from 'apollo-angular';
+import { Apollo, gql } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import {
+    IngredientCollection,
     Recipe,
     RecipeFilterInput,
     RecipesConnection,
@@ -8,7 +9,7 @@ import {
     StringOperationFilterInput,
 } from '../../../gql/graphql';
 import { map, Observable } from 'rxjs';
-import { queryFind, queryGet } from './recipe.queries';
+import { queryFind, queryFindIngredients, queryGet } from './recipe.queries';
 
 @Injectable({
     providedIn: 'root',
@@ -72,5 +73,16 @@ export class RecipeService {
                 },
             })
             .pipe(map((result) => result.data.recipes.nodes?.at(0) ?? null));
+    }
+
+    public findIngredients(name: string): Observable<IngredientCollection[]> {
+        return this.apollo
+            .query<{ ingredients: IngredientCollection[] }>({
+                query: queryFindIngredients,
+                variables: {
+                    name
+                }
+            })
+            .pipe(map((result) => result.data.ingredients ?? []));
     }
 }

@@ -81,6 +81,19 @@ export type Ingredient = {
   unit?: Maybe<LocalizedString>;
 };
 
+export type IngredientCollection = {
+  __typename?: 'IngredientCollection';
+  count: Scalars['Int']['output'];
+  id: Scalars['String']['output'];
+};
+
+export type IngredientCollectionFilterInput = {
+  and?: InputMaybe<Array<IngredientCollectionFilterInput>>;
+  count?: InputMaybe<IntOperationFilterInput>;
+  id?: InputMaybe<StringOperationFilterInput>;
+  or?: InputMaybe<Array<IngredientCollectionFilterInput>>;
+};
+
 export type IngredientFilterInput = {
   amount?: InputMaybe<FloatOperationFilterInput>;
   and?: InputMaybe<Array<IngredientFilterInput>>;
@@ -226,7 +239,13 @@ export type PageInfo = {
 
 export type Query = {
   __typename?: 'Query';
+  ingredients: Array<IngredientCollection>;
   recipes?: Maybe<RecipesConnection>;
+};
+
+
+export type QueryIngredientsArgs = {
+  where?: InputMaybe<IngredientCollectionFilterInput>;
 };
 
 

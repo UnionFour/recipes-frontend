@@ -102,3 +102,12 @@ export const queryGet = gql`
     }
     ${recipeFragment}
 `;
+
+export const queryFindIngredients = gql`
+    query GetIngredients($name: String) {
+        ingredients(where: { id: { contains: $name } }) {
+            id
+            count
+        }
+    }
+`;

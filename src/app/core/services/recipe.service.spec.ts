@@ -121,3 +121,15 @@ test('Получение следующей страницы данных', (don
         },
     });
 });
+
+test('Получить список ингредиентов, начинающихся на в', (done) => {
+    const recipeService = getRecipeService();
+
+    recipeService.findIngredients('в').subscribe(result => {
+        console.log(result);
+
+        expect(result[0].id).toMatch(/^в/);
+
+        done();
+    })
+});
