@@ -1,4 +1,4 @@
-import { Apollo, gql } from 'apollo-angular';
+import { Apollo } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import {
     IngredientCollection,
@@ -17,10 +17,9 @@ import { queryFind, queryFindIngredients, queryGet } from './recipe.queries';
 })
 export class RecipeService {
     public hasNextPage = false;
+    public $loading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
     private cursor: string | null = null;
-
-    public $loading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
     constructor(private apollo: Apollo) {}
 
@@ -95,7 +94,6 @@ export class RecipeService {
                 query: queryFind,
                 variables: {
                     filtration: filterInput,
-
                     recipeSorts: this.prepareSortingMethod(parameters.sorting),
                     cursor: this.cursor,
                 },
@@ -146,5 +144,4 @@ export class RecipeService {
             })
             .pipe(map((result) => result.data.ingredients ?? []));
     }
-
 }

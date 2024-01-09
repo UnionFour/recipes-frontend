@@ -1,11 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DeclensionsWord } from '../../../shared/pipes/declension.pipe';
 import { SortMethod } from '../../../core/models/sorting/sortMethod.model';
 import { RecipeSortInput, SortEnumType } from '../../../../gql/graphql';
-import { RecipeParametersService } from '../../../core/services/recipe-parameters.service';
 import { SelectedSortMethod } from '../../../core/models/sorting/selectedSortMethod.model';
-import {ActivatedRoute, Router} from "@angular/router";
-import {TimeFormat} from "@tsed/schema";
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
     selector: 'app-sort-panel',
@@ -30,12 +29,11 @@ export class SortPanelComponent implements OnInit{
 
     public readonly sortMethods: SortMethod[] = [
         { name: 'Популярность', value: 'aggregateLikes', isOrdinal: false },
-        { name: 'Калории', value: 'calories', isOrdinal: true },
+        { name: 'Калории', value: 'callories', isOrdinal: true },
         { name: 'Время', value: 'readyInMinutes', isOrdinal: true }
     ]
     
     constructor(
-        public recipeParametersService: RecipeParametersService,
         public router: Router,
         public route: ActivatedRoute,
 
@@ -59,9 +57,6 @@ export class SortPanelComponent implements OnInit{
             queryParams: { sorting: [selectedSortMethod.value, selectedSortMethod.order] }, // Указываем параметр, который нужно удалить, и устанавливаем для него null
             queryParamsHandling: 'merge'
         }).then()
-
-        // const preparedSortingMethod = this.prepareSortingMethod(selectedSortMethod);
-        // this.recipeParametersService.changeSortingParameter(preparedSortingMethod);
     }
 
     private prepareSortingMethod(sortMethod: SelectedSortMethod): RecipeSortInput {

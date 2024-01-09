@@ -11,11 +11,8 @@ import { Order } from '../../../../core/models/sorting/order.model';
 })
 export class SortComponent implements OnInit {
     @Input() public selectedSortMethod!: SelectedSortMethod;
-
     @Input() public sortMethods!: SortMethod[];
-    // @Input() public defaultSortMethod!: SelectedSortMethod;
     @Input() public defaultOrder: Order = 'ascending';
-
     @Output() public changedSortMethod = new EventEmitter<SelectedSortMethod>();
 
     public ngOnInit(): void {
