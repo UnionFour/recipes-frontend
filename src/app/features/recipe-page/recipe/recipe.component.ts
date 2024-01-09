@@ -1,5 +1,5 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {Recipe} from '../../../../gql/graphql';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Recipe } from '../../../../gql/graphql';
 
 @Component({
     selector: 'app-recipe',

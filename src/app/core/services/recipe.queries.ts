@@ -65,14 +65,27 @@ export const recipeFragment = gql`
         }
         spoonacularSourceUrl
         aggregateLikes
+        callories
+        calloriesUnits
+        nutrition {
+            caloricBreakdown {
+                percentProtein
+                percentFat
+                percentCarbs
+            }
+        }
     }
 `;
 
 export const queryFind = gql`
-    query GetRecipes($filtration: RecipeFilterInput!, $recipeSorts: [RecipeSortInput!]) {
-        recipes(first: 10, where: $filtration, order: $recipeSorts) {
+    query GetRecipes($filtration: RecipeFilterInput!, $recipeSorts: [RecipeSortInput!], $cursor: String) {
+        recipes(first: 10, where: $filtration, order: $recipeSorts, after: $cursor) {
             nodes {
                 ...RecipeInfo
+            }
+            pageInfo {
+                hasNextPage
+                endCursor
             }
         }
     }
@@ -88,4 +101,13 @@ export const queryGet = gql`
         }
     }
     ${recipeFragment}
+`;
+
+export const queryFindIngredients = gql`
+    query GetIngredients($name: String) {
+        ingredients(where: { id: { contains: $name } }) {
+            id
+            count
+        }
+    }
 `;
