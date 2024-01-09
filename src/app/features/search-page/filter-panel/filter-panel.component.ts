@@ -16,8 +16,8 @@ export class FilterPanelComponent extends DestroyableComponent implements OnInit
     public filteringParamsForm!: FormGroup;
 
     public readonly nutritionalInputMinValue = 0;
-    public readonly nutritionalInputMaxValue = 2000;
-    public readonly nutritionalInputSteps = 20;
+    public readonly nutritionalInputMaxValue = 1300;
+    public readonly nutritionalInputSteps = 13;
 
     private readonly isSearchLooseDefaultValue = true;
     private readonly nutritionalDefaultValue

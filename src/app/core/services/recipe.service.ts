@@ -85,6 +85,8 @@ export class RecipeService {
 
         })
 
+        filterInput.and = [{ callories: { gte: parameters.nutritionalValues[0] } }, { callories: { lte: parameters.nutritionalValues[1] } }]
+
         // if (parameters.filtration != null)
         //     filterInput.and?.push(parameters.filtration);
 
