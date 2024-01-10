@@ -1,13 +1,11 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import {debounceTime, Observable, startWith, switchMap, takeUntil} from 'rxjs';
+import { debounceTime, startWith, switchMap, takeUntil } from 'rxjs';
 
 import { Category } from '../../../core/models/filtering/category';
 import { FilteringParams } from '../../../core/models/filtering/filteringParams';
 import { DestroyableComponent } from '../../../shared/components/destroyable-component/destroyable.component';
-import {RecipeService} from "../../../core/services/recipe.service";
-import {ISelectItem} from "../../../core/models/filtering/selectItem.model";
 
 @Component({
     selector: 'app-filter-panel',
@@ -50,7 +48,6 @@ export class FilterPanelComponent extends DestroyableComponent implements OnInit
     constructor(
         public router: Router,
         public route: ActivatedRoute,
-        public recipeService: RecipeService
     ) {
         super();
     }
@@ -68,7 +65,7 @@ export class FilterPanelComponent extends DestroyableComponent implements OnInit
         this.filteringParamsForm.valueChanges.
             pipe(
                 startWith(this.filteringParamsForm.value),
-                debounceTime(1000),
+                debounceTime(600),
                 switchMap((formValue: FilteringParams) => this.updateQueryParams(formValue)),
                 takeUntil(this.destroy$)
             ).subscribe();

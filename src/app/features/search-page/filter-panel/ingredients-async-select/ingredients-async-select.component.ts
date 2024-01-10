@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { filter, Observable, startWith, Subject, switchMap } from 'rxjs';
+import {debounceTime, filter, Observable, startWith, Subject, switchMap} from 'rxjs';
 
 import { DestroyableComponent } from '../../../../shared/components/destroyable-component/destroyable.component';
 import { Size } from '../../../../core/models/filtering/size';
@@ -28,6 +28,7 @@ export class IngredientsAsyncSelectComponent extends DestroyableComponent implem
 
     ngOnInit() {
         this.items$ = this.search$.pipe(
+            debounceTime(300),
             filter(value => value !== null),
             switchMap(search =>
                 this.recipeService.findIngredients(search).pipe(
