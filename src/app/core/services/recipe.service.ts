@@ -11,6 +11,7 @@ import {
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { RecipeParameters } from '../models/filtering/recipeParameters';
 import { queryFind, queryFindIngredients, queryGet } from './recipe.queries';
+import {ISelectItem} from "../models/filtering/selectItem.model";
 
 @Injectable({
     providedIn: 'root',
@@ -127,7 +128,7 @@ export class RecipeService {
     }
 
 
-    public findIngredients(name: string): Observable<IngredientCollection[]> {
+    public findIngredients(name: string | null): Observable<string[]> {
         return this.apollo
             .query<{ ingredients: IngredientCollection[] }>({
                 query: queryFindIngredients,
@@ -135,6 +136,8 @@ export class RecipeService {
                     name
                 }
             })
-            .pipe(map((result) => result.data.ingredients ?? []));
+            .pipe(map((result) =>
+                result.data.ingredients.map((ingredient) =>
+                    ingredient.id) ?? []));
     }
 }

@@ -19,6 +19,9 @@ import { SortPanelComponent } from './sort-panel/sort-panel.component';
 import { SortComponent } from './sort-panel/sort/sort.component';
 import { SortMethodComponent } from './sort-panel/sort/sort-method/sort-method.component';
 import { RouterLink } from '@angular/router';
+import {
+    IngredientsAsyncSelectComponent
+} from './filter-panel/ingredients-async-select/ingredients-async-select.component';
 
 const components = [
     SearchPageComponent,
@@ -28,6 +31,7 @@ const components = [
     RecipeCardComponent,
     SortComponent,
     SortMethodComponent,
+    IngredientsAsyncSelectComponent,
 ];
 
 @NgModule({

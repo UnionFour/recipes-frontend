@@ -19,9 +19,9 @@
         <ul class="filters">
 <!--            <li>-->
 <!--                <label>Способы/тара</label>-->
-<!--                <app-async-select-->
+<!--                <app-ingredients-async-select-->
 <!--                        [placeholder]="'Введите доступные вам способы/тару'"-->
-<!--                ></app-async-select>-->
+<!--                ></app-ingredients-async-select>-->
 <!--            </li>-->
             <li>
                 <label>Пищевая ценность</label>
@@ -44,10 +44,9 @@
             <hr>
             <li>
                 <label>Игредиенты</label>
-                <app-async-select
+                <app-ingredients-async-select
                     [control]="getControl('ingredients')"
-                    [databaseMockData]="ingredientsMockData"
-                ></app-async-select>
+                ></app-ingredients-async-select>
             </li>
         </ul>
     </form>

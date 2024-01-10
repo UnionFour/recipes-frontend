@@ -1,4 +1,4 @@
-@import 'src/assets/styles/_variables.scss';
+@import 'variables';
 
 tui-tag {
     background-color: $icon-color!important;
@@ -28,7 +28,7 @@ tui-tag {
         }
 
         .cross-icon {
-            background: url("../../../../assets/img/cross.svg");
+            background: url("../../../../../assets/img/cross.svg");
             background-size: 8px;
             width: 8px;
             height: 8px;

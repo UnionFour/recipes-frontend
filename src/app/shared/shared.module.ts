@@ -12,7 +12,7 @@ import {
     TuiMultiSelectModule, TuiTagModule
 } from '@taiga-ui/kit';
 import { TuiHintModule, TuiLoaderModule, TuiSvgModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
-import { AsyncSelectComponent } from './components/async-select/async-select.component';
+import { IngredientsAsyncSelectComponent } from '../features/search-page/filter-panel/ingredients-async-select/ingredients-async-select.component';
 import { TuiLetModule, TuiValueChangesModule } from '@taiga-ui/cdk';
 import { InputRangeComponent } from './components/input-range/input-range.component';
 import { LayoutComponent } from './layout/layout.component';
@@ -34,7 +34,6 @@ const modules = [
 const components = [
     NavigationComponent,
     SearchComponent,
-    AsyncSelectComponent,
     InputRangeComponent,
     LayoutComponent,
     SideIconComponent,
