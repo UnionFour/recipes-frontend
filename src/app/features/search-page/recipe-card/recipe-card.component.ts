@@ -21,4 +21,6 @@ export class RecipeCardComponent implements OnInit {
             }
         });
     }
+
+    protected readonly Math = Math;
 }

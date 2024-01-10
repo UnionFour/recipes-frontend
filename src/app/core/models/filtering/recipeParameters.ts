@@ -1,10 +1,9 @@
 import { Category } from './category';
 
 export type RecipeParameters = {
-    isSearchLoose?: boolean,
-    containerMethods?: string[],
+    isSearchLoose: boolean,
     nutritionalValues: number[],
     categories: Category[],
-    ingredients?: string[],
+    ingredients: string[],
     sorting?: string[]
 }

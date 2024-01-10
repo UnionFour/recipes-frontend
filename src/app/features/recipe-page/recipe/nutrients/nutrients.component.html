@@ -1,6 +1,18 @@
 <div class="container">
     <app-nutrient
-            *ngFor="let nutrient of nutrients"
-            [nutrient]="nutrient"
+            name="белки"
+            [amount]="nutrients.percentProtein"
+            [unit]="'грамм'"
     ></app-nutrient>
+    <app-nutrient
+            name="жиры"
+            [amount]="nutrients.percentFat"
+            [unit]="'грамм'"
+    ></app-nutrient>
+    <app-nutrient
+            name="углеводы"
+            [amount]="nutrients.percentCarbs"
+            [unit]="'грамм'"
+    ></app-nutrient>
+
 </div>

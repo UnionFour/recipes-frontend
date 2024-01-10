@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { INutrient } from '../../../../../core/models/recipe/nutrient.model';
 
 @Component({
     selector: 'app-nutrient',
@@ -7,5 +6,9 @@ import { INutrient } from '../../../../../core/models/recipe/nutrient.model';
     styleUrls: ['./nutrient.component.scss']
 })
 export class NutrientComponent {
-  @Input() public nutrient!: INutrient;
+    @Input() public name!: string;
+    @Input() public amount!: number;
+    @Input() public unit!: string;
+
+    protected readonly Math = Math;
 }

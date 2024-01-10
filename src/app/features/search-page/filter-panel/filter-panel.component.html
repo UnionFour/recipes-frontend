@@ -2,8 +2,8 @@
     <form [formGroup]="filteringParamsForm">
         <div class="search-severity flex">
             <ng-container [ngSwitch]="getControl('isSearchLoose').value">
-                <label *ngSwitchCase="true" for="isSearchLoose">Из того, что есть</label>
-                <label *ngSwitchCase="false" for="isSearchLoose">Из того, что хочу</label>
+                <label *ngSwitchCase="false" for="isSearchLoose">Из того, что есть</label>
+                <label *ngSwitchCase="true" for="isSearchLoose">Из того, что хочу</label>
             </ng-container>
             <tui-toggle
                     [tuiHint]="tooltip"
@@ -13,8 +13,8 @@
             ></tui-toggle>
         </div>
         <ng-container [ngSwitch]="getControl('isSearchLoose').value">
-            <p *ngSwitchCase="true"><i>Строгий</i> поиск рецептов из того, что есть.</p>
-            <p *ngSwitchCase="false"><i>Нестрогий</i> поиск рецептов из того, что хочется.</p>
+            <p *ngSwitchCase="false"><i>Строгий</i> поиск рецептов из того, что есть.</p>
+            <p *ngSwitchCase="true"><i>Нестрогий</i> поиск рецептов из того, что хочется.</p>
         </ng-container>
         <ul class="filters">
 <!--            <li>-->

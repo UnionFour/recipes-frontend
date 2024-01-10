@@ -26,35 +26,26 @@ export class RecipeService {
     public find(parameters: RecipeParameters, nextPage = false): Observable<Recipe[]> {
         if (!nextPage) this.cursor = null;
 
-        console.log('find',parameters)
+        const containedIngredients: StringOperationFilterInput[] =  parameters.ingredients.map(
+            (ingredient) => new Object({ contains: ingredient }),
+        );
 
-        let containedIngredients!: StringOperationFilterInput[];
-        if (parameters.ingredients) {
-            containedIngredients = parameters.ingredients.map(
-                (ingredient) => new Object({ contains: ingredient }),
-            );
-        }
-        else {
-            containedIngredients = []
-        }
         const ingredientsFilter: RecipeFilterInput = parameters.isSearchLoose
             ? { ingredients: { some: { name: { rus: { or: containedIngredients } } } } }
             : { ingredients: { all: { name: { rus: { or: containedIngredients } } } } };
 
         const filterInput: RecipeFilterInput = { and: [] };
 
-        if (containedIngredients.length > 0) filterInput.and?.push(ingredientsFilter);
+        filterInput.and = [{ callories: { gte: parameters.nutritionalValues[0] } },
+            { callories: { lte: parameters.nutritionalValues[1] } }]
 
-        filterInput.vegetarian = undefined
-        filterInput.vegan = undefined
-        filterInput.glutenFree = undefined
-        filterInput.dairyFree = undefined
-        filterInput.veryHealthy = undefined
-        filterInput.cheap = undefined
-        filterInput.veryPopular = undefined
+        if (containedIngredients.length > 0)
+            filterInput.and?.push(ingredientsFilter);
 
 
-        parameters.categories?.forEach((category) => {
+        this.clearCategories(filterInput);
+
+        parameters.categories.forEach((category) => {
             if (category.value === 'vegetarian') {
                 filterInput.vegetarian = { eq: true }
             }
@@ -75,22 +66,14 @@ export class RecipeService {
                 filterInput.veryHealthy = { eq: true }
             }
 
-            if (category.value === 'cheap') {
-                filterInput.cheap = { eq: true }
-            }
-
             if (category.value === 'veryPopular') {
                 filterInput.veryPopular = { eq: true }
             }
 
         })
 
-        filterInput.and = [{ callories: { gte: parameters.nutritionalValues[0] } }, { callories: { lte: parameters.nutritionalValues[1] } }]
-
-        // if (parameters.filtration != null)
-        //     filterInput.and?.push(parameters.filtration);
-
         this.$loading.next(true);
+
         return this.apollo
             .query<{ recipes: RecipesConnection }>({
                 query: queryFind,
@@ -121,7 +104,15 @@ export class RecipeService {
         } else {
             return undefined
         }
+    }
 
+    private clearCategories(filterInput: RecipeFilterInput) {
+        filterInput.vegetarian = undefined
+        filterInput.vegan = undefined
+        filterInput.glutenFree = undefined
+        filterInput.dairyFree = undefined
+        filterInput.veryHealthy = undefined
+        filterInput.veryPopular = undefined
     }
 
     public getRecipe(recipeId: string): Observable<Recipe | null> {

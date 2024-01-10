@@ -16,4 +16,5 @@ export class CharacteristicsComponent {
     @Input() public cookingTime!: number;
     @Input() public calories!: number;
 
+    protected readonly Math = Math;
 }

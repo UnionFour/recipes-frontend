@@ -28,8 +28,7 @@ export class FilterPanelComponent extends DestroyableComponent implements OnInit
         new Category('Веганское', 'vegan'),
         new Category('Без глютена', 'glutenFree'),
         new Category('Без молока', 'dairyFree'),
-        new Category('Здоровое меню', 'veryHealthy'),
-        new Category('Дешевое', 'cheap'),
+        new Category('Здоровое', 'veryHealthy'),
         new Category('Популярное', 'veryPopular'),
     ];
 

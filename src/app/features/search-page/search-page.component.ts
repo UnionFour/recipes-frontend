@@ -6,7 +6,7 @@ import { RecipeService } from '../../core/services/recipe.service';
 import { DestroyableComponent } from '../../shared/components/destroyable-component/destroyable.component';
 import { Recipe } from '../../../gql/graphql';
 import { Category } from '../../core/models/filtering/category';
-import {RecipeParameters} from "../../core/models/filtering/recipeParameters";
+import { RecipeParameters } from '../../core/models/filtering/recipeParameters';
 
 @Component({
     selector: 'app-search-page',
@@ -42,10 +42,9 @@ export class SearchPageComponent extends DestroyableComponent implements OnInit 
     private getRecipes(params: Params){
         const RecipeParameters: RecipeParameters = {
             isSearchLoose: params['isSearchLoose'] === 'true',
-            containerMethods: params['containerMethods'],
             nutritionalValues: this.parseNutritionalValues(params['nutritionalValues']),
             categories: this.parseCategories(params['categories']),
-            ingredients: params['ingredients'],
+            ingredients: this.parseIngredients(params['ingredients']),
             sorting: params['sorting']
         };
 
@@ -57,10 +56,28 @@ export class SearchPageComponent extends DestroyableComponent implements OnInit 
             +nutritionalValue) : [];
     }
 
-    private parseCategories(categories: string[] | undefined): Category[] {
-        return categories ? categories.map((car: string) => {
-            const parsedCategories = JSON.parse(car);
-            return new Category(parsedCategories.title, parsedCategories.value);
-        }) : [];
+    private parseCategories(categories: string | string[] | undefined): Category[] {
+        if (!categories) {
+            return [];
+        }
+
+        if (typeof categories === 'string') {
+            const parsedCategories = JSON.parse(categories);
+            return [new Category(parsedCategories.title, parsedCategories.value)];
+        } else {
+            return categories.map((category: string) => {
+                const parsedCategory = JSON.parse(category);
+                return new Category(parsedCategory.title, parsedCategory.value);
+            });
+        }
+    }
+
+    private parseIngredients(ingredients: string | string[] | undefined): string[] {
+        if (!ingredients) {
+            return [];
+        }
+
+        return typeof ingredients === 'string' ? [ingredients]
+            : ingredients;
     }
 }
