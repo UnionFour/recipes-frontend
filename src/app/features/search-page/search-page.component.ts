@@ -7,6 +7,7 @@ import { DestroyableComponent } from '../../shared/components/destroyable-compon
 import { Recipe } from '../../../gql/graphql';
 import { Category } from '../../core/models/filtering/category';
 import { RecipeParameters } from '../../core/models/filtering/recipeParameters';
+import { ScrollDispatcher } from '@angular/cdk/overlay';
 
 @Component({
     selector: 'app-search-page',
@@ -23,6 +24,7 @@ export class SearchPageComponent extends DestroyableComponent implements OnInit 
         public recipeService: RecipeService,
         public route: ActivatedRoute,
         public router: Router,
+        public scrollDispatcher: ScrollDispatcher
     ) {
         super();
     }
@@ -34,12 +36,18 @@ export class SearchPageComponent extends DestroyableComponent implements OnInit 
 
         this.route.queryParams.pipe(
             filter((params) => !!params),
-            switchMap((params) => this.getRecipes(params)),
+            switchMap((params) => this.getRecipes(params, false)),
             takeUntil(this.destroy$)
         ).subscribe((recipes) => this.recipes = recipes);
+
+        this.scrollDispatcher.scrolled().subscribe(() => {
+            if (this.isScrolledToBottom()) {
+                this.doSomethingOnScrollEnd();
+            }
+        });
     }
 
-    private getRecipes(params: Params){
+    private getRecipes(params: Params, isNextPage: boolean){
         const RecipeParameters: RecipeParameters = {
             isSearchLoose: params['isSearchLoose'] === 'true',
             nutritionalValues: this.parseNutritionalValues(params['nutritionalValues']),
@@ -48,7 +56,7 @@ export class SearchPageComponent extends DestroyableComponent implements OnInit 
             sorting: params['sorting']
         };
 
-        return this.recipeService.find(RecipeParameters);
+        return this.recipeService.find(RecipeParameters, isNextPage);
     }
 
     private parseNutritionalValues(nutritionalValues: string[] | undefined): number[] {
@@ -79,5 +87,17 @@ export class SearchPageComponent extends DestroyableComponent implements OnInit 
 
         return typeof ingredients === 'string' ? [ingredients]
             : ingredients;
+    }
+
+    private isScrolledToBottom(): boolean {
+        const scrollPosition = window.pageYOffset;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        return scrollPosition + windowHeight >= documentHeight;
+    }
+
+    private doSomethingOnScrollEnd() {
+        this.getRecipes(this.route.snapshot.queryParams, true).subscribe((recipes) =>
+            this.recipes = this.recipes.concat(recipes))
     }
 }

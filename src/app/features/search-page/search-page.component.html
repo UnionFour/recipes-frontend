@@ -5,6 +5,7 @@
         <div class="recipes" [class]="!loading ? 'loaded' : ''">
             <ng-container *ngIf="!loading; else loadingPicture">
                 <app-recipes-list [recipes]="recipes"></app-recipes-list>
+                <tui-loader *ngIf="loading"></tui-loader >
             </ng-container>
         </div>
     </div>
@@ -12,8 +13,6 @@
 
 <ng-template #loadingPicture>
     <div class="skeletons">
-        <tui-loader [overlay]="true">
-        </tui-loader>
         <div
                 *ngFor="let skeleton of skeletonArray"
                 class="recipe-skeleton"
