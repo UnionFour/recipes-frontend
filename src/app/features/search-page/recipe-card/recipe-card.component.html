@@ -23,12 +23,25 @@
             </svg>
             <p>{{Math.trunc(recipe.callories)}}</p>
         </div>
-        <div class="data-container">
-            <ng-container *ngFor="let ingredient of recipe.ingredients">
-                <div *ngIf="ingredient.name?.rus" class="ingredient">
-                    {{ingredient.name?.rus}}
-                </div>
-            </ng-container>
+        <div class="data-container ingredients-container">
+<!--            <ng-container *ngFor="let ingredient of recipe.ingredients">-->
+<!--                <div *ngIf="ingredient.name?.rus" class="ingredient">-->
+<!--                    {{ingredient.name?.rus}}-->
+<!--                </div>-->
+<!--            </ng-container>-->
+            <tui-carousel
+                    [draggable]="true"
+                    [itemsCount]="6"
+                    [(index)]="index"
+            >
+                <ng-container *ngFor="let ingredient of recipe.ingredients; let i = index">
+                    <ng-container *ngIf="ingredient.name?.rus">
+                        <div *tuiItem class="item ingredient" style="width: fit-content !important;">
+                            {{ingredient.name?.rus}}
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </tui-carousel>
         </div>
         <div class="data-container categories-container">
             <div *ngFor="let category of recipeCategories">

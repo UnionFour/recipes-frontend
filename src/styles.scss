@@ -46,3 +46,14 @@ img {
 :active, :hover, :focus {
     outline: 0;
 }
+
+tui-carousel fieldset {
+    min-width: fit-content !important;
+    max-width: fit-content !important;
+    width: fit-content !important;
+    flex-basis: fit-content !important;
+}
+
+tui-carousel t-items {
+    translateX: 5% !important;
+}

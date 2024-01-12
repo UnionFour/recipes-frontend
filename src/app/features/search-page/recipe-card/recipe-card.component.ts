@@ -11,6 +11,7 @@ export class RecipeCardComponent implements OnInit {
     @Input() public recipe!: Recipe;
 
     public recipeCategories: Category[] = [];
+    public index = 0;
 
     ngOnInit() {
         categories.forEach((possibleCategory: Category) => {

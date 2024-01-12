@@ -47,7 +47,6 @@
         overflow-x: hidden;
 
         div {
-            margin-right: $ingredient-margin-right;
             font-family: $regular-text-family;
             font-size: 16px;
             color: #FFF;
@@ -56,6 +55,10 @@
             padding: $ingredient-padding;
             cursor: pointer;
             text-wrap: nowrap;
+        }
+
+        div:not(.ingredient) {
+            margin-right: $ingredient-margin-right;
         }
 
         .ingredient {
