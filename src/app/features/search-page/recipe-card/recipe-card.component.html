@@ -24,15 +24,9 @@
             <p>{{Math.trunc(recipe.callories)}}</p>
         </div>
         <div class="data-container ingredients-container">
-<!--            <ng-container *ngFor="let ingredient of recipe.ingredients">-->
-<!--                <div *ngIf="ingredient.name?.rus" class="ingredient">-->
-<!--                    {{ingredient.name?.rus}}-->
-<!--                </div>-->
-<!--            </ng-container>-->
             <tui-carousel
                     [draggable]="true"
                     [itemsCount]="6"
-                    [(index)]="index"
             >
                 <ng-container *ngFor="let ingredient of recipe.ingredients; let i = index">
                     <ng-container *ngIf="ingredient.name?.rus">
