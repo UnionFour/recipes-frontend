@@ -1,0 +1,9 @@
+<tui-tabs [(activeItemIndex)]="activeTabIndex">
+    <button
+            *ngFor="let tab of tabs; index as tabIndex"
+            tuiTab
+            (click)="setActiveTab(tabIndex)"
+    >
+        {{tab}}
+    </button>
+</tui-tabs>

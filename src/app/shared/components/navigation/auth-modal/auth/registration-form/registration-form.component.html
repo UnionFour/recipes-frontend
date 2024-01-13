@@ -1,0 +1,48 @@
+<form
+        [formGroup]="registrationForm"
+        (ngSubmit)="submitRegisterForm()"
+>
+    <tui-notification
+            *ngIf="errorExists"
+            class="input"
+            size="l"
+            status="error"
+            icon=""
+            (close)="closeError()"
+    >
+        {{errorMessage}}
+    </tui-notification>
+    <tui-input
+            class="input"
+            formControlName="login"
+    >
+        Логин
+    </tui-input>
+    <tui-error
+            formControlName="login"
+            [error]="[] | tuiFieldError | async"
+    ></tui-error>
+    <tui-input-password
+            class="input"
+            formControlName="password"
+    >
+        Пароль
+    </tui-input-password>
+    <tui-error
+            formControlName="password"
+            [error]="[] | tuiFieldError | async"
+    ></tui-error>
+    <div
+            class="right-wrapper input"
+    >
+        <button
+                tuiButton
+                size="m"
+                type="submit"
+                class="tui-form__button"
+                [disabled]="registrationForm.invalid"
+        >
+            Зарегистрироваться
+        </button>
+    </div>
+</form>

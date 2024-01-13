@@ -6,21 +6,35 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { SearchComponent } from './components/search/search.component';
 import {
     TuiAvatarModule,
-    TuiDataListWrapperModule,
-    TuiInputModule,
+    TuiDataListWrapperModule, TuiFieldErrorPipeModule,
+    TuiInputModule, TuiInputPasswordModule,
     TuiInputRangeModule,
-    TuiMultiSelectModule, TuiTagModule
+    TuiMultiSelectModule, TuiTabsModule, TuiTagModule
 } from '@taiga-ui/kit';
-import { TuiHintModule, TuiLoaderModule, TuiSvgModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
-import { IngredientsAsyncSelectComponent } from '../features/search-page/filter-panel/ingredients-async-select/ingredients-async-select.component';
-import { TuiLetModule, TuiValueChangesModule } from '@taiga-ui/cdk';
+import {
+    TuiButtonModule,
+    TuiDataListModule, TuiDialogModule, TuiErrorModule,
+    TuiHintModule,
+    TuiHostedDropdownModule,
+    TuiLoaderModule, TuiNotificationModule,
+    TuiSvgModule,
+    TuiTextfieldControllerModule
+} from '@taiga-ui/core';
+import { TuiAutoFocusModule, TuiLetModule, TuiValueChangesModule } from '@taiga-ui/cdk';
 import { InputRangeComponent } from './components/input-range/input-range.component';
 import { LayoutComponent } from './layout/layout.component';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { DeclensionPipe } from './pipes/declension.pipe';
 import { SideIconComponent } from './components/side-icon/side-icon.component';
 import { SelectComponent } from './components/select/select.component';
 import { HideSelectedPipe } from './pipes/hide-selected.pipe';
+import { AccountMenuComponent } from './components/navigation/account-menu/account-menu.component';
+import { AuthModalComponent } from './components/navigation/auth-modal/auth-modal.component';
+import { AuthComponent } from './components/navigation/auth-modal/auth/auth.component';
+import { LoginFormComponent } from './components/navigation/auth-modal/auth/login-form/login-form.component';
+import { RegistrationFormComponent } from './components/navigation/auth-modal/auth/registration-form/registration-form.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+
 
 const modules = [
     CommonModule,
@@ -38,6 +52,10 @@ const components = [
     LayoutComponent,
     SideIconComponent,
     SelectComponent,
+    AccountMenuComponent,
+    AuthModalComponent,
+    AuthComponent
+
 ];
 
 const pipes = [
@@ -58,11 +76,25 @@ const pipes = [
         TuiValueChangesModule,
         FormsModule,
         TuiTagModule,
-        TuiLoaderModule
+        TuiLoaderModule,
+        TuiHostedDropdownModule,
+        TuiDataListModule,
+        TuiDialogModule,
+        TuiButtonModule,
+        TuiAutoFocusModule,
+        TuiErrorModule,
+        TuiFieldErrorPipeModule,
+        RouterLink,
+        TuiTabsModule,
+        TuiInputPasswordModule,
+        TuiNotificationModule
     ],
     declarations: [
         ...components,
         ...pipes,
+        LoginFormComponent,
+        RegistrationFormComponent,
+        TabsComponent,
     ],
     exports: [
         ...components,

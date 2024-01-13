@@ -59,11 +59,11 @@ export class SortPanelComponent implements OnInit{
         }).then()
     }
 
-    private prepareSortingMethod(sortMethod: SelectedSortMethod): RecipeSortInput {
-        return {
-            [sortMethod.value]: sortMethod.order === 'indefinite'
-            || sortMethod.order === 'descending' ? SortEnumType.Desc : SortEnumType.Asc
-        };
-    }
+    // private prepareSortingMethod(sortMethod: SelectedSortMethod): RecipeSortInput {
+    //     return {
+    //         [sortMethod.value]: sortMethod.order === 'indefinite'
+    //         || sortMethod.order === 'descending' ? SortEnumType.Desc : SortEnumType.Asc
+    //     };
+    // }
 
 }

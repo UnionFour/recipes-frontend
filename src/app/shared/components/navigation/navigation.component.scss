@@ -16,6 +16,7 @@ nav {
 
 ul {
     max-width: $max-media-width - 2 * $media-vertical-padding;
+    min-height: 33px;
     padding: 0 20px 0 20px;
     margin: 0 auto 0 auto;
     display: flex;
@@ -67,23 +68,8 @@ a:active {
     }
 }
 
-.account-icon, .account-icon svg {
-    width: 30px;
-    height: 30px;
-}
-
-.account-icon svg path {
-    fill: $nav-text-color;
-}
-
-.account-icon {
-    &:hover svg path {
-        fill: $hover-nav-color;
-    }
-
-    &:active svg path {
-        fill: $active-nav-color;
-    }
+button:hover {
+    color: $hover-nav-color;
 }
 
 //.account-icon {

@@ -12,7 +12,7 @@ import { DestroyableComponent } from '../../../shared/components/destroyable-com
     templateUrl: './filter-panel.component.html',
     styleUrls: ['./filter-panel.component.scss']
 })
-export class FilterPanelComponent extends DestroyableComponent implements OnInit, OnDestroy {
+export class FilterPanelComponent extends DestroyableComponent implements OnInit {
     public filteringParamsForm!: FormGroup;
 
     public readonly nutritionalInputMinValue = 0;
@@ -43,8 +43,6 @@ export class FilterPanelComponent extends DestroyableComponent implements OnInit
         'сахар',
     ];
 
-    @Output() public filterValuesChanges = new EventEmitter();
-
     constructor(
         public router: Router,
         public route: ActivatedRoute,
@@ -52,7 +50,7 @@ export class FilterPanelComponent extends DestroyableComponent implements OnInit
         super();
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         this.filteringParamsForm = new FormGroup(
             {
                 isSearchLoose: new FormControl(this.isSearchLooseInitialValue),
@@ -62,13 +60,12 @@ export class FilterPanelComponent extends DestroyableComponent implements OnInit
             }
         );
 
-        this.filteringParamsForm.valueChanges.
-            pipe(
-                startWith(this.filteringParamsForm.value),
-                debounceTime(600),
-                switchMap((formValue: FilteringParams) => this.updateQueryParams(formValue)),
-                takeUntil(this.destroy$)
-            ).subscribe();
+        this.filteringParamsForm.valueChanges.pipe(
+            startWith(this.filteringParamsForm.value),
+            debounceTime(600),
+            switchMap((formValue: FilteringParams) => this.updateQueryParams(formValue)),
+            takeUntil(this.destroy$)
+        ).subscribe();
 
     }
 
@@ -84,7 +81,7 @@ export class FilterPanelComponent extends DestroyableComponent implements OnInit
             relativeTo: this.route,
             queryParams,
             queryParamsHandling: 'merge'
-        });
+        }).then();
     }
 
     private get isSearchLooseInitialValue() {

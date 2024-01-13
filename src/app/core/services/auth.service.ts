@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import {Observable, of, tap, throwError} from 'rxjs';
 
 import { User } from '../models/auth/user';
 import { LoginResponse } from '../models/auth/login-response';
@@ -11,19 +11,24 @@ import { RegisterResponse } from '../models/auth/register-response';
 export class AuthService {
     constructor() { }
 
-    get accessToken(): string | null {
+    public get accessToken() {
         return localStorage.getItem('accessToken')
     }
 
-    public login(user: User): Observable<LoginResponse | null> {
+    public get isAuthenticated() {
+        return !!this.accessToken
+    }
+
+    public login(user: User) {
         /**
-         * Server request emulation
+         Server request emulation
          */
         return of({
             refresh: 'mockRefreshToken',
             access: 'mockAccessToken'
-        })
-
+        }).pipe(
+            tap(this.setAccessToken)
+        )
     }
 
     public register(user: User): Observable<RegisterResponse> {
@@ -32,17 +37,13 @@ export class AuthService {
          */
         return of({
             id: 1,
-            email: 'mock@gmail.com',
-            login: 'mockName'
+            login: user.login,
+            password: user.password
         })
     }
 
     public logout() {
         this.setAccessToken(null)
-    }
-
-    public isAuthenticated(): boolean {
-        return !!this.accessToken
     }
 
     private setAccessToken(response: LoginResponse | null) {

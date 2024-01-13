@@ -41,6 +41,9 @@ const components = [
     declarations: [
         components
     ],
+    exports: [
+        TagComponent
+    ],
     imports: [
         CommonModule,
         RouterLink,

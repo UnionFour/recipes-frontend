@@ -27,6 +27,15 @@ a {
     cursor: pointer;
 }
 
+button {
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+}
+
 p, h1, h2, h3, h4, h5 {
     margin: 0;
 }

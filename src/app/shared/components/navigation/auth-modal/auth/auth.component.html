@@ -1,0 +1,11 @@
+<app-tabs
+        [tabs]="tabs"
+        (changeActiveTab)="onChangeTab($event)"
+></app-tabs>
+
+<app-login-form
+        *ngIf="activeTabIndex === 0; else registration"
+></app-login-form>
+<ng-template #registration>
+    <app-registration-form></app-registration-form>
+</ng-template>

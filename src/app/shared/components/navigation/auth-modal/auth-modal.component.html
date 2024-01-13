@@ -1,0 +1,15 @@
+<button
+        appearance="outline"
+        tuiButton
+        type="button"
+        size="s"
+        (click)="openModal()"
+>
+    Войти
+</button>
+<ng-template
+    [tuiDialogOptions]="{ size: 's' }"
+    [(tuiDialog)]="modalIsOpen"
+>
+    <app-auth></app-auth>
+</ng-template>
