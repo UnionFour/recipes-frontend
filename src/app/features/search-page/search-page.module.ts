@@ -2,7 +2,13 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { FilterPanelComponent } from './filter-panel/filter-panel.component';
 import { SearchPageComponent } from './search-page.component';
-import { TuiAvatarModule, TuiDataListWrapperModule, TuiMultiSelectModule, TuiToggleModule } from '@taiga-ui/kit';
+import {
+    TuiAvatarModule,
+    TuiCarouselModule,
+    TuiDataListWrapperModule,
+    TuiMultiSelectModule,
+    TuiToggleModule
+} from '@taiga-ui/kit';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgSwitch, NgSwitchCase } from '@angular/common';
 import {
@@ -51,7 +57,8 @@ const components = [
         TuiSvgModule,
         TuiLinkModule,
         TuiLoaderModule,
-        RouterLink
+        RouterLink,
+        TuiCarouselModule
     ],
     declarations: components
 })
