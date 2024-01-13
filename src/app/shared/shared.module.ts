@@ -32,7 +32,9 @@ import { AccountMenuComponent } from './components/navigation/account-menu/accou
 import { AuthModalComponent } from './components/navigation/auth-modal/auth-modal.component';
 import { AuthComponent } from './components/navigation/auth-modal/auth/auth.component';
 import { LoginFormComponent } from './components/navigation/auth-modal/auth/login-form/login-form.component';
-import { RegistrationFormComponent } from './components/navigation/auth-modal/auth/registration-form/registration-form.component';
+import {
+    RegistrationFormComponent
+} from './components/navigation/auth-modal/auth/registration-form/registration-form.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 
 
@@ -42,7 +44,29 @@ const modules = [
     BrowserAnimationsModule,
     TuiInputModule,
     TuiTextfieldControllerModule,
-    TuiHintModule
+    TuiHintModule,
+    TuiAvatarModule,
+    TuiDataListWrapperModule,
+    TuiLetModule,
+    TuiMultiSelectModule,
+    TuiInputRangeModule,
+    TuiSvgModule,
+    RouterOutlet,
+    TuiValueChangesModule,
+    FormsModule,
+    TuiTagModule,
+    TuiLoaderModule,
+    TuiHostedDropdownModule,
+    TuiDataListModule,
+    TuiDialogModule,
+    TuiButtonModule,
+    TuiAutoFocusModule,
+    TuiErrorModule,
+    TuiFieldErrorPipeModule,
+    RouterLink,
+    TuiTabsModule,
+    TuiInputPasswordModule,
+    TuiNotificationModule
 ];
 
 const components = [
@@ -54,7 +78,10 @@ const components = [
     SelectComponent,
     AccountMenuComponent,
     AuthModalComponent,
-    AuthComponent
+    AuthComponent,
+    LoginFormComponent,
+    RegistrationFormComponent,
+    TabsComponent,
 
 ];
 
@@ -65,36 +92,11 @@ const pipes = [
 
 @NgModule({
     imports: [
-        modules,
-        TuiAvatarModule,
-        TuiDataListWrapperModule,
-        TuiLetModule,
-        TuiMultiSelectModule,
-        TuiInputRangeModule,
-        TuiSvgModule,
-        RouterOutlet,
-        TuiValueChangesModule,
-        FormsModule,
-        TuiTagModule,
-        TuiLoaderModule,
-        TuiHostedDropdownModule,
-        TuiDataListModule,
-        TuiDialogModule,
-        TuiButtonModule,
-        TuiAutoFocusModule,
-        TuiErrorModule,
-        TuiFieldErrorPipeModule,
-        RouterLink,
-        TuiTabsModule,
-        TuiInputPasswordModule,
-        TuiNotificationModule
+        ...modules
     ],
     declarations: [
         ...components,
         ...pipes,
-        LoginFormComponent,
-        RegistrationFormComponent,
-        TabsComponent,
     ],
     exports: [
         ...components,
