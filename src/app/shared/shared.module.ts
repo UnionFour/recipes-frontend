@@ -16,7 +16,7 @@ import { IngredientsAsyncSelectComponent } from '../features/search-page/filter-
 import { TuiLetModule, TuiValueChangesModule } from '@taiga-ui/cdk';
 import { InputRangeComponent } from './components/input-range/input-range.component';
 import { LayoutComponent } from './layout/layout.component';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { DeclensionPipe } from './pipes/declension.pipe';
 import { SideIconComponent } from './components/side-icon/side-icon.component';
 import { SelectComponent } from './components/select/select.component';
@@ -58,7 +58,8 @@ const pipes = [
         TuiValueChangesModule,
         FormsModule,
         TuiTagModule,
-        TuiLoaderModule
+        TuiLoaderModule,
+        RouterLink
     ],
     declarations: [
         ...components,

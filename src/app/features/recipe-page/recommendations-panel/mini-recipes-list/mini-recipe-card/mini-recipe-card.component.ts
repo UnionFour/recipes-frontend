@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Ingredient, Recipe } from '../../../../../../gql/graphql';
 
 @Component({
     selector: 'app-mini-recipe-card',
@@ -8,14 +9,15 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MiniRecipeCardComponent implements OnInit{
     public ingredientsString!: string;
 
-    @Input() public recipe: any;
+    @Input() public recipe!: Recipe;
 
     public ngOnInit(): void {
-        this.ingredientsString = this.createIngredientsString(this.recipe.ingredients)
+        this.ingredientsString = this.createIngredientsString(this.recipe.ingredients!)
     }
 
-    private createIngredientsString(ingredients: any) {
-        return ingredients.map((ingredient: any) => ingredient.name).join(', ')
+    private createIngredientsString(ingredients: Ingredient[] = []) {
+        return ingredients.map((ingredient: any) => ingredient.name?.rus).join(', ')
     }
 
+    protected readonly Math = Math;
 }

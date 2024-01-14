@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="left-container" [tuiHint]="tooltip">
+    <div class="left-container" [routerLink]="['/']">
         <h1>Поиск рецептов</h1>
         <div class="min-search-icon">
             <svg width="33" height="36" viewBox="0 0 33 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,7 +26,3 @@
         </form>
     </div>
 </div>
-
-<ng-template #tooltip>
-    <div>Глобальный поиск рецепта по названию</div>
-</ng-template>

@@ -19,6 +19,7 @@ import {ISelectItem} from "../models/filtering/selectItem.model";
 export class RecipeService {
     public hasNextPage = false;
     public $loading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+    public lastRecipes: Recipe[] = [];
 
     private cursor: string | null = null;
 
@@ -92,8 +93,9 @@ export class RecipeService {
 
                     return recipes.nodes ?? [];
                 }),
-                tap(() => {
+                tap((result: Recipe[]) => {
                     this.$loading.next(false);
+                    this.lastRecipes = result.slice(0, 4);
                 }),
             );
     }
