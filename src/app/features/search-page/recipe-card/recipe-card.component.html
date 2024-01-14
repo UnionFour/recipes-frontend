@@ -1,5 +1,6 @@
 <div class="container">
     <div
+            [routerLink]="['recipe', recipe.id]"
             class="image"
             style="background-image: url({{recipe.image}})"
     ></div>
@@ -23,19 +24,30 @@
             </svg>
             <p>{{Math.trunc(recipe.callories)}}</p>
         </div>
-        <div class="data-container ingredients-container">
-            <tui-carousel
-                    [draggable]="true"
-                    [itemsCount]="6"
-            >
-                <ng-container *ngFor="let ingredient of recipe.ingredients; let i = index">
-                    <ng-container *ngIf="ingredient.name?.rus">
-                        <div *tuiItem class="item ingredient" style="width: fit-content !important;">
-                            {{ingredient.name?.rus}}
-                        </div>
-                    </ng-container>
+        <div class="end-hidden">
+            <div class="arrows">
+                <a
+                        class="left-arrow"
+                        *ngIf="scrollIndex > 0"
+                        (click)="scrollIngredients(-1)"
+                >
+                    <div class="icon"></div>
+                </a>
+                <a
+                        class="right-arrow"
+                        *ngIf="recipe.ingredients && imaginaryIndex < recipe.ingredients.length"
+                        (click)="scrollIngredients()"
+                >
+                    <div class="icon"></div>
+                </a>
+            </div>
+            <div class="data-container ingredients-container" [id]="'ingredients' + recipe.id">
+                <ng-container *ngFor="let ingredient of recipe.ingredients; index as i">
+                    <div *ngIf="ingredient.name?.rus" class="ingredient" [id]="'ingredient' + i">
+                        {{ingredient.name?.rus}}
+                    </div>
                 </ng-container>
-            </tui-carousel>
+            </div>
         </div>
         <div class="data-container categories-container">
             <div *ngFor="let category of recipeCategories">
