@@ -1,18 +1,16 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import {debounceTime, filter, Observable, startWith, Subject, switchMap} from 'rxjs';
-
-import { DestroyableComponent } from '../../../../shared/components/destroyable-component/destroyable.component';
-import { Size } from '../../../../core/models/filtering/size';
-import { RecipeService } from '../../../../core/services/recipe.service';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {debounceTime, filter, Observable, startWith, Subject, switchMap} from "rxjs";
+import {FormControl} from "@angular/forms";
+import {Size} from "../../../../core/models/filtering/size";
+import {RecipeService} from "../../../../core/services/recipe.service";
+import {DestroyableComponent} from "../../destroyable-component/destroyable.component";
 
 @Component({
-    selector: 'app-ingredients-async-select',
-    templateUrl: './ingredients-async-select.component.html',
-    styleUrls: ['./ingredients-async-select.component.scss'],
-
+    selector: 'app-search-async-select',
+    templateUrl: './search-async-select.component.html',
+    styleUrls: ['./search-async-select.component.scss']
 })
-export class IngredientsAsyncSelectComponent extends DestroyableComponent implements OnInit, AfterViewInit {
+export class SearchAsyncSelectComponent extends DestroyableComponent implements OnInit, AfterViewInit{
     public items$!: Observable<string[] | null>;
     public readonly search$ = new Subject<string | null>();
 
@@ -37,7 +35,7 @@ export class IngredientsAsyncSelectComponent extends DestroyableComponent implem
         );
     }
 
-    public ngAfterViewInit() {
+    ngAfterViewInit() {
         this.search$.next('');
     }
 
