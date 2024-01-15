@@ -45,6 +45,8 @@ export class RecipeService {
         if (containedIngredients.length > 0)
             filterInput.and?.push(ingredientsFilter);
 
+        if (parameters.recipeName)
+            filterInput.and.push({ title: { rus: { contains: parameters.recipeName } } });
 
         this.clearCategories(filterInput);
 
