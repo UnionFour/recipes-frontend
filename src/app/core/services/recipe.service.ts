@@ -20,7 +20,7 @@ export class RecipeService {
     public hasNextPage = false;
     public $loading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
     public lastRecipes: Recipe[] = [];
-    public totalCount = 0;
+    public totalCount = new BehaviorSubject<number>(0);
 
     private cursor: string | null = null;
 
@@ -93,7 +93,7 @@ export class RecipeService {
                     const recipes = result.data.recipes;
                     this.hasNextPage = recipes.pageInfo.hasNextPage;
                     this.cursor = recipes.pageInfo.endCursor ?? '';
-                    this.totalCount = recipes.totalCount;
+                    this.totalCount.next(recipes.totalCount);
 
                     return recipes.nodes ?? [];
                 }),
