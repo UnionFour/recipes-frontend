@@ -4,6 +4,11 @@
     margin-top: $base-element-top-margin;
 }
 
+.more-button {
+    margin-top: 20px;
+    width: 100%;
+}
+
 @keyframes hide {
     from {
         opacity: 0;

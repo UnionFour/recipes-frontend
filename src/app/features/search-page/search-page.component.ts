@@ -39,12 +39,6 @@ export class SearchPageComponent extends DestroyableComponent implements OnInit 
             switchMap((params) => this.getRecipes(params, false)),
             takeUntil(this.destroy$)
         ).subscribe((recipes) => this.recipes = recipes);
-
-        this.scrollDispatcher.scrolled().subscribe(() => {
-            if (this.isScrolledToBottom()) {
-                this.doSomethingOnScrollEnd();
-            }
-        });
     }
 
     private getRecipes(params: Params, isNextPage: boolean){
@@ -89,15 +83,13 @@ export class SearchPageComponent extends DestroyableComponent implements OnInit 
             : ingredients;
     }
 
-    private isScrolledToBottom(): boolean {
-        const scrollPosition = window.pageYOffset;
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        return scrollPosition + windowHeight >= documentHeight;
-    }
-
-    private doSomethingOnScrollEnd() {
-        this.getRecipes(this.route.snapshot.queryParams, true).subscribe((recipes) =>
-            this.recipes = this.recipes.concat(recipes))
+    public getMoreRecipes() {
+        if (!this.loading) {
+            if (this.recipeService.hasNextPage) {
+                this.getRecipes(this.route.snapshot.queryParams, true).pipe(
+                    takeUntil(this.destroy$)
+                ).subscribe(recipes => this.recipes = this.recipes.concat(recipes));
+            }
+        }
     }
 }

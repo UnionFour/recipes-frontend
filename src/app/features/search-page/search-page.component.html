@@ -5,8 +5,17 @@
         <div class="recipes" [class]="!loading ? 'loaded' : ''">
             <ng-container *ngIf="!loading; else loadingPicture">
                 <app-recipes-list [recipes]="recipes"></app-recipes-list>
-                <tui-loader *ngIf="loading"></tui-loader >
             </ng-container>
+            <button
+                    [disabled]="loading"
+                    appearance="primary"
+                    tuiButton
+                    type="button"
+                    class="more-button"
+                    (click)="getMoreRecipes()"
+            >
+                Показать еще
+            </button>
         </div>
     </div>
 </div>
