@@ -11,7 +11,7 @@ import {
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { RecipeParameters } from '../models/filtering/recipeParameters';
 import { queryFind, queryFindIngredients, queryGet } from './recipe.queries';
-import {ISelectItem} from "../models/filtering/selectItem.model";
+import { ISelectItem } from '../models/filtering/selectItem.model';
 
 @Injectable({
     providedIn: 'root',
@@ -20,6 +20,7 @@ export class RecipeService {
     public hasNextPage = false;
     public $loading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
     public lastRecipes: Recipe[] = [];
+    public totalCount = 0;
 
     private cursor: string | null = null;
 
@@ -90,6 +91,7 @@ export class RecipeService {
                     const recipes = result.data.recipes;
                     this.hasNextPage = recipes.pageInfo.hasNextPage;
                     this.cursor = recipes.pageInfo.endCursor ?? '';
+                    this.totalCount = recipes.totalCount;
 
                     return recipes.nodes ?? [];
                 }),
