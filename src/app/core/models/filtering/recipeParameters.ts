@@ -5,5 +5,6 @@ export type RecipeParameters = {
     nutritionalValues: number[],
     categories: Category[],
     ingredients: string[],
-    sorting?: string[]
+    sorting?: string[],
+    recipeName?: string
 }
