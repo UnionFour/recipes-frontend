@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container" [routerLink]="['../', recipe.id]">
     <div
             class="image"
             style="background-image: url({{recipe.image}})"
     ></div>
     <div class="description-container">
-        <h2>{{recipe.title}}</h2>
+        <h2>{{recipe.title.rus}}</h2>
         <div class="ingredients-container">
             {{ingredientsString}}
         </div>
@@ -24,7 +24,7 @@
                     </clipPath>
                 </defs>
             </svg>
-            <p>{{recipe.nutrition}} ккал</p>
+            <p>{{Math.trunc(recipe.callories)}} ккал</p>
         </div>
     </div>
 </div>

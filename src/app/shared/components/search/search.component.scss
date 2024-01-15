@@ -14,6 +14,7 @@ $space-size: 22px;
     display: flex;
     align-items: center;
     margin: 0 $space-size 0 $space-size;
+    cursor: pointer;
 
     .min-search-icon {
         width: 30px;

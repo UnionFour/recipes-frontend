@@ -56,24 +56,17 @@ img {
     outline: 0;
 }
 
-tui-carousel {
+.end-hidden {
     position: relative;
 }
 
-tui-carousel::before {
+.end-hidden::before {
     content: '';
     position: absolute;
     display: block;
     width: 27px;
     background: linear-gradient(270deg, #FFF 0%, rgba(255, 255, 255, 0.70) 21.81%, rgba(255, 255, 255, 0.00) 39.63%);
     height: 28px;
-    z-index: 100;
+    z-index: 50;
     right: 0;
-}
-
-tui-carousel fieldset {
-    min-width: fit-content !important;
-    max-width: fit-content !important;
-    width: fit-content !important;
-    flex-basis: fit-content !important;
 }
