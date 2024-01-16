@@ -28,6 +28,7 @@ import { RouterLink } from '@angular/router';
 import {
     IngredientsAsyncSelectComponent
 } from './filter-panel/ingredients-async-select/ingredients-async-select.component';
+import { SearchComponent } from './search/search.component';
 
 const components = [
     SearchPageComponent,
@@ -38,6 +39,7 @@ const components = [
     SortComponent,
     SortMethodComponent,
     IngredientsAsyncSelectComponent,
+    SearchComponent,
 ];
 
 @NgModule({

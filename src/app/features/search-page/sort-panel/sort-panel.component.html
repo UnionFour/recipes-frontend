@@ -1,8 +1,8 @@
 <div class="container">
     <h1>
-        {{recipesCount | declension: findDeclensions}}
-        <b>{{recipesCount}}</b>
-        {{recipesCount | declension: recipeDeclensions}}
+        {{recipeService.totalCount | declension: findDeclensions}}
+        <b>{{recipeService.totalCount}}</b>
+        {{recipeService.totalCount | declension: recipeDeclensions}}
     </h1>
     <app-sort
             [sortMethods]="sortMethods"

@@ -47,7 +47,8 @@ export class SearchPageComponent extends DestroyableComponent implements OnInit 
             nutritionalValues: this.parseNutritionalValues(params['nutritionalValues']),
             categories: this.parseCategories(params['categories']),
             ingredients: this.parseIngredients(params['ingredients']),
-            sorting: params['sorting']
+            sorting: params['sorting'],
+            recipeName: params['recipeName'],
         };
 
         return this.recipeService.find(RecipeParameters, isNextPage);

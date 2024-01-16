@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { SearchComponent } from './components/search/search.component';
 import {
     TuiAvatarModule,
     TuiDataListWrapperModule, TuiFieldErrorPipeModule,
@@ -36,8 +35,6 @@ import {
     RegistrationFormComponent
 } from './components/navigation/auth-modal/auth/registration-form/registration-form.component';
 import { TabsComponent } from './components/tabs/tabs.component';
-import { SearchAsyncSelectComponent } from './components/search/search-async-select/search-async-select.component';
-
 
 const modules = [
     CommonModule,
@@ -72,7 +69,6 @@ const modules = [
 
 const components = [
     NavigationComponent,
-    SearchComponent,
     InputRangeComponent,
     LayoutComponent,
     SideIconComponent,
@@ -98,7 +94,6 @@ const pipes = [
     declarations: [
         ...components,
         ...pipes,
-        SearchAsyncSelectComponent,
     ],
     exports: [
         ...components,

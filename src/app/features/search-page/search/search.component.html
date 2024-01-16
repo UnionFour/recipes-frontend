@@ -8,21 +8,19 @@
         </div>
     </div>
     <div class="right-container">
-        <form [formGroup]="form">
-            <p>
-                <tui-input
-                        formControlName="recipeName"
-                        tuiTextfieldSize="s"
-                        [tuiTextfieldCleaner]="true"
-                >
-                    Введите название блюда
-                    <input
-                            autocomplete="recipes"
-                            tuiTextfield
-                            type="text"
-                    />
-                </tui-input>
-            </p>
-        </form>
+        <p>
+            <tui-input
+                    [formControl]="search"
+                    tuiTextfieldSize="s"
+                    [tuiTextfieldCleaner]="true"
+            >
+                Введите название блюда
+                <input
+                        autocomplete="recipes"
+                        tuiTextfield
+                        type="text"
+                />
+            </tui-input>
+        </p>
     </div>
 </div>
