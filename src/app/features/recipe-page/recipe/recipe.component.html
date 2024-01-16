@@ -22,7 +22,9 @@
                         width="312"
                         height="230"
                 >
-                <app-nutrients [calories]="recipe.callories" [nutrients]="recipe.nutrition.caloricBreakdown"></app-nutrients>
+                <app-nutrients [calories]="recipe.callories"
+                               [nutrients]="recipe.nutrition.caloricBreakdown"
+                ></app-nutrients>
                 <app-ingredients-list [ingredients]="recipe.ingredients || []"></app-ingredients-list>
             </div>
             <app-steps-list [steps]="recipe.instructions[0].steps"></app-steps-list>
