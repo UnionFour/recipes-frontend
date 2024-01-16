@@ -68,7 +68,7 @@ export class LoginFormComponent extends DestroyableComponent implements OnInit {
 
     private openError(errorMessage: string) {
         this.errorExists = true;
-        this.errorMessage = errorMessage;
+        this.errorMessage = 'Неверный логин или пароль';
     }
 
     public closeError() {
