@@ -42,7 +42,7 @@ export class LoginFormComponent extends DestroyableComponent implements OnInit {
         }
 
         const user: User = {
-            login: this.loginForm.value.emailLogin,
+            login: this.loginForm.value.login,
             password: this.loginForm.value.password
         }
 
