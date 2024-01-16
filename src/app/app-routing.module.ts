@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './shared/layout/layout.component';
 import { SearchPageComponent } from './features/search-page/search-page.component';
 import { RecipePageComponent } from './features/recipe-page/recipe-page.component';
+import {SavedRecipesPageComponent} from "./features/saved-recipes-page/saved-recipes-page.component";
 
 const routes: Routes = [
     {
@@ -12,6 +13,10 @@ const routes: Routes = [
             {
                 path: '',
                 component: SearchPageComponent
+            },
+            {
+                path: 'saved',
+                component: SavedRecipesPageComponent
             },
             {
                 path: 'recipe/:id',

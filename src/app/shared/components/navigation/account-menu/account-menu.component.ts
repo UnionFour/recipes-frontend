@@ -2,6 +2,7 @@ import {Component, Inject, ViewChild} from '@angular/core';
 import {TuiAlertService, TuiHostedDropdownComponent} from '@taiga-ui/core';
 import { AuthService } from '../../../../core/services/auth.service';
 import {takeUntil} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-account-menu',
@@ -14,6 +15,7 @@ export class AccountMenuComponent {
     open = false;
 
     constructor(
+        public router: Router,
         public authService: AuthService,
         @Inject(TuiAlertService) private readonly alert: TuiAlertService
     ) {
@@ -28,4 +30,6 @@ export class AccountMenuComponent {
         this.authService.logout()
         this.alert.open('Вы вышли из аккаунта').subscribe()
     }
+
+
 }
