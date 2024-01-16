@@ -131,4 +131,15 @@ export class FilterPanelComponent extends DestroyableComponent implements OnInit
     public getControl(controlName: string): FormControl {
         return this.filteringParamsForm.get(controlName) as FormControl;
     }
+
+    public resetForm() {
+        this.setDefaultFilteringValues();
+    }
+
+    private setDefaultFilteringValues() {
+        this.getControl('isSearchLoose').setValue(this.isSearchLooseDefaultValue);
+        this.getControl('nutritionalValues').setValue(this.nutritionalDefaultValue);
+        this.getControl('categories').setValue([]);
+        this.getControl('ingredients').setValue([]);
+    }
 }

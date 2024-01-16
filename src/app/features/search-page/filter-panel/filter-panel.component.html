@@ -48,6 +48,18 @@
                     [control]="getControl('ingredients')"
                 ></app-ingredients-async-select>
             </li>
+            <hr>
+            <li>
+                <button
+                        tuiButton
+                        type="button"
+                        class="reset-button"
+                        size="s"
+                        (click)="resetForm()"
+                >
+                    Сбросить
+                </button>
+            </li>
         </ul>
     </form>
 </div>

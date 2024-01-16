@@ -54,7 +54,7 @@ export class RecipeCardComponent implements OnInit, AfterViewInit {
             });
 
             if (xCoordination >= 0) {
-                ingredients.scroll({left: xCoordination});
+                ingredients.scroll({ left: xCoordination });
                 if (diff > 0 && remainder < ingredientsWidth) {
                     this.imaginaryIndex = this.recipe.ingredients!.length;
                 } else if (diff < 0 && this.imaginaryIndex === this.recipe.ingredients!.length) {
