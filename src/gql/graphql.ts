@@ -46,7 +46,7 @@ export type AuthorizeUserInput = {
 
 export type AuthorizeUserPayload = {
   __typename?: 'AuthorizeUserPayload';
-  string?: Maybe<Scalars['String']['output']>;
+  userPayload?: Maybe<UserPayload>;
 };
 
 export type BooleanOperationFilterInput = {
@@ -533,7 +533,7 @@ export type RegisterUserInput = {
 
 export type RegisterUserPayload = {
   __typename?: 'RegisterUserPayload';
-  string?: Maybe<Scalars['String']['output']>;
+  userPayload?: Maybe<UserPayload>;
 };
 
 export type RenameIngredientInput = {
@@ -605,6 +605,13 @@ export type UpdateRecipePayload = {
 export type UserAuthInput = {
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
+};
+
+export type UserPayload = {
+  __typename?: 'UserPayload';
+  id: Scalars['String']['output'];
+  login: Scalars['String']['output'];
+  token: Scalars['String']['output'];
 };
 
 export type RecipeInfoFragment = { __typename?: 'Recipe', id?: string | null, vegetarian?: boolean | null, vegan?: boolean | null, glutenFree?: boolean | null, dairyFree?: boolean | null, image?: string | null, readyInMinutes?: number | null, preparationMinutes?: number | null, cookingMinutes?: number | null, servings?: number | null, spoonacularSourceUrl?: string | null, aggregateLikes?: number | null, callories?: number | null, calloriesUnits?: string | null, title: { __typename?: 'LocalizedString', rus?: string | null }, ingredients?: Array<{ __typename?: 'Ingredient', image?: string | null, amount?: number | null, name?: { __typename?: 'LocalizedString', rus?: string | null } | null, unit?: { __typename?: 'LocalizedString', rus?: string | null } | null }> | null, pricePerServing?: { __typename?: 'Money', rub: number } | null, instructions?: Array<{ __typename?: 'Instruction', name?: { __typename?: 'LocalizedString', rus?: string | null } | null, steps: Array<{ __typename?: 'Step', number?: number | null, description: { __typename?: 'LocalizedString', rus?: string | null }, ingredients?: Array<{ __typename?: 'Ingredient', id?: string | null, image?: string | null, amount?: number | null, name?: { __typename?: 'LocalizedString', rus?: string | null } | null, unit?: { __typename?: 'LocalizedString', rus?: string | null } | null }> | null, equipments?: Array<{ __typename?: 'Equipment', id?: number | null, image: string, name: { __typename?: 'LocalizedString', rus?: string | null } }> | null, length?: { __typename?: 'Length', number: number, unit: { __typename?: 'LocalizedString', rus?: string | null } } | null }> }> | null, nutrition?: { __typename?: 'Nutrition', caloricBreakdown: { __typename?: 'CaloricBreakdown', percentProtein: number, percentFat: number, percentCarbs: number } } | null } & { ' $fragmentName'?: 'RecipeInfoFragment' };
