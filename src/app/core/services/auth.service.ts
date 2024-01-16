@@ -40,8 +40,10 @@ export class AuthService {
                 `,
                 variables: {
                     input: {
-                        email: user.login,
-                        password: user.password,
+                        input: {
+                            email: user.login,
+                            password: user.password,
+                        }
                     },
                 },
             })
@@ -72,14 +74,20 @@ export class AuthService {
                 mutation: gql`
                     mutation RegisterUser($input: RegisterUserInput!) {
                         registerUser(input: $input) {
-                            string
+                            userPayload {
+                                id
+                                login
+                                token
+                            }
                         }
                     }
                 `,
                 variables: {
                     input: {
-                        email: user.login,
-                        password: user.password,
+                        input: {
+                            email: user.login,
+                            password: user.password,
+                        }
                     },
                 },
             })
