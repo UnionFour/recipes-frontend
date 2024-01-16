@@ -87,6 +87,7 @@ export const queryFind = gql`
                 hasNextPage
                 endCursor
             }
+            totalCount
         }
     }
     ${recipeFragment}
