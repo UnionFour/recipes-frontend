@@ -35,6 +35,8 @@ import {
     RegistrationFormComponent
 } from './components/navigation/auth-modal/auth/registration-form/registration-form.component';
 import { TabsComponent } from './components/tabs/tabs.component';
+import { RecipesListComponent } from './components/resipes-list/recipes-list.component';
+import { RecipeCardComponent } from './components/resipes-list/resipes-list/recipe-card/recipe-card.component';
 
 const modules = [
     CommonModule,
@@ -64,7 +66,7 @@ const modules = [
     RouterLink,
     TuiTabsModule,
     TuiInputPasswordModule,
-    TuiNotificationModule
+    TuiNotificationModule,
 ];
 
 const components = [
@@ -79,6 +81,8 @@ const components = [
     LoginFormComponent,
     RegistrationFormComponent,
     TabsComponent,
+    RecipesListComponent,
+    RecipeCardComponent
 
 ];
 

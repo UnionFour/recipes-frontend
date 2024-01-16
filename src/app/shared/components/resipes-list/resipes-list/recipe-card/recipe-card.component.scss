@@ -1,4 +1,4 @@
-@import 'src/assets/styles/_variables.scss';
+@import 'variables';
 
 .container {
     background-color: $base-element-color;
@@ -111,7 +111,7 @@
     .left-arrow {
         .icon {
             left: 0;
-            background: url("../../../../assets/img/left-arrow.svg") no-repeat center center;
+            background: url("../../../../../assets/img/left-arrow.svg") no-repeat center center;
             background-size: 26px 15px;
         }
     }
@@ -121,7 +121,7 @@
 
         .icon {
             right: 0;
-            background: url("../../../../assets/img/right-arrow.svg") no-repeat center center;
+            background: url("../../../../../assets/img/right-arrow.svg") no-repeat center center;
             background-size: 26px 15px;
         }
     }

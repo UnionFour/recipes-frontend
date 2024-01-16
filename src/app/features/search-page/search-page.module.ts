@@ -19,8 +19,6 @@ import {
     TuiTextfieldControllerModule
 } from '@taiga-ui/core';
 import { TuiLetModule } from '@taiga-ui/cdk';
-import { RecipesListComponent } from './resipes-list/recipes-list.component';
-import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 import { SortPanelComponent } from './sort-panel/sort-panel.component';
 import { SortComponent } from './sort-panel/sort/sort.component';
 import { SortMethodComponent } from './sort-panel/sort/sort-method/sort-method.component';
@@ -34,8 +32,6 @@ const components = [
     SearchPageComponent,
     FilterPanelComponent,
     SortPanelComponent,
-    RecipesListComponent,
-    RecipeCardComponent,
     SortComponent,
     SortMethodComponent,
     IngredientsAsyncSelectComponent,

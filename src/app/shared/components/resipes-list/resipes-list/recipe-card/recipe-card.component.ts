@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
-import { Recipe } from '../../../../gql/graphql';
-import { Category, categories } from '../../../core/models/filtering/category';
+import { Recipe } from '../../../../../gql/graphql';
+import { Category, categories } from '../../../../core/models/filtering/category';
 
 @Component({
     selector: 'app-recipe-card',
