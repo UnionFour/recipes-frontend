@@ -37,7 +37,7 @@ export class IngredientsAsyncSelectComponent extends DestroyableComponent implem
         );
     }
 
-    ngAfterViewInit() {
+    public ngAfterViewInit() {
         this.search$.next('');
     }
 

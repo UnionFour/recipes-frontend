@@ -147,4 +147,27 @@ export class RecipeService {
             .pipe(map((result) =>
                 result.data.ingredients.map((ingredient) => ingredient.id ?? '') ?? []));
     }
+
+    public findByRecipeName(name: string): Observable<Recipe[]> {
+        const filterInput: RecipeFilterInput = { and: [] };
+
+        filterInput.or = [{ title: { rus: { contains: name } } }]
+
+        return this.apollo
+            .query<{ recipes: RecipesConnection }>({
+                query: queryFind,
+                variables: {
+                    filtration: filterInput,
+                },
+            })
+            .pipe(
+                map((result) =>  {
+                    const recipes = result.data.recipes;
+                    return recipes.nodes ?? [];
+                }),
+                tap((result: Recipe[]) => {
+                    console.log(result);
+                }),
+            );
+    }
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DeclensionsWord } from '../../../shared/pipes/declension.pipe';
 import { SortMethod } from '../../../core/models/sorting/sortMethod.model';
-import { RecipeSortInput, SortEnumType } from '../../../../gql/graphql';
 import { SelectedSortMethod } from '../../../core/models/sorting/selectedSortMethod.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RecipeService } from '../../../core/services/recipe.service';
 
 
 @Component({
@@ -12,7 +12,6 @@ import { ActivatedRoute, Router } from '@angular/router';
     styleUrls: ['./sort-panel.component.scss']
 })
 export class SortPanelComponent implements OnInit{
-    public recipesCount = 11;
     public value!:  SelectedSortMethod;
 
     public readonly recipeDeclensions: DeclensionsWord = {
@@ -36,7 +35,7 @@ export class SortPanelComponent implements OnInit{
     constructor(
         public router: Router,
         public route: ActivatedRoute,
-
+        public recipeService: RecipeService
     ) {
     }
 
@@ -58,12 +57,4 @@ export class SortPanelComponent implements OnInit{
             queryParamsHandling: 'merge'
         }).then()
     }
-
-    // private prepareSortingMethod(sortMethod: SelectedSortMethod): RecipeSortInput {
-    //     return {
-    //         [sortMethod.value]: sortMethod.order === 'indefinite'
-    //         || sortMethod.order === 'descending' ? SortEnumType.Desc : SortEnumType.Asc
-    //     };
-    // }
-
 }
