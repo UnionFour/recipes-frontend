@@ -63,7 +63,8 @@ export class RegistrationFormComponent extends DestroyableComponent implements O
 
         return this.authService.login(user).pipe(
             tap(() => this.alert.open('Успешная регистарция',
-                { status: 'success' }).subscribe()),
+                { status: 'success' }).subscribe()
+            ),
             catchError(() => this.handleLoginError())
         );
     }
@@ -86,7 +87,7 @@ export class RegistrationFormComponent extends DestroyableComponent implements O
 
     private openError(errorMessage: string) {
         this.errorExists = true;
-        this.errorMessage = errorMessage;
+        this.errorMessage = 'Данный логин уже занят';
     }
 
     public closeError() {

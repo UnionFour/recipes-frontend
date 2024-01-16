@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs';
 import { User } from '../models/auth/user';
 import { LoginResponse } from '../models/auth/login-response';
 import { RegisterResponse } from '../models/auth/register-response';
-import { RegisterUserPayload } from '../../../gql/graphql';
+import { AuthorizeUserPayload, RegisterUserPayload } from '../../../gql/graphql';
 import { Apollo, gql } from 'apollo-angular';
 
 @Injectable({
@@ -26,7 +26,7 @@ export class AuthService {
          Server request emulation
          */
         return this.apollo
-            .mutate<{ registerUser: RegisterUserPayload }>({
+            .mutate<{ authorizeUser: AuthorizeUserPayload }>({
                 mutation: gql`
                     mutation AuthorizeUser($input: AuthorizeUserInput!) {
                         authorizeUser(input: $input) {
@@ -49,7 +49,7 @@ export class AuthService {
             })
             .pipe(
                 map((result) => {
-                    const userPayload = result.data?.registerUser.userPayload;
+                    const userPayload = result.data?.authorizeUser.userPayload;
 
                     this.setAccessToken({
                         access: userPayload?.token ?? '',
