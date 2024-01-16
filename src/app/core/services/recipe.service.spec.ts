@@ -1,29 +1,34 @@
-// import { TestBed } from '@angular/core/testing';
-// import { RecipeService } from './recipe.service';
-// import { Apollo } from 'apollo-angular';
-// import { GraphQLModule } from '../../graphql.module';
-// import { HttpClientModule } from '@angular/common/http';
-// import { Recipe, SortEnumType } from '../../../gql/graphql';
-// import { concat } from 'rxjs';
-//
-// function getRecipeService(): RecipeService {
-//     TestBed.configureTestingModule({
-//         imports: [GraphQLModule, HttpClientModule],
-//     });
-//
-//     const apollo = TestBed.inject(Apollo);
-//
-//     return new RecipeService(apollo);
-// }
-//
-// test('Поиск без ингредиентов и сортировки', (done) => {
-//     const recipeService = getRecipeService();
-//
-//     recipeService.find().subscribe((result) => {
-//         console.log(result);
-//         done();
-//     });
-// });
+import { TestBed } from '@angular/core/testing';
+import { RecipeService } from './recipe.service';
+import { Apollo } from 'apollo-angular';
+import { GraphQLModule } from '../../graphql.module';
+import { HttpClientModule } from '@angular/common/http';
+
+function getRecipeService(): RecipeService {
+    TestBed.configureTestingModule({
+        imports: [GraphQLModule, HttpClientModule],
+    });
+
+    const apollo = TestBed.inject(Apollo);
+
+    return new RecipeService(apollo);
+}
+
+test('Поиск без ингредиентов и сортировки', (done) => {
+    const recipeService = getRecipeService();
+
+    recipeService
+        .find({
+            categories: [],
+            ingredients: [],
+            isSearchLoose: false,
+            nutritionalValues: [],
+        })
+        .subscribe((result) => {
+            console.log(result);
+            done();
+        });
+});
 //
 // test('Поиск c ингредиентами и сортировкой по популярности', (done) => {
 //     const recipeService = getRecipeService();
@@ -128,12 +133,12 @@
 //     recipeService.findIngredients('в').subscribe(result => {
 //         console.log(result);
 //
-//         expect(result[0].id).toMatch(/^в/);
+//         // expect(result[0].id).toMatch(/^в/);
 //
 //         done();
 //     })
 // });
-
+//
 // test('', (done) => {
 //     const rs = getRecipeService();
 //     rs.find({ categories: [], ingredients: [], isSearchLoose: false, nutritionalValues: [] }).subscribe((_) => _);

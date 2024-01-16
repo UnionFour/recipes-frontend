@@ -13,13 +13,29 @@ function getUserService(): UserService {
 
     return new UserService(apollo);
 }
+
 test('get favourite recipes', (done) => {
     const userService = getUserService();
-    localStorage.setItem('accessToken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkJlYXJlciJ9.eyJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjUyMjkiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUyMjkiLCJleHAiOjE3MDUzNjExNzksImVtYWlsIjoicXdlcnFAZ21haWwuY29tIiwic3ViIjoiNjVhNWI1NzIyMzQxZWMwYTk1NTk2ZjYyIiwiaWF0IjoxNzA1MzYwMjc5LCJuYmYiOjE3MDUzNjAyNzl9.cZankbdjTz6cTe-qENCiapgQEmgAgLqrCp0XPTXxb00')
+
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkJlYXJlciJ9.eyJhdWQiOiJodHRwOi8vbG9jYWxob3N0IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdCIsImV4cCI6MTcwNTM3OTYzOSwiZW1haWwiOiJkdWJza2lraHNlbXlvbkBnbWFpbC5jb20iLCJzdWIiOiI2NWE2MDI0MzBkNjExYjNlNDY0M2RjM2EiLCJpYXQiOjE3MDUzNzg3MzksIm5iZiI6MTcwNTM3ODczOX0.VawJ6fyVoPmSyucY5ckWt_i9dMUO9K_6tcJFhULsZmk';
+    localStorage.setItem('accessToken', token);
 
     userService.getFavouriteRecipes().subscribe(recipes => {
         console.log(recipes);
         done();
     })
 
+})
+
+test('add favourite recipe', (done) => {
+    const userService = getUserService();
+
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkJlYXJlciJ9.eyJhdWQiOiJodHRwOi8vbG9jYWxob3N0IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdCIsImV4cCI6MTcwNTM3OTYzOSwiZW1haWwiOiJkdWJza2lraHNlbXlvbkBnbWFpbC5jb20iLCJzdWIiOiI2NWE2MDI0MzBkNjExYjNlNDY0M2RjM2EiLCJpYXQiOjE3MDUzNzg3MzksIm5iZiI6MTcwNTM3ODczOX0.VawJ6fyVoPmSyucY5ckWt_i9dMUO9K_6tcJFhULsZmk';
+    localStorage.setItem('accessToken', token);
+
+
+    userService.addFavouriteRecipe('6535566e607944a91084f87b').subscribe(recipes => {
+        console.log(recipes);
+        done();
+    })
 })
