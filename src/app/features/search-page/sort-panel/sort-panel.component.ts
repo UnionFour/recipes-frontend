@@ -4,6 +4,8 @@ import { SortMethod } from '../../../core/models/sorting/sortMethod.model';
 import { SelectedSortMethod } from '../../../core/models/sorting/selectedSortMethod.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from '../../../core/services/recipe.service';
+import {DestroyableComponent} from "../../../shared/components/destroyable-component/destroyable.component";
+import {takeUntil} from "rxjs";
 
 
 @Component({
@@ -11,8 +13,9 @@ import { RecipeService } from '../../../core/services/recipe.service';
     templateUrl: './sort-panel.component.html',
     styleUrls: ['./sort-panel.component.scss']
 })
-export class SortPanelComponent implements OnInit{
-    public value!:  SelectedSortMethod;
+export class SortPanelComponent extends DestroyableComponent implements OnInit{
+    public value!: SelectedSortMethod;
+    public totalCount!: number;
 
     public readonly recipeDeclensions: DeclensionsWord = {
         nominativeCase: 'рецепт',
@@ -37,6 +40,7 @@ export class SortPanelComponent implements OnInit{
         public route: ActivatedRoute,
         public recipeService: RecipeService
     ) {
+        super();
     }
 
     ngOnInit(): void {
@@ -47,13 +51,18 @@ export class SortPanelComponent implements OnInit{
             value: 'aggregateLikes',
             order: 'descending'
         }
+
+        this.recipeService.totalCount.pipe(
+            takeUntil(this.destroy$)
+        ).subscribe((totalCount) =>
+            console.log('t1',totalCount))
     }
 
     public onChangedSortMethod(selectedSortMethod: SelectedSortMethod) {
         console.log('sort-pael', new Date())
         this.router.navigate([], {
             relativeTo: this.route,
-            queryParams: { sorting: [selectedSortMethod.value, selectedSortMethod.order] }, // Указываем параметр, который нужно удалить, и устанавливаем для него null
+            queryParams: { sorting: [selectedSortMethod.value, selectedSortMethod.order] },
             queryParamsHandling: 'merge'
         }).then()
     }
