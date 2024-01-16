@@ -1,7 +1,7 @@
 <div class="container">
     <h1>
         {{totalCount | declension: findDeclensions}}
-        <b>{{totalCount}}</b>
+        <b *ngIf="totalCount">{{totalCount}}</b>
         {{totalCount | declension: recipeDeclensions}}
     </h1>
     <app-sort

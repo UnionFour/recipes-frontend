@@ -55,7 +55,7 @@ export class SortPanelComponent extends DestroyableComponent implements OnInit{
         this.recipeService.totalCount.pipe(
             takeUntil(this.destroy$)
         ).subscribe((totalCount) =>
-            console.log('t1',totalCount))
+            this.totalCount = totalCount);
     }
 
     public onChangedSortMethod(selectedSortMethod: SelectedSortMethod) {
