@@ -1,5 +1,5 @@
 export type RegisterResponse = {
-  id: number,
+  id: string,
   login: string
   password: string,
 }

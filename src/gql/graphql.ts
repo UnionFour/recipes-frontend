@@ -16,6 +16,39 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type AddFavouriteRecipeInput = {
+  id: Scalars['String']['input'];
+};
+
+export type AddFavouriteRecipePayload = {
+  __typename?: 'AddFavouriteRecipePayload';
+  recipe?: Maybe<Recipe>;
+};
+
+export type AddRecipeInput = {
+  recipe: RecipeInput;
+};
+
+export type AddRecipePayload = {
+  __typename?: 'AddRecipePayload';
+  recipe?: Maybe<Recipe>;
+};
+
+export enum ApplyPolicy {
+  AfterResolver = 'AFTER_RESOLVER',
+  BeforeResolver = 'BEFORE_RESOLVER',
+  Validation = 'VALIDATION'
+}
+
+export type AuthorizeUserInput = {
+  input: UserAuthInput;
+};
+
+export type AuthorizeUserPayload = {
+  __typename?: 'AuthorizeUserPayload';
+  userPayload?: Maybe<UserPayload>;
+};
+
 export type BooleanOperationFilterInput = {
   eq?: InputMaybe<Scalars['Boolean']['input']>;
   neq?: InputMaybe<Scalars['Boolean']['input']>;
@@ -36,6 +69,12 @@ export type CaloricBreakdownFilterInput = {
   percentProtein?: InputMaybe<FloatOperationFilterInput>;
 };
 
+export type CaloricBreakdownInput = {
+  percentCarbs: Scalars['Float']['input'];
+  percentFat: Scalars['Float']['input'];
+  percentProtein: Scalars['Float']['input'];
+};
+
 export type CaloricBreakdownSortInput = {
   percentCarbs?: InputMaybe<SortEnumType>;
   percentFat?: InputMaybe<SortEnumType>;
@@ -44,7 +83,7 @@ export type CaloricBreakdownSortInput = {
 
 export type Equipment = {
   __typename?: 'Equipment';
-  id: Scalars['Int']['output'];
+  id?: Maybe<Scalars['Int']['output']>;
   image: Scalars['String']['output'];
   name: LocalizedString;
 };
@@ -55,6 +94,12 @@ export type EquipmentFilterInput = {
   image?: InputMaybe<StringOperationFilterInput>;
   name?: InputMaybe<LocalizedStringFilterInput>;
   or?: InputMaybe<Array<EquipmentFilterInput>>;
+};
+
+export type EquipmentInput = {
+  id?: InputMaybe<Scalars['Int']['input']>;
+  image: Scalars['String']['input'];
+  name: LocalizedStringInput;
 };
 
 export type FloatOperationFilterInput = {
@@ -75,16 +120,16 @@ export type FloatOperationFilterInput = {
 export type Ingredient = {
   __typename?: 'Ingredient';
   amount?: Maybe<Scalars['Float']['output']>;
-  id: Scalars['Int']['output'];
+  id?: Maybe<Scalars['String']['output']>;
   image?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<LocalizedString>;
+  name: LocalizedString;
   unit?: Maybe<LocalizedString>;
 };
 
 export type IngredientCollection = {
   __typename?: 'IngredientCollection';
   count: Scalars['Int']['output'];
-  id: Scalars['String']['output'];
+  id?: Maybe<Scalars['String']['output']>;
 };
 
 export type IngredientCollectionFilterInput = {
@@ -97,11 +142,19 @@ export type IngredientCollectionFilterInput = {
 export type IngredientFilterInput = {
   amount?: InputMaybe<FloatOperationFilterInput>;
   and?: InputMaybe<Array<IngredientFilterInput>>;
-  id?: InputMaybe<IntOperationFilterInput>;
+  id?: InputMaybe<StringOperationFilterInput>;
   image?: InputMaybe<StringOperationFilterInput>;
   name?: InputMaybe<LocalizedStringFilterInput>;
   or?: InputMaybe<Array<IngredientFilterInput>>;
   unit?: InputMaybe<LocalizedStringFilterInput>;
+};
+
+export type IngredientInput = {
+  amount?: InputMaybe<Scalars['Float']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  name: LocalizedStringInput;
+  unit?: InputMaybe<LocalizedStringInput>;
 };
 
 export type Instruction = {
@@ -115,6 +168,11 @@ export type InstructionFilterInput = {
   name?: InputMaybe<LocalizedStringFilterInput>;
   or?: InputMaybe<Array<InstructionFilterInput>>;
   steps?: InputMaybe<ListFilterInputTypeOfStepFilterInput>;
+};
+
+export type InstructionInput = {
+  name: LocalizedStringInput;
+  steps: Array<StepInput>;
 };
 
 export type IntOperationFilterInput = {
@@ -143,6 +201,11 @@ export type LengthFilterInput = {
   number?: InputMaybe<IntOperationFilterInput>;
   or?: InputMaybe<Array<LengthFilterInput>>;
   unit?: InputMaybe<LocalizedStringFilterInput>;
+};
+
+export type LengthInput = {
+  number: Scalars['Int']['input'];
+  unit: LocalizedStringInput;
 };
 
 export type ListFilterInputTypeOfEquipmentFilterInput = {
@@ -186,6 +249,11 @@ export type LocalizedStringFilterInput = {
   rus?: InputMaybe<StringOperationFilterInput>;
 };
 
+export type LocalizedStringInput = {
+  eng: Scalars['String']['input'];
+  rus: Scalars['String']['input'];
+};
+
 export type LocalizedStringSortInput = {
   eng?: InputMaybe<SortEnumType>;
   rus?: InputMaybe<SortEnumType>;
@@ -204,9 +272,54 @@ export type MoneyFilterInput = {
   usd?: InputMaybe<FloatOperationFilterInput>;
 };
 
+export type MoneyInput = {
+  rub: Scalars['Int']['input'];
+  usd: Scalars['Float']['input'];
+};
+
 export type MoneySortInput = {
   rub?: InputMaybe<SortEnumType>;
   usd?: InputMaybe<SortEnumType>;
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  addFavouriteRecipe: AddFavouriteRecipePayload;
+  addRecipe: AddRecipePayload;
+  authorizeUser: AuthorizeUserPayload;
+  registerUser: RegisterUserPayload;
+  renameIngredient: RenameIngredientPayload;
+  updateRecipe: UpdateRecipePayload;
+};
+
+
+export type MutationAddFavouriteRecipeArgs = {
+  input: AddFavouriteRecipeInput;
+};
+
+
+export type MutationAddRecipeArgs = {
+  input: AddRecipeInput;
+};
+
+
+export type MutationAuthorizeUserArgs = {
+  input: AuthorizeUserInput;
+};
+
+
+export type MutationRegisterUserArgs = {
+  input: RegisterUserInput;
+};
+
+
+export type MutationRenameIngredientArgs = {
+  input: RenameIngredientInput;
+};
+
+
+export type MutationUpdateRecipeArgs = {
+  input: UpdateRecipeInput;
 };
 
 export type Nutrition = {
@@ -218,6 +331,10 @@ export type NutritionFilterInput = {
   and?: InputMaybe<Array<NutritionFilterInput>>;
   caloricBreakdown?: InputMaybe<CaloricBreakdownFilterInput>;
   or?: InputMaybe<Array<NutritionFilterInput>>;
+};
+
+export type NutritionInput = {
+  caloricBreakdown: CaloricBreakdownInput;
 };
 
 export type NutritionSortInput = {
@@ -239,6 +356,7 @@ export type PageInfo = {
 
 export type Query = {
   __typename?: 'Query';
+  favouriteRecipes: Array<Recipe>;
   ingredients: Array<IngredientCollection>;
   recipes?: Maybe<RecipesConnection>;
 };
@@ -271,7 +389,7 @@ export type Recipe = {
   id: Scalars['String']['output'];
   image?: Maybe<Scalars['String']['output']>;
   imageType: Scalars['String']['output'];
-  ingredients?: Maybe<Array<Ingredient>>;
+  ingredients: Array<Ingredient>;
   instructions: Array<Instruction>;
   license: Scalars['String']['output'];
   likes: Scalars['Int']['output'];
@@ -323,6 +441,38 @@ export type RecipeFilterInput = {
   veryHealthy?: InputMaybe<BooleanOperationFilterInput>;
   veryPopular?: InputMaybe<BooleanOperationFilterInput>;
   weightWatcherSmartPoints?: InputMaybe<IntOperationFilterInput>;
+};
+
+export type RecipeInput = {
+  aggregateLikes: Scalars['Int']['input'];
+  callories: Scalars['Float']['input'];
+  calloriesUnits: Scalars['String']['input'];
+  cheap: Scalars['Boolean']['input'];
+  cookingMinutes: Scalars['Float']['input'];
+  dairyFree: Scalars['Boolean']['input'];
+  glutenFree: Scalars['Boolean']['input'];
+  healthScore: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
+  image?: InputMaybe<Scalars['String']['input']>;
+  imageType: Scalars['String']['input'];
+  ingredients: Array<IngredientInput>;
+  instructions: Array<InstructionInput>;
+  license: Scalars['String']['input'];
+  likes: Scalars['Int']['input'];
+  nutrition: NutritionInput;
+  preparationMinutes: Scalars['Float']['input'];
+  pricePerServing: MoneyInput;
+  readyInMinutes: Scalars['Float']['input'];
+  servings: Scalars['Int']['input'];
+  sourceName: Scalars['String']['input'];
+  sourceUrl: Scalars['String']['input'];
+  spoonacularSourceUrl: Scalars['String']['input'];
+  title: LocalizedStringInput;
+  vegan: Scalars['Boolean']['input'];
+  vegetarian: Scalars['Boolean']['input'];
+  veryHealthy: Scalars['Boolean']['input'];
+  veryPopular: Scalars['Boolean']['input'];
+  weightWatcherSmartPoints: Scalars['Int']['input'];
 };
 
 export type RecipeSortInput = {
@@ -377,6 +527,25 @@ export type RecipesEdge = {
   node: Recipe;
 };
 
+export type RegisterUserInput = {
+  input: UserAuthInput;
+};
+
+export type RegisterUserPayload = {
+  __typename?: 'RegisterUserPayload';
+  userPayload?: Maybe<UserPayload>;
+};
+
+export type RenameIngredientInput = {
+  ingredientName: Scalars['String']['input'];
+  newIngredientName: Scalars['String']['input'];
+};
+
+export type RenameIngredientPayload = {
+  __typename?: 'RenameIngredientPayload';
+  string?: Maybe<Scalars['String']['output']>;
+};
+
 export enum SortEnumType {
   Asc = 'ASC',
   Desc = 'DESC'
@@ -386,7 +555,7 @@ export type Step = {
   __typename?: 'Step';
   description: LocalizedString;
   equipments: Array<Equipment>;
-  ingredients?: Maybe<Array<Ingredient>>;
+  ingredients: Array<Ingredient>;
   length?: Maybe<Length>;
   number: Scalars['Int']['output'];
 };
@@ -399,6 +568,14 @@ export type StepFilterInput = {
   length?: InputMaybe<LengthFilterInput>;
   number?: InputMaybe<IntOperationFilterInput>;
   or?: InputMaybe<Array<StepFilterInput>>;
+};
+
+export type StepInput = {
+  description: LocalizedStringInput;
+  equipments: Array<EquipmentInput>;
+  ingredients: Array<IngredientInput>;
+  length?: InputMaybe<LengthInput>;
+  number: Scalars['Int']['input'];
 };
 
 export type StringOperationFilterInput = {
@@ -416,7 +593,42 @@ export type StringOperationFilterInput = {
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type RecipeInfoFragment = { __typename?: 'Recipe', id: string, vegetarian: boolean, vegan: boolean, glutenFree: boolean, dairyFree: boolean, image?: string | null, readyInMinutes: number, preparationMinutes: number, cookingMinutes: number, servings: number, spoonacularSourceUrl: string, aggregateLikes: number, callories: number, calloriesUnits: string, title: { __typename?: 'LocalizedString', rus: string }, ingredients?: Array<{ __typename?: 'Ingredient', image?: string | null, amount?: number | null, name?: { __typename?: 'LocalizedString', rus: string } | null, unit?: { __typename?: 'LocalizedString', rus: string } | null }> | null, pricePerServing: { __typename?: 'Money', rub: number }, instructions: Array<{ __typename?: 'Instruction', name: { __typename?: 'LocalizedString', rus: string }, steps: Array<{ __typename?: 'Step', number: number, description: { __typename?: 'LocalizedString', rus: string }, ingredients?: Array<{ __typename?: 'Ingredient', id: number, image?: string | null, amount?: number | null, name?: { __typename?: 'LocalizedString', rus: string } | null, unit?: { __typename?: 'LocalizedString', rus: string } | null }> | null, equipments: Array<{ __typename?: 'Equipment', id: number, image: string, name: { __typename?: 'LocalizedString', rus: string } }>, length?: { __typename?: 'Length', number: number, unit: { __typename?: 'LocalizedString', rus: string } } | null }> }>, nutrition: { __typename?: 'Nutrition', caloricBreakdown: { __typename?: 'CaloricBreakdown', percentProtein: number, percentFat: number, percentCarbs: number } } } & { ' $fragmentName'?: 'RecipeInfoFragment' };
+export type UpdateRecipeInput = {
+  recipe: RecipeInput;
+};
+
+export type UpdateRecipePayload = {
+  __typename?: 'UpdateRecipePayload';
+  recipe?: Maybe<Recipe>;
+};
+
+export type UserAuthInput = {
+  email: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+};
+
+export type UserPayload = {
+  __typename?: 'UserPayload';
+  id: Scalars['String']['output'];
+  login: Scalars['String']['output'];
+  token: Scalars['String']['output'];
+};
+
+export type AuthorizeUserMutationVariables = Exact<{
+  input: AuthorizeUserInput;
+}>;
+
+
+export type AuthorizeUserMutation = { __typename?: 'Mutation', authorizeUser: { __typename?: 'AuthorizeUserPayload', userPayload?: { __typename?: 'UserPayload', id: string, login: string, token: string } | null } };
+
+export type RegisterUserMutationVariables = Exact<{
+  input: RegisterUserInput;
+}>;
+
+
+export type RegisterUserMutation = { __typename?: 'Mutation', registerUser: { __typename?: 'RegisterUserPayload', userPayload?: { __typename?: 'UserPayload', id: string, login: string, token: string } | null } };
+
+export type RecipeInfoFragment = { __typename?: 'Recipe', id: string, vegetarian: boolean, vegan: boolean, glutenFree: boolean, dairyFree: boolean, image?: string | null, readyInMinutes: number, preparationMinutes: number, cookingMinutes: number, servings: number, spoonacularSourceUrl: string, aggregateLikes: number, callories: number, calloriesUnits: string, title: { __typename?: 'LocalizedString', rus: string }, ingredients: Array<{ __typename?: 'Ingredient', image?: string | null, amount?: number | null, name: { __typename?: 'LocalizedString', rus: string }, unit?: { __typename?: 'LocalizedString', rus: string } | null }>, pricePerServing: { __typename?: 'Money', rub: number }, instructions: Array<{ __typename?: 'Instruction', name: { __typename?: 'LocalizedString', rus: string }, steps: Array<{ __typename?: 'Step', number: number, description: { __typename?: 'LocalizedString', rus: string }, ingredients: Array<{ __typename?: 'Ingredient', id?: string | null, image?: string | null, amount?: number | null, name: { __typename?: 'LocalizedString', rus: string }, unit?: { __typename?: 'LocalizedString', rus: string } | null }>, equipments: Array<{ __typename?: 'Equipment', id?: number | null, image: string, name: { __typename?: 'LocalizedString', rus: string } }>, length?: { __typename?: 'Length', number: number, unit: { __typename?: 'LocalizedString', rus: string } } | null }> }>, nutrition: { __typename?: 'Nutrition', caloricBreakdown: { __typename?: 'CaloricBreakdown', percentProtein: number, percentFat: number, percentCarbs: number } } } & { ' $fragmentName'?: 'RecipeInfoFragment' };
 
 export type GetRecipesQueryVariables = Exact<{
   filtration: RecipeFilterInput;
@@ -440,6 +652,16 @@ export type GetRecipeQuery = { __typename?: 'Query', recipes?: { __typename?: 'R
       & { ' $fragmentRefs'?: { 'RecipeInfoFragment': RecipeInfoFragment } }
     )> | null } | null };
 
+export type GetIngredientsQueryVariables = Exact<{
+  name?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type GetIngredientsQuery = { __typename?: 'Query', ingredients: Array<{ __typename?: 'IngredientCollection', id?: string | null, count: number }> };
+
 export const RecipeInfoFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RecipeInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Recipe"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"vegetarian"}},{"kind":"Field","name":{"kind":"Name","value":"vegan"}},{"kind":"Field","name":{"kind":"Name","value":"glutenFree"}},{"kind":"Field","name":{"kind":"Name","value":"dairyFree"}},{"kind":"Field","name":{"kind":"Name","value":"title"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"ingredients"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"unit"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"readyInMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"preparationMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"cookingMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"servings"}},{"kind":"Field","name":{"kind":"Name","value":"pricePerServing"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rub"}}]}},{"kind":"Field","name":{"kind":"Name","value":"instructions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"steps"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"number"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ingredients"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"unit"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"equipments"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"length"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"number"}},{"kind":"Field","name":{"kind":"Name","value":"unit"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"spoonacularSourceUrl"}},{"kind":"Field","name":{"kind":"Name","value":"aggregateLikes"}},{"kind":"Field","name":{"kind":"Name","value":"callories"}},{"kind":"Field","name":{"kind":"Name","value":"calloriesUnits"}},{"kind":"Field","name":{"kind":"Name","value":"nutrition"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"caloricBreakdown"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"percentProtein"}},{"kind":"Field","name":{"kind":"Name","value":"percentFat"}},{"kind":"Field","name":{"kind":"Name","value":"percentCarbs"}}]}}]}}]}}]} as unknown as DocumentNode<RecipeInfoFragment, unknown>;
+export const AuthorizeUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"AuthorizeUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"AuthorizeUserInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"authorizeUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userPayload"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"login"}},{"kind":"Field","name":{"kind":"Name","value":"token"}}]}}]}}]}}]} as unknown as DocumentNode<AuthorizeUserMutation, AuthorizeUserMutationVariables>;
+export const RegisterUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RegisterUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RegisterUserInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"registerUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userPayload"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"login"}},{"kind":"Field","name":{"kind":"Name","value":"token"}}]}}]}}]}}]} as unknown as DocumentNode<RegisterUserMutation, RegisterUserMutationVariables>;
 export const GetRecipesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetRecipes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filtration"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RecipeFilterInput"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"recipeSorts"}},"type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RecipeSortInput"}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"cursor"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"recipes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"10"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filtration"}}},{"kind":"Argument","name":{"kind":"Name","value":"order"},"value":{"kind":"Variable","name":{"kind":"Name","value":"recipeSorts"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cursor"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RecipeInfo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}},{"kind":"Field","name":{"kind":"Name","value":"endCursor"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RecipeInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Recipe"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"vegetarian"}},{"kind":"Field","name":{"kind":"Name","value":"vegan"}},{"kind":"Field","name":{"kind":"Name","value":"glutenFree"}},{"kind":"Field","name":{"kind":"Name","value":"dairyFree"}},{"kind":"Field","name":{"kind":"Name","value":"title"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"ingredients"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"unit"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"readyInMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"preparationMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"cookingMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"servings"}},{"kind":"Field","name":{"kind":"Name","value":"pricePerServing"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rub"}}]}},{"kind":"Field","name":{"kind":"Name","value":"instructions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"steps"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"number"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ingredients"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"unit"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"equipments"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"length"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"number"}},{"kind":"Field","name":{"kind":"Name","value":"unit"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"spoonacularSourceUrl"}},{"kind":"Field","name":{"kind":"Name","value":"aggregateLikes"}},{"kind":"Field","name":{"kind":"Name","value":"callories"}},{"kind":"Field","name":{"kind":"Name","value":"calloriesUnits"}},{"kind":"Field","name":{"kind":"Name","value":"nutrition"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"caloricBreakdown"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"percentProtein"}},{"kind":"Field","name":{"kind":"Name","value":"percentFat"}},{"kind":"Field","name":{"kind":"Name","value":"percentCarbs"}}]}}]}}]}}]} as unknown as DocumentNode<GetRecipesQuery, GetRecipesQueryVariables>;
 export const GetRecipeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetRecipe"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"recipeId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"recipes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"recipeId"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RecipeInfo"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RecipeInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Recipe"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"vegetarian"}},{"kind":"Field","name":{"kind":"Name","value":"vegan"}},{"kind":"Field","name":{"kind":"Name","value":"glutenFree"}},{"kind":"Field","name":{"kind":"Name","value":"dairyFree"}},{"kind":"Field","name":{"kind":"Name","value":"title"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"ingredients"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"unit"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"readyInMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"preparationMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"cookingMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"servings"}},{"kind":"Field","name":{"kind":"Name","value":"pricePerServing"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rub"}}]}},{"kind":"Field","name":{"kind":"Name","value":"instructions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"steps"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"number"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ingredients"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"unit"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"equipments"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"length"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"number"}},{"kind":"Field","name":{"kind":"Name","value":"unit"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rus"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"spoonacularSourceUrl"}},{"kind":"Field","name":{"kind":"Name","value":"aggregateLikes"}},{"kind":"Field","name":{"kind":"Name","value":"callories"}},{"kind":"Field","name":{"kind":"Name","value":"calloriesUnits"}},{"kind":"Field","name":{"kind":"Name","value":"nutrition"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"caloricBreakdown"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"percentProtein"}},{"kind":"Field","name":{"kind":"Name","value":"percentFat"}},{"kind":"Field","name":{"kind":"Name","value":"percentCarbs"}}]}}]}}]}}]} as unknown as DocumentNode<GetRecipeQuery, GetRecipeQueryVariables>;
+export const GetIngredientsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetIngredients"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"name"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ingredients"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"contains"},"value":{"kind":"Variable","name":{"kind":"Name","value":"name"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"count"}}]}}]}}]} as unknown as DocumentNode<GetIngredientsQuery, GetIngredientsQueryVariables>;
