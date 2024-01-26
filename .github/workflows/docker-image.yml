@@ -2,9 +2,9 @@ name: Frontend docker image CI / CD
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
     
 env:
   REGISTRY: ghcr.io
