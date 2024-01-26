@@ -5,7 +5,8 @@ import { User } from '../models/auth/user';
 import { LoginResponse } from '../models/auth/login-response';
 import { RegisterResponse } from '../models/auth/register-response';
 import { AuthorizeUserPayload, RegisterUserPayload } from '../../../gql/graphql';
-import { Apollo, gql } from 'apollo-angular';
+import { Apollo } from 'apollo-angular';
+import { mutationAuthorizeUser, mutationRegisterUser } from './auth.queries';
 
 @Injectable({
     providedIn: 'root',
@@ -27,17 +28,7 @@ export class AuthService {
          */
         return this.apollo
             .mutate<{ authorizeUser: AuthorizeUserPayload }>({
-                mutation: gql`
-                    mutation AuthorizeUser($input: AuthorizeUserInput!) {
-                        authorizeUser(input: $input) {
-                            userPayload {
-                                id
-                                login
-                                token
-                            }
-                        }
-                    }
-                `,
+                mutation: mutationAuthorizeUser,
                 variables: {
                     input: {
                         input: {
@@ -71,17 +62,7 @@ export class AuthService {
 
         return this.apollo
             .mutate<{ registerUser: RegisterUserPayload }>({
-                mutation: gql`
-                    mutation RegisterUser($input: RegisterUserInput!) {
-                        registerUser(input: $input) {
-                            userPayload {
-                                id
-                                login
-                                token
-                            }
-                        }
-                    }
-                `,
+                mutation: mutationRegisterUser,
                 variables: {
                     input: {
                         input: {
